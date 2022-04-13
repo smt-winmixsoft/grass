@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-xxl-6">
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+        <h3 class="card-title">{{'LABEL.GENERAL' | translate}}</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="inputName">{{'LABEL.NAME' | translate}}</label>
+          <input #nameInput type="text" id="name" name="name" class="form-control" [(ngModel)]="item.name"
+            #name="ngModel" required appAutofocus>
+
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" role="alert">
+            <div *ngIf="name.errors?.['required']">
+              {{'LABEL.NAME.REQUIRED' | translate}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-6">
+    <div class="card card-secondary card-outline">
+      <div class="card-header">
+        <h3 class="card-title">{{'ANALYSIS.TITLE' | translate}}</h3>
+      </div>
+      <div class="card-body">
+        <table *ngIf="item.packTypes?.length > 0" class="table table-sm grass-table">
+          <thead>
+            <tr>
+              <th>{{'LABEL.WEIGHT' | translate}}</th>
+              <th>{{'LABEL.HUMIDITY' | translate}}</th>
+              <th *ngFor="let packType of item.packTypes">
+                {{packType.name}}
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-light">
+              <td>
+                <input #weight type="number" class="form-control text-right"
+                  [(ngModel)]="priceWeight.weight">
+              </td>
+              <td>
+                <input #humidity type="number" class="form-control text-right"
+                  [(ngModel)]="priceWeight.humidity" autocomplete="#">
+              </td>
+              <td *ngFor="let packType of item.packTypes">
+              </td>
+              <td class="w-content text-center">
+                <a class="btn-grass-success ml-1" (click)="addWeight()">
+                  <i class="fas fa-plus">
+                  </i>
+                  <span>{{ 'BUTTON.ADD' | translate }}</span>
+                </a>
+              </td>
+            </tr>
+            <tr *ngFor="let witem of item.priceWeights; index as i">
+              <td class="text-center fw-bold">{{ witem.weightDisplay }}</td>
+              <td class="text-center text-secondary">{{ witem.humidityDisplay }}</td>
+              <td *ngFor="let pitem of witem.priceWeightPackType">
+                <input type="number" class="form-control text-right" [(ngModel)]="pitem.price" autocomplete="off"
+                  [ngModelOptions]="{standalone: true}">
+              </td>
+              <td class="w-content">
+                <a class="btn-grass-danger ml-1" (click)="delWeight(witem)">
+                  <i class="fas fa-trash">
+                  </i>
+                  <span>{{ 'BUTTON.DELETE' | translate }}</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<app-message #message (closeEvent)="closeEvent($event)"></app-message>

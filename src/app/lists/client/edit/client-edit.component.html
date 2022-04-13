@@ -1,0 +1,13 @@
+<app-title>{{'BUTTON.EDIT' | translate}}</app-title>
+
+<app-editor>
+  <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <app-client-item #client [item]="item" [isNew]="false"></app-client-item>
+    <div class="row">
+      <div class="col-12">
+        <a href="#" class="btn btn-secondary" [routerLink]="['/client']">{{'BUTTON.CANCEL' | translate}}</a>
+        <input type="submit" value="{{'BUTTON.SAVE' | translate}}" class="btn btn-primary float-right">
+      </div>
+    </div>
+  </form>
+</app-editor>

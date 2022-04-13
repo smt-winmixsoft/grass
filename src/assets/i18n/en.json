@@ -1,0 +1,132 @@
+{
+  "HOME": {
+    "TITLE": "Grass"
+  },
+  "MENU": {
+    "HOME": "Home",
+    "CONTACT": "Contact",
+    "REFERENCES": "References",
+    "WORKIN": "Work assignments",
+    "WORKOUT": "Work results"
+  },
+  "VERSION": {
+    "VERSION": "Version",
+    "COPYRIGHT": "Copyright",
+    "RIGHTS": "All rights reserved."
+  },
+  "BUTTON": {
+    "CANCEL": "Cancel",
+    "NEW": "Create new",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "SAVE": "Save",
+    "ADD": "Add",
+    "USE": "Use",
+    "CLOSE": "Close",
+    "BACK": "Back",
+    "CHOOSE": "Choose"
+  },
+  "LABEL": {
+    "NO_DATA": "No data",
+    "NAME": "Name",
+    "NAME.REQUIRED": "Name is required.",
+    "GENERAL": "General",
+    "EXTRA": "Extra",
+    "VALUE": "Value",
+    "WEIGHT": "Weight",
+    "HUMIDITY": "Humidity",
+    "KG": "kg",
+    "FROM": "From",
+    "TO": "To",
+    "DATE": "Date"
+  },
+  "PACK_TYPE": {
+    "TITLE": "Pack types",
+    "NEW": "New pack type",
+    "LABEL": {
+      "NAME": "Pack type"
+    }
+  },
+  "MATERIAL": {
+    "TITLE": "Raw materials",
+    "NEW": "New raw material",
+    "LABEL": {
+      "NAME": "Raw material"
+    }
+  },
+  "ANALYSIS_TYPE": {
+    "TITLE": "Analysis types",
+    "NEW": "New analysis type"
+  },
+  "ANALYSIS": {
+    "TITLE": "Analyses",
+    "SINGLE": "Analysis"
+  },
+  "PRICE": {
+    "TITLE": "Price-lists",
+    "NEW": "New price-list",
+    "ERROR": {
+      "HUMIDITY": {
+        "100": "Humidity must be less than 100.",
+        "REQUIRED": "Humidity is required."
+      },
+      "WEIGHT": {
+        "REQUIRED": "Weight is required."
+      }
+    }
+  },
+  "CLIENT": {
+    "TITLE": "Clients",
+    "NEW": "New client",
+    "LABEL": {
+      "NAME": "Client",
+      "NUMBER": "Client number",
+      "ADDRESS": "Address",
+      "POSTCODE": "Postcode",
+      "PHONE": "Phone",
+      "EMAIL": "E-mail",
+      "RESIDENCE": "Residence",
+      "TYPE": "Client type",
+      "ECO": "ECO",
+      "UBN": "UBN",
+      "MESTNUMMER": "Mestnummer",
+      "GMP": "GMP+",
+      "PAPER": "Paper",
+      "INTERCOMPANY": "Intercompany",
+      "NOTACTIVE": "Not Active",
+      "SIGNED": "Contract signed"
+    },
+    "ERROR": {
+      "NUMBER": "Client number '$1' is used by client '$2'"
+    }
+  },
+  "BTW": {
+    "TITLE": "BTW",
+    "NEW": "New BTW"
+  },
+  "PARTY": {
+    "LABEL": {
+      "DRYING": "Drying",
+      "TRADE": "Trade",
+      "CUSTOMER": "Customer data",
+      "ORDER": "Drying order data",
+      "PARTY": "Number",
+      "SAMPLE": "Seal numbers",
+      "AREA": "Area",
+      "ORGANIC": "Organic product",
+      "PROBE": "Analysis",
+      "FRESH": "Fresh product",
+      "DRY": "Dried product",
+      "HUMIDITY": "Humidity",
+      "PRICE": "Price",
+      "DISCOUNT.SUPPLY": "Discount supply",
+      "DISCOUNT.DISPOSAL": "Discount disposal"
+    },
+    "ERROR": {
+      "NUMBER": "Number '$1' is already used",
+      "SAMPLE1": "Sammple number 1 '$1' is already used",
+      "SAMPLE2": "Sammple number 2 '$1' is already used",
+      "CLIENT": "Client is required"
+    }
+  }
+}

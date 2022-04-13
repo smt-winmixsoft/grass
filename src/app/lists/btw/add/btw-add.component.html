@@ -1,0 +1,36 @@
+<app-title>{{'BUTTON.NEW' | translate}}</app-title>
+
+<app-editor>
+  <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="card card-primary">
+      <div class="card-body">
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">{{'LABEL.NAME' | translate}}</label>
+          <input #nameInput type="text" id="name" name="name" class="form-control" [(ngModel)]="item.name"
+            #name="ngModel" required appAutofocus>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" role="alert">
+            <div *ngIf="name.errors?.['required']">
+              {{'LABEL.NAME.REQUIRED' | translate}}
+            </div>
+          </div>
+        </div>
+
+        <!-- Value -->
+        <div class="form-group">
+          <label for="value">{{'LABEL.VALUE' | translate}}</label>
+          <input type="number" id="value" name="value" class="form-control" [(ngModel)]="item.value">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <a href="#" class="btn btn-secondary" [routerLink]="['/btw']">{{'BUTTON.CANCEL' | translate}}</a>
+        <input type="submit" value="{{'BUTTON.NEW' | translate}}" class="btn btn-success float-right">
+      </div>
+    </div>
+  </form>
+</app-editor>

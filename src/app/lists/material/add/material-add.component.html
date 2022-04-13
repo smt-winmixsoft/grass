@@ -1,0 +1,71 @@
+<app-title>{{'BUTTON.NEW' | translate}}</app-title>
+
+<app-editor>
+  <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="row">
+      <div class="col-xxl-6">
+        <div class="card card-primary card-outline">
+
+          <div class="card-header">
+            <h3 class="card-title">{{'LABEL.GENERAL' | translate}}</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputName">{{'LABEL.NAME' | translate}}</label>
+              <input #nameInput type="text" id="name" name="name" class="form-control" [(ngModel)]="item.name"
+                #name="ngModel" required appAutofocus>
+
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" role="alert">
+                <div *ngIf="name.errors?.['required']">
+                  {{'LABEL.NAME.REQUIRED' | translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xxl-6">
+        <div class="card card-secondary card-outline">
+          <div class="card-header">
+            <h3 class="card-title">{{'ANALYSIS.TITLE' | translate}}</h3>
+          </div>
+
+          <div class="card-body">
+            <table class="table table-sm grass-table">
+              <thead>
+                <tr>
+                  <th>{{'ANALYSIS.SINGLE' | translate}}</th>
+                  <th>{{'LABEL.VALUE' | translate}}</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="item.materialAnalyses?.length !== 0">
+                <tr *ngFor="let item of item.materialAnalyses; index as i">
+                  <td class="w-100">{{ item.analysisType.name }}</td>
+                  <td class="w-content">
+                    <input type="number" id="ntr{{i}}" name="ntr{{i}}" class="form-control text-right"
+                      [ngModel]="item.value" (ngModelChange)="item.value=$event" #ntr{{i}}="ngModel" autocomplete="off"
+                      style="width: 20ch;">
+                  </td>
+                </tr>
+              </tbody>
+              <tbody *ngIf="item.materialAnalyses?.length === 0">
+                <tr>
+                  <td colspan="2" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <a href="#" class="btn btn-secondary" [routerLink]="['/material']">{{'BUTTON.CANCEL' |
+          translate}}</a>
+        <input type="submit" value="{{'BUTTON.SAVE' | translate}}" class="btn btn-primary float-right">
+      </div>
+    </div>
+  </form>
+</app-editor>

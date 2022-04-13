@@ -1,0 +1,38 @@
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="/btw/add">{{ 'BTW.TITLE' | translate }}
+</app-title>
+
+<app-list>
+  <table id="table" #table datatable [dtOptions]="dtOptions"
+    class="dataTable table table-sm table-bordered table-striped projects">
+    <thead>
+      <tr>
+        <th>{{ 'LABEL.NAME' | translate }}</th>
+        <th>{{ 'LABEL.VALUE' | translate }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="items?.length !== 0">
+      <tr *ngFor="let item of items">
+        <td class="w-75">{{ item.name }}</td>
+        <td class="w-25 text-end">{{ item.value }}</td>
+        <td class="w-content project-actions text-center">
+          <a class="btn-grass-primary" [routerLink]="['/btw/edit', item.btwId]">
+            <i class="fas fa-pencil-alt">
+            </i>
+            <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
+          </a>
+          <a class="btn-grass-danger ml-1" [routerLink]="['/btw/del', item.btwId]">
+            <i class="fas fa-trash">
+            </i>
+            <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="items?.length === 0">
+      <tr>
+        <td colspan="3" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+      </tr>
+    </tbody>
+  </table>
+</app-list>

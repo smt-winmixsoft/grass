@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/ed3436f7-e740-4b8b-a0cc-7ef2e99ec478/resourceGroups/Grass/providers/Microsoft.Web/sites/grass-app",
+    "appService.deploySubpath": "dist\\adminlte"
+}

@@ -1,0 +1,135 @@
+{
+  "HOME": {
+    "TITLE": "Gras"
+  },
+  "MENU": {
+    "HOME": "Thuis",
+    "CONTACT": "Contact",
+    "REFERENCES": "Referenties",
+    "WORKIN": "Werkopdrachten",
+    "WORKOUT": "Werkresultaten"
+  },
+  "VERSION": {
+    "VERSION": "Versie",
+    "COPYRIGHT": "Auteursrechten",
+    "RIGHTS": "Alle rechten voorbehouden."
+  },
+  "BUTTON": {
+    "CANCEL": "Annuleren",
+    "NEW": "Maak nieuw",
+    "EDIT": "Bewerking",
+    "DELETE": "Verwijderen",
+    "SAVE": "Opslaan",
+    "ADD": "Toevoegen",
+    "USE": "Gebruik",
+    "CLOSE": "Dichtbij",
+    "BACK": "Terug",
+    "CHOOSE": "Kiezen"
+
+  },
+  "LABEL": {
+    "NO_DATA": "Geen gegevens",
+    "NAME": "Naam",
+    "NAME.REQUIRED": "Naam is vereist.",
+    "GENERAL": "Algemeen",
+    "EXTRA": "Extra",
+    "VALUE": "Waarde",
+    "WEIGHT": "Gewicht",
+    "HUMIDITY": "Vochtigheid",
+    "KG": "kg",
+    "FROM": "Van",
+    "TO": "Naar"
+  },
+  "PACK_TYPE": {
+    "TITLE": "Pakkettypes",
+    "NEW": "Nieuw pakkettype",
+    "LABEL": {
+      "NAME": "Eindproduct"
+    }
+  },
+  "MATERIAL": {
+    "TITLE": "Grondstoffen",
+    "NEW": "Nieuwe grondstof",
+    "LABEL": {
+      "NAME": "Soort gewas"
+    }
+  },
+  "ANALYSIS_TYPE": {
+    "TITLE": "Analyse typen",
+    "NEW": "Nieuw analysetype"
+  },
+  "ANALYSIS": {
+    "TITLE": "Analyses",
+    "SINGLE": "Analyse"
+  },
+  "PRICE": {
+    "TITLE": "Prijslijst",
+    "NEW": "Nieuwe prijslijst",
+    "ERROR":
+    {
+      "HUMIDITY":
+      {
+        "100": "De luchtvochtigheid moet lager zijn dan 100.",
+        "REQUIRED": "Vochtigheid is vereist."
+      },
+      "WEIGHT":
+      {
+        "REQUIRED": "Gewicht is vereist."
+      }
+    }
+  },
+  "CLIENT": {
+    "TITLE": "Klanten",
+    "NEW": "Nieuwe klant",
+    "LABEL": {
+      "NAME": "Klant",
+      "NUMBER": "KlantNummer",
+      "ADDRESS": "Adres",
+      "POSTCODE": "Postcode",
+      "PHONE": "Phone",
+      "EMAIL": "E-mail",
+      "RESIDENCE": "Woonplaats",
+      "TYPE": "BestaansVorm",
+      "ECO": "ECO",
+      "UBN": "UBN",
+      "MESTNUMMER": "Mestnummer",
+      "GMP": "GMP+",
+      "PAPER": "Papier",
+      "INTERCOMPANY": "Intercompany",
+      "NOTACTIVE": "Niet actief",
+      "SIGNED": "Contract ondertekend"
+    },
+    "ERROR": {
+      "NUMBER": "Klantnummer '$1' wordt gebruikt door klant '$2'"
+    }
+  },
+  "BTW": {
+    "TITLE": "BTW",
+    "NEW": "Nieuw BTW"
+  },
+  "PARTY": {
+    "LABEL": {
+      "DRYING": "Loondrogen",
+      "TRADE": "Handel",
+      "CUSTOMER": "Klant gegevens",
+      "ORDER": "Droogopdracht gegevens",
+      "PARTY": "Partijnummer",
+      "SAMPLE": "Zegelnummers",
+      "AREA": "Oppervlakte",
+      "ORGANIC": "Biologisch product",
+      "PROBE": "Analyse",
+      "FRESH": "Vers product",
+      "DRY": "Gedroogd product",
+      "HUMIDITY": "Vochtpercentage",
+      "PRICE": "Droogprijs",
+      "DISCOUNT.SUPPLY": "Korting aanvoer",
+      "DISCOUNT.DISPOSAL": "Korting afvoer"
+    },
+    "ERROR": {
+      "NUMBER": "Nummer '$1' is al in gebruik",
+      "SAMPLE1": "Voorbeeld nummer 1 '$1' is al gebruikt",
+      "SAMPLE2": "Voorbeeld nummer 2 '$1' is al gebruikt",
+      "CLIENT": "Klant is verplicht"
+    }
+  }
+}

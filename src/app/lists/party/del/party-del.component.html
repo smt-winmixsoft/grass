@@ -1,0 +1,20 @@
+<app-title>{{'BUTTON.DELETE' | translate}}</app-title>
+
+<app-editor>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="card card-primary">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="inputName">{{'LABEL.NAME' | translate}}</label>
+          <input readonly type="text" id="inputName" class="form-control" [(ngModel)]="item.partyId" name="name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <a href="#" class="btn btn-secondary" [routerLink]="[this.baseLink]">{{'BUTTON.CANCEL' | translate}}</a>
+        <input type="submit" value="{{'BUTTON.DELETE' | translate}}" class="btn btn-danger float-right">
+      </div>
+    </div>
+  </form>
+</app-editor>

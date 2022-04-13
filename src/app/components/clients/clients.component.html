@@ -1,0 +1,32 @@
+<table id="table" #table datatable [dtOptions]="dtOptions"
+  class="dataTable table table-sm table-bordered table-striped projects">
+  <thead>
+    <tr>
+      <th>{{ 'LABEL.NAME' | translate }}</th>
+      <th></th>
+      <th>{{ 'CLIENT.LABEL.ADDRESS' | translate }}</th>
+      <th>{{ 'CLIENT.LABEL.RESIDENCE' | translate }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="items?.length !== 0">
+    <tr *ngFor="let item of items">
+      <td style="width:35%">{{ item.name }}</td>
+      <td style="width:5%" class="text-center">{{ getClientType(item.clientTypeId) }}</td>
+      <td style="width:30%">{{ item.address }}</td>
+      <td style="width:30%">{{ item.residence }}</td>
+      <td class="w-content project-actions text-center">
+        <a class="btn btn-outline-info" (click)="choose(item.clientId)">
+          <i class="fas fa-check">
+          </i>
+          <span>{{ 'BUTTON.CHOOSE' | translate }}</span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="items?.length === 0">
+    <tr>
+      <td colspan="2" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+    </tr>
+  </tbody>
+</table>
