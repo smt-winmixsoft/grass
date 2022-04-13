@@ -8,7 +8,9 @@ export const environment = {
     production: false,
     urlApi: "https://localhost:7088/api/",
     language: "nl",
-    logLevel: LogLevel.Error
+    logLevel: LogLevel.Error,
+    clientId: '1650178b-9a13-4430-9c99-2d0039830af2',
+    authority: 'https://login.microsoftonline.com/deac2086-0a77-4368-839c-0fbf9c22d009'
 };
 
 /*
