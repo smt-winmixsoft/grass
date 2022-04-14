@@ -1,1 +1,9 @@
-<p>ship-add works!</p>
+<app-title>
+  {{'BUTTON.EDIT' | translate}}
+</app-title>
+
+<app-editor>
+  <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <app-ship-item #party [isNew]="true"></app-ship-item>
+  </form>
+</app-editor>

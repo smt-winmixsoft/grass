@@ -1,1 +1,37 @@
-<p>ship-item works!</p>
+<div class="card card-secondary card-outline">
+
+  <div class="card-header">
+    <h3 class="card-title"><span class="align-middle">{{'LABEL.EXTRA' | translate}}</span></h3>
+  </div>
+
+  <div class="card-body">
+
+    <!-- Date -->
+    <div class="form-group">
+      <label for="inDate">{{'LABEL.DATE' | translate}}</label>
+      <input id="inDate" type="date" class="form-control datetimepicker-input"
+        [ngModel]="item.outDate | date:'yyyy-MM-dd'" (ngModelChange)="setDate($event)">
+    </div>
+
+    <!-- PackType  -->
+    <div class="form-group">
+      <label for="packType">{{'PACK_TYPE.LABEL.NAME' | translate}}</label>
+      <select id="packType" class="form-select" [(ngModel)]="item.packTypeId">
+        <option *ngFor="let packType of packTypes" [value]="packType.packTypeId">{{packType.name}}</option>
+      </select>
+    </div>
+
+    <!-- Fresh Product -->
+    <div class="form-group">
+      <label for="freshProduct">{{'PARTY.LABEL.DRY' | translate}}</label>
+      <input id="freshProduct" type="number" class="form-control" [(ngModel)]="item.product">
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="dryPrice">{{'PARTY.LABEL.PRICEOUT' | translate}}</label>
+      <input id="dryPrice" type="number" class="form-control" [(ngModel)]="item.price">
+    </div>
+
+  </div>
+</div>

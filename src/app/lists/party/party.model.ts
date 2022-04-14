@@ -126,15 +126,15 @@ export class Probe {
   name: string = "";
 }
 
-export class PartyOut
-{
-    partyOutId: number;
-    clientId: number;
-    packTypeId: number;
-    outDate: Date = new Date();
-    product: number;
-    price: number;
-    client: Client = new Client();
+export class PartyOut {
+  partyId: number = null;
+  partyOutId: number = null;
+  clientId: number = null;
+  packTypeId: number = null;
+  outDate: Date = new Date();
+  product: number = null;
+  price: number = null;
+  client: Client = new Client();
 }
 
 function comparePartyOutDate(a: PartyOut, b: PartyOut) {
