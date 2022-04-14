@@ -3,7 +3,7 @@ import { LogLevel } from '@azure/msal-browser';
 export const environment = {
     production: true,
     //urlApi: "https://grassapi.azurewebsites.net/api/",
-    urlApi: "https://grass-api.azurewebsites.net/",
+    urlApi: "https://grass-api.azurewebsites.net/api/",
     language: "nl",
     logLevel: LogLevel.Verbose,
     clientId: 'a635ab21-6a0d-4c1e-a0c7-3a28d828b95d',
