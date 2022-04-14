@@ -20,6 +20,15 @@ import { PartyEditComponent } from './edit/party-edit.component';
 import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PartyItemComponent } from './components/party-item/party-item.component';
+import { ShipComponent } from './components/ship/ship.component';
+import { ClientComponent } from './components/client/client.component';
+import { ClientInfoComponent } from './components/client-info/client-info.component';
+import { ShipMainComponent } from './ship/ship-main/ship-main.component';
+import { ShipAddComponent } from './ship/ship-add/ship-add.component';
+import { ShipDelComponent } from './ship/ship-del/ship-del.component';
+import { ShipEditComponent } from './ship/ship-edit/ship-edit.component';
+import { ShipItemComponent } from './ship/ship-item/ship-item.component';
+import { PartyInfoComponent } from './components/party-info/party-info.component';
 
 
 export const routes: Routes = [
@@ -28,6 +37,10 @@ export const routes: Routes = [
   { path: 'add', component: PartyAddComponent },
   { path: 'edit/:id', component: PartyEditComponent },
   { path: 'del/:id', component: PartyDelComponent },
+  { path: 'ship/:id', component: ShipMainComponent },
+  { path: 'ship/:id/add', component: ShipAddComponent },
+  { path: 'ship/:id/edit/:shipId', component: ShipEditComponent },
+  { path: 'ship/:id/del/:shipId', component: ShipDelComponent },
 ];
 
 // AoT requires an exported function for factories
@@ -44,6 +57,15 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PartyDelComponent,
     PartyEditComponent,
     PartyItemComponent,
+    ShipComponent,
+    ClientComponent,
+    ClientInfoComponent,
+    ShipMainComponent,
+    ShipAddComponent,
+    ShipDelComponent,
+    ShipEditComponent,
+    ShipItemComponent,
+    PartyInfoComponent,
   ],
   exports: [
     PartyComponent,

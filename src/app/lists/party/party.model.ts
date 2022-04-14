@@ -8,6 +8,7 @@ export class Party {
   area: number = null;
   freshProduct: number = null;
   dryProduct: number = null;
+  shippedProduct: number = null;
   humidity: number = null;
   dryPrice: number = null;
   materialId: number = 0;
@@ -65,6 +66,8 @@ export function forSave(item: Party): Party {
     inDate: item.inDate,
     area: item.area,
     freshProduct: item.freshProduct,
+    dryProduct: item.dryProduct,
+    shippedProduct: item.shippedProduct,
     humidity: item.humidity,
     dryPrice: item.dryPrice,
     materialId: item.materialId,
@@ -121,4 +124,28 @@ export class Organic {
 export class Probe {
   probeId: number = 0;
   name: string = "";
+}
+
+export class PartyOut
+{
+    partyOutId: number;
+    clientId: number;
+    packTypeId: number;
+    outDate: Date = new Date();
+    product: number;
+    price: number;
+    client: Client = new Client();
+}
+
+function comparePartyOutDate(a: PartyOut, b: PartyOut) {
+  if (a.outDate < b.outDate)
+    return -1;
+  else if (a.outDate > b.outDate)
+    return 1;
+  else
+    return 0;
+}
+
+export function sortPartyOut(item: PartyOut[]) {
+  item.sort(comparePartyOutDate);
 }

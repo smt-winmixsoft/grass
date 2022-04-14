@@ -1,0 +1,75 @@
+<div class="card card-info card-outline">
+
+  <div class="card-header">
+    <h3 class="card-title"><span class="align-middle">{{title}}</span></h3>
+    <div *ngIf="isEdit" class="card-tools">
+      <a class="btn btn-outline-info" (click)="edit()">
+        <i class="fas fa-pencil-alt"></i>
+        <span>{{ 'BUTTON.EDIT' | translate }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <!-- UBN -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.UBN' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.ubn}}</span>
+      </div>
+    </div>
+
+    <!-- Client Number -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.NUMBER' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.clientNumber}}</span>
+      </div>
+    </div>
+
+    <!-- Name -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'LABEL.NAME' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.name}}</span>
+      </div>
+    </div>
+
+    <!-- Address -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.ADDRESS' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.address}}</span>
+      </div>
+    </div>
+
+    <!-- Residence -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.RESIDENCE' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.residence}}</span>
+      </div>
+    </div>
+
+    <!-- Residence -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.TYPE' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.clientType.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>

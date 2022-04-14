@@ -1,0 +1,100 @@
+<div class="card card-info card-outline">
+
+  <div class="card-header">
+    <h3 class="card-title"><span class="align-middle">{{'PARTY.LABEL.ORDER' | translate}}</span></h3>
+  </div>
+
+  <div class="card-body">
+
+    <!-- Date -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'LABEL.DATE' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{getDate()}}</span>
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'PARTY.LABEL.PARTY' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{party.partyNumber}}</span>
+      </div>
+    </div>
+
+    <!-- Party number -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'PARTY.LABEL.AREA' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{party.area}}</span>
+      </div>
+    </div>
+
+    <!-- DryProduct -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'PARTY.LABEL.DRY' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{party.dryProduct}}</span>
+      </div>
+    </div>
+
+
+    <!-- Client Number -->
+    <!-- <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.NUMBER' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.clientNumber}}</span>
+      </div>
+    </div> -->
+
+    <!-- Name -->
+    <!-- <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'LABEL.NAME' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.name}}</span>
+      </div>
+    </div> -->
+
+    <!-- Address -->
+    <!-- <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.ADDRESS' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.address}}</span>
+      </div>
+    </div> -->
+
+    <!-- Residence -->
+    <!-- <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.RESIDENCE' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.residence}}</span>
+      </div>
+    </div> -->
+
+    <!-- Residence -->
+    <!-- <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CLIENT.LABEL.TYPE' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span>{{client.clientType.name}}</span>
+      </div>
+    </div> -->
+  </div>
+</div>

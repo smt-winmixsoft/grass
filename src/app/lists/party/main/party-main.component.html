@@ -31,6 +31,11 @@
             </i>
             <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
           </a>
+          <a class="btn-grass-info ml-1" [routerLink]="['ship', item.partyId]">
+            <i class="fas fa-truck">
+            </i>
+            <span class="btn-text">{{ 'BUTTON.SHIP' | translate }}</span>
+          </a>
           <a class="btn-grass-danger ml-1" [routerLink]="['del', item.partyId]">
             <i class="fas fa-trash">
             </i>
@@ -41,7 +46,7 @@
     </tbody>
     <tbody *ngIf="items?.length === 0">
       <tr>
-        <td colspan="2" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+        <td colspan="7" class="no-data-available text-center">{{ 'LABEL.NO_DATA' | translate }}!</td>
       </tr>
     </tbody>
   </table>

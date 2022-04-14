@@ -24,7 +24,8 @@
     "USE": "Use",
     "CLOSE": "Close",
     "BACK": "Back",
-    "CHOOSE": "Choose"
+    "CHOOSE": "Choose",
+    "SHIP": "Ship"
   },
   "LABEL": {
     "NO_DATA": "No data",
@@ -110,6 +111,7 @@
       "TRADE": "Trade",
       "CUSTOMER": "Customer data",
       "ORDER": "Drying order data",
+      "TRADE.INFO": "Trade info",
       "PARTY": "Number",
       "SAMPLE": "Seal numbers",
       "AREA": "Area",
@@ -117,6 +119,10 @@
       "PROBE": "Analysis",
       "FRESH": "Fresh product",
       "DRY": "Dried product",
+      "SHIPPED": "Shipped product",
+      "SHIPPED.EDIT": "Edit shipped product",
+      "AVAILABLE": "Available",
+      "PRODUCT": "Product",
       "HUMIDITY": "Humidity",
       "PRICE": "Price",
       "PRICEIN": "Purchase price",
@@ -130,5 +136,8 @@
       "SAMPLE2": "Sammple number 2 '$1' is already used",
       "CLIENT": "Client is required"
     }
+  },
+  "SHIP": {
+    "TITLE": "Shipping"
   }
 }

@@ -1,0 +1,32 @@
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" [routerLink]="baseLink + '/ship/' + partyId +'/add'">
+  {{ 'SHIP.TITLE' | translate }}
+</app-title>
+
+<app-editor>
+  <div *ngIf="party" class="row">
+    <div class="col">
+      <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [client]="party.client"></app-client-info>
+    </div>
+    <div class="col">
+      <app-party-info [party]="party"></app-party-info>
+    </div>
+  </div>
+
+
+  <div class="card card-primary card-outline">
+
+    <div class="card-header">
+      <h3 class="card-title"><span class="align-middle">{{'PARTY.LABEL.TRADE.INFO' | translate}}</span></h3>
+    </div>
+
+    <div class="card-body">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <a href="#" class="btn btn-primary" [routerLink]="[baseLink]">{{'BUTTON.CLOSE' | translate}}</a>
+    </div>
+  </div>
+
+</app-editor>

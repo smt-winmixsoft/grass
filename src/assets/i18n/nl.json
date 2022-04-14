@@ -24,8 +24,8 @@
     "USE": "Gebruik",
     "CLOSE": "Dichtbij",
     "BACK": "Terug",
-    "CHOOSE": "Kiezen"
-
+    "CHOOSE": "Kiezen",
+    "SHIP": "Verzending"
   },
   "LABEL": {
     "NO_DATA": "Geen gegevens",
@@ -113,6 +113,7 @@
       "TRADE": "Handel",
       "CUSTOMER": "Klant gegevens",
       "ORDER": "Droogopdracht gegevens",
+      "TRADE.INFO": "Handel gegevens",
       "PARTY": "Partijnummer",
       "SAMPLE": "Zegelnummers",
       "AREA": "Oppervlakte",
@@ -120,6 +121,10 @@
       "PROBE": "Analyse",
       "FRESH": "Vers product",
       "DRY": "Gedroogd product",
+      "SHIPPED": "Verzonden product",
+      "SHIPPED.EDIT": "Verzonden product bewerken",
+      "AVAILABLE": "Beschikbaar",
+      "PRODUCT": "Product",
       "HUMIDITY": "Vochtpercentage",
       "PRICE": "Droogprijs",
       "PRICEIN": "Inkoopprijs",

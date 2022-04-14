@@ -4,8 +4,9 @@
             <div class="col-sm-6">
                 <h1><ng-content></ng-content></h1>
             </div>
-            <div *ngIf="buttonCaption" class="col-sm-6">
-                <a class="btn btn-success float-right" [routerLink]="[routerLink]">{{buttonCaption}}</a>
+            <div *ngIf="isButtons && buttonCaption" class="col-sm-6">
+                <a *ngIf="routerLink" class="btn btn-success float-right" [routerLink]="[routerLink]">{{buttonCaption}}</a>
+                <a *ngIf="!routerLink" class="btn btn-success float-right" (click)="doClick()">{{buttonCaption}}</a>
             </div>
         </div>
     </div>

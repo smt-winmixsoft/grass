@@ -1,22 +1,9 @@
 <app-message #message (closeEvent)="closeEvent($event)"></app-message>
 
-<div *ngIf="isClientEditor">
+<app-client *ngIf="isClientEditor" title="{{'CLIENT.TITLE' | translate}}" buttonCaption="{{'BUTTON.BACK' | translate}}" [clientType]="clientType"
+  (editorResult)="clientSave($event)" (editorClose)="clientCancel()"></app-client>
 
-  <div class="card card-info card-outline">
-    <div class="card-header">
-      <h3 class="card-title"><span class="align-middle">{{'CLIENT.TITLE' | translate}}</span></h3>
-    </div>
-    <div class="card-body">
-      <app-clients [clientType]="clientType" (closeEvent)="clientSave($event)"></app-clients>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <button type="button" class="btn btn-info" (click)="clientCancel()">{{'BUTTON.BACK' | translate}}</button>
-    </div>
-  </div>
-</div>
+<app-ship *ngIf="isShippedEditor" (closeEditor)="shippedCancel()" [packTypes]="packTypes" [party]="item"></app-ship>
 
 <div *ngIf="isMain">
   <div class="row">
@@ -134,82 +121,8 @@
 
     <div class="col-xxl-6">
 
-      <div class="card card-info card-outline">
 
-        <div class="card-header">
-          <h3 class="card-title"><span class="align-middle">{{'PARTY.LABEL.CUSTOMER' | translate}}</span></h3>
-          <div *ngIf="isNew" class="card-tools">
-            <a class="btn btn-outline-info" (click)="clientOpen()">
-              <i class="fas fa-pencil-alt"></i>
-              <span>{{ 'BUTTON.EDIT' | translate }}</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="card-body">
-
-          <!-- UBN -->
-          <div class="row">
-            <div class="col-xxl-4">
-              <label>{{ 'CLIENT.LABEL.UBN' | translate }}</label>
-            </div>
-            <div class="col-xxl-8">
-              <span>{{item.client.ubn}}</span>
-            </div>
-          </div>
-
-          <!-- Client Number -->
-          <div class="row">
-            <div class="col-xxl-4">
-              <label>{{ 'CLIENT.LABEL.NUMBER' | translate }}</label>
-            </div>
-            <div class="col-xxl-8">
-              <span>{{item.client.clientNumber}}</span>
-            </div>
-          </div>
-
-          <!-- Name -->
-          <div class="row">
-            <div class="col-xxl-4">
-              <label>{{ 'LABEL.NAME' | translate }}</label>
-            </div>
-            <div class="col-xxl-8">
-              <span>{{item.client.name}}</span>
-            </div>
-          </div>
-
-          <!-- Address -->
-          <div class="row">
-            <div class="col-xxl-4">
-              <label>{{ 'CLIENT.LABEL.ADDRESS' | translate }}</label>
-            </div>
-            <div class="col-xxl-8">
-              <span>{{item.client.address}}</span>
-            </div>
-          </div>
-
-          <!-- Residence -->
-          <div class="row">
-            <div class="col-xxl-4">
-              <label>{{ 'CLIENT.LABEL.RESIDENCE' | translate }}</label>
-            </div>
-            <div class="col-xxl-8">
-              <span>{{item.client.residence}}</span>
-            </div>
-          </div>
-
-          <!-- Residence -->
-          <div class="row">
-            <div class="col-xxl-4">
-              <label>{{ 'CLIENT.LABEL.TYPE' | translate }}</label>
-            </div>
-            <div class="col-xxl-8">
-              <span>{{item.client.clientType.name}}</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [isEdit]="isNew" [client]="item.client" (clickEdit)="clientOpen()"></app-client-info>
 
 
       <div class="card card-secondary card-outline">
@@ -233,6 +146,27 @@
             </div>
             <div class="col">
 
+              <!-- Shipped Product -->
+              <div class="form-group">
+                <label for="shippedProduct">{{'PARTY.LABEL.SHIPPED' | translate}}</label>
+                <div class="input-group">
+                  <input id="shippedProduct" type="number" class="form-control" [(ngModel)]="item.shippedProduct"
+                    readonly>
+                  <span class="input-group-append">
+                    <a class="btn btn-outline-info" (click)="shippedOpen()">
+                      <i class="fas fa-sync"></i>
+                      <span>{{ 'BUTTON.EDIT' | translate }}</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+
               <!-- Humidity -->
               <div class="form-group">
                 <label for="humidity">{{'PARTY.LABEL.HUMIDITY' | translate}}</label>
@@ -240,15 +174,19 @@
               </div>
 
             </div>
+            <div class="col">
+
+              <!-- PackType  -->
+              <div class="form-group">
+                <label for="packType">{{'PACK_TYPE.LABEL.NAME' | translate}}</label>
+                <select id="packType" class="form-select" [(ngModel)]="item.packTypeId">
+                  <option *ngFor="let packType of packTypes" [value]="packType.packTypeId">{{packType.name}}</option>
+                </select>
+              </div>
+
+            </div>
           </div>
 
-          <!-- PackType  -->
-          <div class="form-group">
-            <label for="packType">{{'PACK_TYPE.LABEL.NAME' | translate}}</label>
-            <select id="packType" class="form-select" [(ngModel)]="item.packTypeId">
-              <option *ngFor="let packType of packTypes" [value]="packType.packTypeId">{{packType.name}}</option>
-            </select>
-          </div>
 
           <!-- Price -->
           <div class="form-group">

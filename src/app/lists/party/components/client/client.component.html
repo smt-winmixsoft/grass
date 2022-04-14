@@ -1,0 +1,14 @@
+<div class="card card-info card-outline">
+  <div class="card-header">
+    <h3 class="card-title"><span class="align-middle">{{title}}</span></h3>
+  </div>
+  <div class="card-body">
+    <app-clients [clientType]="clientType" (closeEvent)="result($event)"></app-clients>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <button type="button" class="btn btn-info" (click)="close()">{{buttonCaption}}</button>
+  </div>
+</div>

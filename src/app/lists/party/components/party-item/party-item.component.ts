@@ -9,6 +9,7 @@ import { check404 } from 'app/utils/common';
 
 import { forkJoin } from "rxjs";
 import { tap } from "rxjs/operators";
+import { TitleComponent } from '@components/title/title.component';
 
 @Component({
   selector: 'app-party-item',
@@ -24,6 +25,7 @@ export class PartyItemComponent implements OnInit  {
 
   @Input() item: Party;
   @Input() isNew: boolean;
+  @Input() title: TitleComponent;
 
   materials: Material[] = [];
   packTypes: PackType[] = [];
@@ -32,6 +34,8 @@ export class PartyItemComponent implements OnInit  {
 
   isMain: boolean = true;
   isClientEditor: boolean = false;
+  isShippedEditor: boolean = false;
+
   clientType: number = 0;
 
   partyType: number = 0;
@@ -156,14 +160,35 @@ export class PartyItemComponent implements OnInit  {
     });
   }
 
-  clientCancel() {
+
+  editorCancel() {
     this.isMain = true;
+    this.title.showButtons();
+  }
+
+  editorOpen() {
+    this.isMain = false;
+    this.title.hideButtons();
+  }
+
+  clientCancel() {
     this.isClientEditor = false;
+    this.editorCancel();
   }
 
   clientOpen() {
-    this.isMain = false;
     this.isClientEditor = true;
+    this.editorOpen();
+  }
+
+  shippedCancel() {
+    this.isShippedEditor = false;
+    this.editorCancel();
+  }
+
+  shippedOpen() {
+    this.isShippedEditor = true;
+    this.editorOpen();
   }
 
   chooseNumber() {

@@ -1,7 +1,9 @@
-<app-title>{{'BUTTON.EDIT' | translate}}</app-title>
+<app-title #title buttonCaption="{{'PARTY.LABEL.SHIPPED' | translate}}" (buttonClick)="party.shippedOpen()">
+  {{'BUTTON.EDIT' | translate}}
+</app-title>
 
 <app-editor>
   <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
-    <app-party-item #party [item]="item" [isNew]="false"></app-party-item>
+    <app-party-item #party [item]="item" [isNew]="false" [title]="title"></app-party-item>
   </form>
 </app-editor>

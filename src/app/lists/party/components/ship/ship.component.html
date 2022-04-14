@@ -1,0 +1,143 @@
+<app-client *ngIf="isClientEditor" title="{{'CLIENT.TITLE' | translate}}" buttonCaption="{{'BUTTON.BACK' | translate}}"
+  [clientType]="clientType" (editorResult)="clientSave($event)" (editorClose)="clientCancel()"></app-client>
+
+<div *ngIf="isMain">
+  <div class="card card-info card-outline">
+    <div class="card-header">
+      <h3 class="card-title"><span class="align-middle">{{'PARTY.LABEL.SHIPPED.EDIT' | translate}}</span></h3>
+      <div class="card-tools">
+        <a class="btn btn-outline-info" (click)="clientOpen()">
+          <i class="fas fa-pencil-alt"></i>
+          <span>{{ 'BUTTON.ADD' | translate }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="row mb-3 mt-1">
+
+        <div class="col">
+          <label>{{'PARTY.LABEL.DRY' | translate}}:</label>
+          <span class="ml-2">{{party.dryProduct}}</span>
+        </div>
+        <div class="col">
+          <label>{{'PARTY.LABEL.SHIPPED' | translate}}:</label>
+          <span class="ml-2">{{party.shippedProduct}}</span>
+        </div>
+        <div class="col">
+          <label>{{'PARTY.LABEL.AVAILABLE' | translate}}:</label>
+          <span class="ml-2">{{available}}</span>
+        </div>
+
+      </div>
+
+
+
+      <table id="table" #table class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>{{ 'LABEL.DATE' | translate }}</th>
+          <th>{{ 'CLIENT.LABEL.NAME' | translate }}</th>
+          <th>{{ 'CLIENT.LABEL.ADDRESS' | translate }}</th>
+          <th>{{ 'CLIENT.LABEL.RESIDENCE' | translate }}</th>
+          <th>{{ 'PARTY.LABEL.PRODUCT' | translate }}</th>
+          <th>{{ 'PARTY.LABEL.PRICE' | translate }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="items?.length !== 0">
+        <tr *ngFor="let item of items">
+          <td style="width:4%">{{ item.outDate | date:'dd-MM' }}</td>
+          <td style="width:30%">{{ item.client?.name }}</td>
+          <td style="width:23%">{{ item.client?.address }}</td>
+          <td style="width:23%">{{ item.client?.residence}}</td>
+          <td style="width:10%">{{ item.product}}</td>
+          <td style="width:10%">{{ item.price}}</td>
+          <td class="w-content project-actions text-center">
+            <a class="btn-grass-primary" [routerLink]="['edit', item.partyOutId]">
+              <i class="fas fa-pencil-alt">
+              </i>
+              <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
+            </a>
+            <a class="btn-grass-danger ml-1" [routerLink]="['del', item.partyOutId]">
+              <i class="fas fa-trash">
+              </i>
+              <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="items?.length === 0">
+        <tr>
+          <td colspan="7" class="no-data-available text-center">{{ 'LABEL.NO_DATA' | translate }}!</td>
+        </tr>
+      </tbody>
+    </table>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-info" (click)="close()">{{'BUTTON.BACK' | translate}}</button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="isAddEditor">
+
+  <div class="row">
+    <div class="col">
+      <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [client]="item.client"></app-client-info>
+    </div>
+    <div class="col">
+
+      <div class="card card-secondary card-outline">
+
+        <div class="card-header">
+          <h3 class="card-title"><span class="align-middle">{{'LABEL.EXTRA' | translate}}</span></h3>
+        </div>
+
+        <div class="card-body">
+
+          <!-- Date -->
+          <div class="form-group">
+            <label for="inDate">{{'LABEL.DATE' | translate}}</label>
+            <input id="inDate" type="date" class="form-control datetimepicker-input"
+              [ngModel]="item.outDate | date:'yyyy-MM-dd'" (ngModelChange)="setDate($event)">
+          </div>
+
+          <!-- PackType  -->
+          <div class="form-group">
+            <label for="packType">{{'PACK_TYPE.LABEL.NAME' | translate}}</label>
+            <select id="packType" class="form-select" [(ngModel)]="item.packTypeId">
+              <option *ngFor="let packType of packTypes" [value]="packType.packTypeId">{{packType.name}}</option>
+            </select>
+          </div>
+
+          <!-- Fresh Product -->
+          <div class="form-group">
+            <label for="freshProduct">{{'PARTY.LABEL.DRY' | translate}}</label>
+            <input id="freshProduct" type="number" class="form-control" [(ngModel)]="item.product">
+          </div>
+
+          <!-- Price -->
+          <div class="form-group">
+            <label for="dryPrice">{{'PARTY.LABEL.PRICEOUT' | translate}}</label>
+            <input id="dryPrice" type="number" class="form-control" [(ngModel)]="item.price">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-secondary" (click)="addCancel()">{{'BUTTON.CANCEL' | translate}}</button>
+      <button class="btn btn-success float-right" (click)="addOk()">{{'BUTTON.NEW' | translate}}</button>
+    </div>
+  </div>
+</div>

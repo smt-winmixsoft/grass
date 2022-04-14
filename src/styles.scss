@@ -220,6 +220,11 @@ input[type=number] {
   @extend .btn-outline-success;
 }
 
+.btn-grass-info {
+  @extend .btn-grass;
+  @extend .btn-outline-info;
+}
+
 .btn-text {
   display: none;
 }
