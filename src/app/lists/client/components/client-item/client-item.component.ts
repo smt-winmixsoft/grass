@@ -72,4 +72,17 @@ export class ClientItemComponent implements OnInit {
       }, 100)
     }
   }
+
+  getClientType(): string {
+    if (this.types === undefined)
+      return "";
+
+    var result = this.types.filter(obj => {
+      return obj.clientTypeId === this.item.clientTypeId
+    });
+    if (result != null && result.length > 0)
+      return result[0].name;
+    else
+      return "";
+  }
 }

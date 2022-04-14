@@ -122,6 +122,8 @@
       "DRY": "Gedroogd product",
       "HUMIDITY": "Vochtpercentage",
       "PRICE": "Droogprijs",
+      "PRICEIN": "Inkoopprijs",
+      "PRICEOUT": "Verkoopprijs",
       "DISCOUNT.SUPPLY": "Korting aanvoer",
       "DISCOUNT.DISPOSAL": "Korting afvoer"
     },

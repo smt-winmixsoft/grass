@@ -33,7 +33,8 @@
           <div class="form-group">
             <label for="partyNumber">{{'PARTY.LABEL.PARTY' | translate}}</label>
             <div class="input-group">
-              <input #partyNumber id="partyNumber" type="number" class="form-control" [(ngModel)]="item.partyNumber" [attr.readonly]="isNew ? null : ''" >
+              <input #partyNumber id="partyNumber" type="number" class="form-control" [(ngModel)]="item.partyNumber"
+                [attr.readonly]="isNew ? null : ''">
               <span *ngIf="isNew" class="input-group-append">
                 <a class="btn btn-outline-secondary" (click)="chooseNumber()">
                   <i class="fas fa-sync"></i>
@@ -50,7 +51,8 @@
             <div class="row">
               <div class="col">
                 <div class="input-group">
-                  <input #sample1 id="sample1" type="number" class="form-control" [(ngModel)]="item.sampleNumber1" [attr.readonly]="isNew ? null : ''">
+                  <input #sample1 id="sample1" type="number" class="form-control" [(ngModel)]="item.sampleNumber1"
+                    [attr.readonly]="isNew ? null : ''">
                   <span *ngIf="isNew" class="input-group-append">
                     <a class="btn btn-outline-secondary" (click)="chooseSample1()">
                       <i class="fas fa-sync"></i>
@@ -61,7 +63,8 @@
               </div>
               <div class="col">
                 <div class="input-group">
-                  <input #sample2 id="sample2" type="number" class="form-control" [(ngModel)]="item.sampleNumber2" [attr.readonly]="isNew ? null : ''">
+                  <input #sample2 id="sample2" type="number" class="form-control" [(ngModel)]="item.sampleNumber2"
+                    [attr.readonly]="isNew ? null : ''">
                   <span *ngIf="isNew" class="input-group-append">
                     <a class="btn btn-outline-secondary" (click)="chooseSample2()">
                       <i class="fas fa-sync"></i>
@@ -77,7 +80,8 @@
           <div class="form-group">
             <label for="inDate">{{'LABEL.DATE' | translate}}</label>
             <input id="inDate" type="date" class="form-control datetimepicker-input"
-              [ngModel]="item.inDate | date:'yyyy-MM-dd'" (ngModelChange)="setDate($event)" [attr.readonly]="isNew ? null : ''">
+              [ngModel]="item.inDate | date:'yyyy-MM-dd'" (ngModelChange)="setDate($event)"
+              [attr.readonly]="isNew ? null : ''">
           </div>
 
           <!-- Area -->
@@ -97,7 +101,8 @@
           <!-- Fresh Product -->
           <div class="form-group">
             <label for="freshProduct">{{'PARTY.LABEL.FRESH' | translate}}</label>
-            <input id="freshProduct" type="number" class="form-control" [ngModel]="item.freshProduct" (ngModelChange)="setFreshProduct($event)">
+            <input id="freshProduct" type="number" class="form-control" [ngModel]="item.freshProduct"
+              (ngModelChange)="setFreshProduct($event)">
           </div>
 
 
@@ -221,7 +226,8 @@
               <!-- Dry Product -->
               <div class="form-group">
                 <label for="dryProduct">{{'PARTY.LABEL.DRY' | translate}}</label>
-                <input id="dryProduct" type="number" class="form-control" [ngModel]="item.dryProduct" (ngModelChange)="setDryProduct($event)">
+                <input id="dryProduct" type="number" class="form-control" [ngModel]="item.dryProduct"
+                  (ngModelChange)="setDryProduct($event)">
               </div>
 
             </div>
@@ -246,8 +252,9 @@
 
           <!-- Price -->
           <div class="form-group">
-            <label for="dryPrice">{{'PARTY.LABEL.PRICE' | translate}}</label>
-            <input id="dryPrice" type="number" class="form-control" [(ngModel)]="item.dryPrice" >
+            <label *ngIf="isDrying" for="dryPrice">{{'PARTY.LABEL.PRICE' | translate}}</label>
+            <label *ngIf="isTrade" for="dryPrice">{{'PARTY.LABEL.PRICEIN' | translate}}</label>
+            <input id="dryPrice" type="number" class="form-control" [(ngModel)]="item.dryPrice">
           </div>
 
           <div class="row">

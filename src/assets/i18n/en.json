@@ -119,6 +119,8 @@
       "DRY": "Dried product",
       "HUMIDITY": "Humidity",
       "PRICE": "Price",
+      "PRICEIN": "Purchase price",
+      "PRICEOUT": "Selling price",
       "DISCOUNT.SUPPLY": "Discount supply",
       "DISCOUNT.DISPOSAL": "Discount disposal"
     },
