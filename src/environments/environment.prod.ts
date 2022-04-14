@@ -5,6 +5,6 @@ export const environment = {
     urlApi: "https://grassapi.azurewebsites.net/api/",
     language: "en",
     logLevel: LogLevel.Verbose,
-    clientId: '489801fa-58f4-4756-83ee-3d0efce4c4f6',
-    authority: 'https://login.microsoftonline.com/deac2086-0a77-4368-839c-0fbf9c22d009'
+    clientId: '9eb79d90-9c88-4276-9784-3133d1f3d897',
+    authority: 'https://login.microsoftonline.com/ad5b7d73-ee39-49d4-b08d-600df70a7304'
 };
