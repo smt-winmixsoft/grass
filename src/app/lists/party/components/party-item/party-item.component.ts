@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Party, Client, Material, PackType, Organic, Probe, urlToPartyType, getRootUrl, PARTY_DRYING, PARTY_TRADE, CLIENT_LD, CLIENT_H } from '../../party.model';
 
 import { HttpClient } from "@angular/common/http"
@@ -15,7 +15,7 @@ import { tap } from "rxjs/operators";
   templateUrl: './party-item.component.html',
   styleUrls: ['./party-item.component.scss']
 })
-export class PartyItemComponent implements OnInit, AfterViewInit {
+export class PartyItemComponent implements OnInit  {
 
   @ViewChild('message') message: MessageComponent;
   @ViewChild('partyNumber') partyNumber: ElementRef;
@@ -33,8 +33,11 @@ export class PartyItemComponent implements OnInit, AfterViewInit {
   isMain: boolean = true;
   isClientEditor: boolean = false;
   clientType: number = 0;
+
   partyType: number = 0;
   baseLink: string;
+  isDrying: boolean;
+  isTrade: boolean;
 
   tag_party_number = 'party_number';
   tag_sample1_number = 'sample1_number';
@@ -44,9 +47,8 @@ export class PartyItemComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient, router: Router) {
     this.partyType = urlToPartyType(router.url);
     this.baseLink = getRootUrl(this.partyType);
-  }
-
-  ngAfterViewInit(): void {
+    this.isDrying = this.partyType == PARTY_DRYING;
+    this.isTrade = this.partyType == PARTY_TRADE;
   }
 
   ngOnInit(): void {
@@ -224,6 +226,7 @@ export class PartyItemComponent implements OnInit, AfterViewInit {
   }
 
   refreshPrice() {
+    if (this.isTrade) return;
     this.http.get<number>(environment.urlApi + 'Price/get/' + this.item.dryProduct + '/' + this.item.humidity + '/' + this.item.packTypeId).subscribe({
       next: (result) => {
         this.item.dryPrice = result;
