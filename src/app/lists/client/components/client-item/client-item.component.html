@@ -67,7 +67,8 @@
         <!-- Client type  -->
         <div class="form-group">
           <label for="clientType">{{'CLIENT.LABEL.TYPE' | translate}}</label>
-          <select id="clientType" class="form-select" [(ngModel)]="item.clientTypeId">
+          <input *ngIf="!isNew" id="clientType" type="text" class="form-control" [ngModel]="getClientType()" [attr.readonly]="isNew ? null : ''">
+          <select *ngIf="isNew" id="clientType" class="form-select" [(ngModel)]="item.clientTypeId">
             <option *ngFor="let type of types" [value]="type.clientTypeId">{{type.name}}</option>
           </select>
         </div>
@@ -86,40 +87,43 @@
         <!-- Client number -->
         <div class="form-group">
           <label for="clientNumber">{{'CLIENT.LABEL.NUMBER' | translate}}</label>
-          <input #clientNumber id="clientNumber" type="text" class="form-control" [(ngModel)]="item.clientNumber">
+          <input #clientNumber id="clientNumber" type="text" class="form-control" [(ngModel)]="item.clientNumber"
+            [attr.readonly]="isNew ? null : ''">
         </div>
 
-        <hr class="my-4">
 
-        <table class="table table-bordered table-sm table-striped">
-          <thead>
-            <tr>
-              <th>{{ 'LABEL.NAME' | translate }}</th>
-              <th>{{ 'LABEL.FROM' | translate }}</th>
-              <th>{{ 'LABEL.TO' | translate }}</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody *ngIf="ranges?.length !== 0">
-            <tr *ngFor="let range of ranges">
-              <td class="w-60">{{ range.name }}</td>
-              <td class="text-end w-20">{{ range.rangeFrom }}</td>
-              <td class="text-end w-20">{{ range.rangeTo }}</td>
-              <td class="w-content text-center">
-                <a class="btn-grass-primary" (click)="onUseRange(range.clientRangeId)">
-                  <i class="fas fa-check"></i>
-                  <span>{{ 'BUTTON.USE' | translate }}</span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-          <tbody *ngIf="ranges?.length === 0">
-            <tr>
-              <td colspan="3" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
-            </tr>
-          </tbody>
-        </table>
+        <div *ngIf="isNew">
+          <hr class="my-4">
 
+          <table class="table table-bordered table-sm table-striped">
+            <thead>
+              <tr>
+                <th>{{ 'LABEL.NAME' | translate }}</th>
+                <th>{{ 'LABEL.FROM' | translate }}</th>
+                <th>{{ 'LABEL.TO' | translate }}</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody *ngIf="ranges?.length !== 0">
+              <tr *ngFor="let range of ranges">
+                <td class="w-60">{{ range.name }}</td>
+                <td class="text-end w-20">{{ range.rangeFrom }}</td>
+                <td class="text-end w-20">{{ range.rangeTo }}</td>
+                <td class="w-content text-center">
+                  <a class="btn-grass-primary" (click)="onUseRange(range.clientRangeId)">
+                    <i class="fas fa-check"></i>
+                    <span>{{ 'BUTTON.USE' | translate }}</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="ranges?.length === 0">
+              <tr>
+                <td colspan="3" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
