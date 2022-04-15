@@ -1,4 +1,4 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add" [isButtons]="this.items?.length === 0">
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add" [isButtons]="isButtons">
   {{ 'SHIP.TITLE' | translate }}
 </app-title>
 
@@ -54,6 +54,25 @@
               </a>
             </td>
           </tr>
+
+          <tr *ngIf="items" style="border-top: 1pt solid black;">
+            <td colspan="5" class="text-end text-bolder">{{ 'PARTY.LABEL.TOTAL.OUT' | translate }}:</td>
+            <td class="text-end text-primary">{{totalOut | number:'1.2'}}</td>
+            <td class="w-content"></td>
+          </tr>
+
+          <tr *ngIf="items">
+            <td colspan="5" class="text-end text-bolder">{{ 'PARTY.LABEL.TOTAL.IN' | translate }}:</td>
+            <td class="text-end text-primary">{{totalIn | number:'1.2'}}</td>
+            <td class="w-content"></td>
+          </tr>
+
+          <tr *ngIf="items">
+            <td colspan="5" class="text-end text-bold">{{ 'PARTY.LABEL.TOTAL.DIFF' | translate }}:</td>
+            <td class="text-end text-bold text-primary">{{totalDiff | number:'1.2'}}</td>
+            <td class="w-content"></td>
+          </tr>
+
         </tbody>
         <tbody *ngIf="items?.length === 0">
           <tr>

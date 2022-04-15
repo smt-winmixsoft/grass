@@ -19,6 +19,7 @@ export class Party {
   sampleNumber2: number = null;
   probeId: number = 0;
   client: Client = new Client();
+  packType: PackType = new PackType();
 }
 
 export const PARTY_DRYING: number = 0;
