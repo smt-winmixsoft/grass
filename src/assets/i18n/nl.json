@@ -134,7 +134,9 @@
       "PRICEIN": "Inkoopprijs",
       "PRICEOUT": "Verkoopprijs",
       "DISCOUNT.SUPPLY": "Korting aanvoer",
-      "DISCOUNT.DISPOSAL": "Korting afvoer"
+      "DISCOUNT.DISPOSAL": "Korting afvoer",
+      "PRODUCT.INFO": "Aanvoerder/Afvoerder",
+      "SOLD": "De hele partij is verkocht"
     },
     "ERROR": {
       "NUMBER": "Nummer '$1' is al in gebruik",

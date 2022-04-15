@@ -19,11 +19,13 @@ export class ShipMainComponent implements OnInit {
   totalOut: number = 0;
   totalIn: number = 0;
   totalDiff: number = 0;
+  isSold: boolean = false;
 
   constructor(private http: HttpClient, route: ActivatedRoute, router: Router) {
 
     this.isButtons = true;
     const isDrying = urlToPartyType(router.url) == PARTY_DRYING;
+    var total: number = 0;
 
     route.params
       .pipe(
@@ -44,7 +46,12 @@ export class ShipMainComponent implements OnInit {
         tap({
           next: (result) => {
             this.items = result
-            this.items.forEach(x => this.totalOut += this.getTotal(x));
+            this.items.forEach(x => {
+              this.totalOut += this.getTotal(x);
+              total += x.product;
+            });
+
+            this.isSold = total >= this.party.dryProduct;
             this.totalDiff = this.totalOut - this.totalIn;
             if (isDrying)
               this.isButtons = this.items.length == 0;

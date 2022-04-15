@@ -132,7 +132,9 @@
       "PRICEIN": "Purchase price",
       "PRICEOUT": "Selling price",
       "DISCOUNT.SUPPLY": "Discount supply",
-      "DISCOUNT.DISPOSAL": "Discount disposal"
+      "DISCOUNT.DISPOSAL": "Discount disposal",
+      "PRODUCT.INFO": "Fresh/dry",
+      "SOLD": "The whole lot has been sold"
     },
     "ERROR": {
       "NUMBER": "Number '$1' is already used",

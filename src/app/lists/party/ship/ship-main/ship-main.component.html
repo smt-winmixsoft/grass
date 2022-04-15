@@ -81,6 +81,10 @@
         </tbody>
       </table>
 
+      <div *ngIf="isSold" class="alert alert-warning py-2 mt-2 text-center">
+        {{ 'PARTY.LABEL.SOLD' | translate }}
+      </div>
+
     </div>
   </div>
 

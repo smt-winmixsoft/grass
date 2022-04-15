@@ -39,10 +39,15 @@
     <!-- DryProduct -->
     <div class="row">
       <div class="col-xxl-4">
-        <label>{{ 'PARTY.LABEL.DRY' | translate }}</label>
+        <label>{{ 'PARTY.LABEL.PRODUCT.INFO' | translate }}</label>
       </div>
       <div class="col-xxl-8">
-        <span>{{party.dryProduct}}</span>
+        <span>{{party.freshProduct}}</span>
+        <span class="mx-1">/</span>
+        <span class="text-primary">{{party.dryProduct}}</span>
+        <i class="fa fa-arrow-right mx-3 text-muted"></i>
+        <span class="text-primary">{{party.humidity | number: '1.1'}}</span>
+        <span class="ml-1">%</span>
       </div>
     </div>
 
