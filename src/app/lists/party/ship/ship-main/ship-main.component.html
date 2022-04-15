@@ -1,4 +1,4 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add">
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add" [isButtons]="this.items?.length === 0">
   {{ 'SHIP.TITLE' | translate }}
 </app-title>
 
@@ -26,21 +26,21 @@
           <tr>
             <th>{{ 'LABEL.DATE' | translate }}</th>
             <th>{{ 'CLIENT.LABEL.NAME' | translate }}</th>
-            <th>{{ 'CLIENT.LABEL.ADDRESS' | translate }}</th>
-            <th>{{ 'CLIENT.LABEL.RESIDENCE' | translate }}</th>
-            <th>{{ 'PARTY.LABEL.PRODUCT' | translate }}</th>
+            <th>{{ 'PARTY.LABEL.WEIGHT' | translate }}</th>
+            <th>{{ 'PARTY.LABEL.PRODUCE' | translate }}</th>
             <th>{{ 'PARTY.LABEL.PRICE' | translate }}</th>
+            <th>{{ 'PARTY.LABEL.TOTAL' | translate }}</th>
             <th></th>
           </tr>
         </thead>
         <tbody *ngIf="items?.length !== 0">
           <tr *ngFor="let item of items">
-            <td style="width:4%">{{ item.outDate | date:'dd-MM' }}</td>
-            <td style="width:30%">{{ item.client?.name }}</td>
-            <td style="width:23%">{{ item.client?.address }}</td>
-            <td style="width:23%">{{ item.client?.residence}}</td>
-            <td style="width:10%">{{ item.product}}</td>
-            <td style="width:10%">{{ item.price}}</td>
+            <td style="width:5%">{{ item.outDate | date:'dd-MM' }}</td>
+            <td style="width:50%">{{ item.client?.name }}</td>
+            <td style="width:10%" class="text-end">{{ item.product }}</td>
+            <td style="width:15%">{{ item.packType?.name }}</td>
+            <td style="width:10%" class="text-end">{{ item.price | number:'1.2' }}</td>
+            <td style="width:10%" class="text-end">{{ getTotal(item) | number:'1.2' }}</td>
             <td class="w-content project-actions text-center">
               <a class="btn-grass-primary" [routerLink]="['edit', item.partyOutId]">
                 <i class="fas fa-pencil-alt">

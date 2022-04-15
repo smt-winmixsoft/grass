@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
-import { PackType, PartyOut, Party, Client, forSaveOut, CLIENT_I } from '../../party.model';
+import { PackType, PartyOut, Party, Client, forSaveOut, CLIENT_I, urlToPartyType, PARTY_DRYING } from '../../party.model';
 import { environment } from "environments/environment"
 import { HttpClient } from "@angular/common/http"
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { concatMap, tap } from 'rxjs/operators';
 import { abort, AbortError } from 'app/utils/common';
@@ -35,6 +36,8 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
   pageMain: boolean = true;
   pageClient: boolean = false;
   clientType: number = CLIENT_I;
+  partyType: number;
+  isDrying: boolean;
 
   tag_product = 'product';
   tag_price = 'price';
@@ -42,8 +45,10 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
 
   //#region Init
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private location: Location) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private location: Location, router: Router) {
     this.item = new PartyOut();
+    this.partyType = urlToPartyType(router.url);
+    this.isDrying = this.partyType == PARTY_DRYING;
   }
 
   ngAfterViewInit(): void {
@@ -52,7 +57,7 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    if (this.isNew)
+    if (this.isNew && !this.isDrying)
       this.pageClientShow();
 
     this.http.get<PackType[]>(environment.urlApi + 'PackType')
@@ -99,6 +104,11 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
               this.item.product = this.productLeft;
             else
               this.refreshAvailable();
+
+            if (this.isDrying) {
+              this.item.clientId = this.party.clientId;
+              this.item.client = this.party.client;
+            }
           },
           error: console.error
         }),
@@ -158,6 +168,9 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
 
   check(): boolean {
     let ok = true;
+
+    if (this.isDrying || this.isDel)
+      return ok;
 
     if (ok) {
       ok = this.item.product !== null;

@@ -1,6 +1,6 @@
 <app-message #message (closeEvent)="closeEvent($event)"></app-message>
 
-<app-client *ngIf="pageClient" title="{{'CLIENT.TITLE' | translate}}" buttonCaption="{{'BUTTON.BACK' | translate}}"
+<app-client *ngIf="pageClient" title="{{'CLIENT.TITLE' | translate}}" [buttonCaption]="'BUTTON.BACK' | translate"
   [clientType]="clientType" (editorResult)="pageClientResult($event)" (editorClose)="pageClientHide()"></app-client>
 
 <form *ngIf="pageMain" (ngSubmit)="submit()" autocomplete="off">
@@ -22,9 +22,9 @@
 
           <!-- PackType  -->
           <div class="form-group">
-            <label for="packType">{{'PACK_TYPE.LABEL.NAME' | translate}}</label>
+            <label for="packType">{{'PARTY.LABEL.PRODUCE' | translate}}</label>
             <select id="packType" name="packType" class="form-select" [(ngModel)]="item.packTypeId"
-              [attr.disabled]="isDel ? '' : null">
+              [attr.disabled]="isDrying ||  isDel ? '' : null">
               <option *ngFor="let packType of packTypes" [value]="packType.packTypeId">{{packType.name}}</option>
             </select>
           </div>
@@ -35,9 +35,9 @@
             <div class="col">
 
               <div class="form-group">
-                <label for="product">{{'PARTY.LABEL.PRODUCT' | translate}}</label>
+                <label for="product">{{'PARTY.LABEL.WEIGHT' | translate}}</label>
                 <input #product id="product" name="product" type="number" class="form-control"
-                  [ngModel]="item.product" (ngModelChange)="setProduct($event)" [attr.readonly]="isDel ? '' : null">
+                  [ngModel]="item.product" (ngModelChange)="setProduct($event)" [attr.readonly]="isDrying ||  isDel ? '' : null">
               </div>
 
             </div>
@@ -54,10 +54,10 @@
           </div>
 
           <!-- Price -->
-          <div class="form-group">
-            <label for="dryPrice">{{'PARTY.LABEL.PRICEOUT' | translate}}</label>
+          <div *ngIf="!isDrying" class="form-group">
+            <label for="dryPrice">{{'PARTY.LABEL.PRICE' | translate}}</label>
             <input #price id="price" name="price" type="number" class="form-control" [(ngModel)]="item.price"
-              [attr.readonly]="isDel ? '' : null">
+              [attr.readonly]="isDrying ||  isDel ? '' : null">
           </div>
 
         </div>
@@ -66,7 +66,7 @@
     </div>
     <div class="col-xxl-6">
 
-      <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [isEdit]="!isDel" [client]="item?.client"
+      <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [isEdit]="!isDrying && !isDel" [client]="item?.client"
         (clickEdit)="pageClientShow()"></app-client-info>
 
     </div>

@@ -10,7 +10,7 @@ export class TitleComponent implements OnInit {
   @Input() buttonCaption: string = null;
   @Input() routerLink: string = null;
   @Output() buttonClick = new EventEmitter<string>();
-  isButtons: boolean = true;
+  @Input() isButtons: boolean = true;
 
   show = true;
 

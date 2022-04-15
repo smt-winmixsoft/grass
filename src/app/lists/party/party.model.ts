@@ -122,6 +122,7 @@ export class PartyOut {
   product: number = null;
   price: number = null;
   client: Client = new Client();
+  packType: PackType = new PackType();
 }
 
 export function forSaveOut(item: PartyOut): PartyOut {

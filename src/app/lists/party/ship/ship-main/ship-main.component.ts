@@ -15,6 +15,7 @@ export class ShipMainComponent implements OnInit {
   partyId: number;
   party: Party;
   items: PartyOut[];
+  isButtons: boolean;
 
   constructor(private http: HttpClient, route: ActivatedRoute, router: Router) {
 
@@ -42,5 +43,9 @@ export class ShipMainComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  getTotal(item: PartyOut) {
+    return (item?.price * item?.product)/100;
   }
 }
