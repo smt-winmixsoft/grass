@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from "environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { getRootUrl, Party, urlToPartyType } from '../party.model';
+import { Party, urlToPartyType } from '../party.model';
 import { abort, AbortError } from 'app/utils/common';
 import { PartyItemComponent } from '../components/party-item/party-item.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-party-edit',
@@ -18,13 +19,11 @@ export class PartyEditComponent implements OnInit {
   public item: Party = new Party();
 
   partyType: number = 0;
-  baseLink: string;
 
-  constructor(route: ActivatedRoute, private router: Router, private http: HttpClient) {
+  constructor(route: ActivatedRoute, private router: Router, private http: HttpClient, private location: Location) {
     this.item = new Party()
 
     this.partyType = urlToPartyType(router.url);
-    this.baseLink = getRootUrl(this.partyType);
 
     route.params.subscribe(params => {
       this.item.partyId = params['id'];
@@ -42,7 +41,7 @@ export class PartyEditComponent implements OnInit {
   save() {
     this.http.put<any>(environment.urlApi + 'Party/' + this.item.partyId, this.item)
       .subscribe({
-        next: () => this.router.navigate([this.baseLink]),
+        next: () => this.location.back(),
         error: console.error
       });
   }

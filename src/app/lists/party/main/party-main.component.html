@@ -1,4 +1,4 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" [routerLink]="baseLink + '/add'">
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add">
   <span *ngIf="isDrying">{{ 'PARTY.LABEL.DRYING' | translate }}</span>
   <span *ngIf="isTrade">{{ 'PARTY.LABEL.TRADE' | translate }}</span>
 </app-title>

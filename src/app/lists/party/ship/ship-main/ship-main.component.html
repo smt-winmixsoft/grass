@@ -1,4 +1,4 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" [routerLink]="baseLink + '/ship/' + partyId +'/add'">
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add">
   {{ 'SHIP.TITLE' | translate }}
 </app-title>
 
@@ -25,7 +25,7 @@
 
   <div class="row">
     <div class="col">
-      <a href="#" class="btn btn-primary" [routerLink]="[baseLink]">{{'BUTTON.CLOSE' | translate}}</a>
+      <a href="#" class="btn btn-primary" routerLink="..">{{'BUTTON.CLOSE' | translate}}</a>
     </div>
   </div>
 

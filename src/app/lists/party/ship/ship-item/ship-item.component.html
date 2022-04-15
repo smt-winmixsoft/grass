@@ -1,8 +1,8 @@
-<div class="card card-secondary card-outline">
+<div class="card card-primary card-outline">
 
-  <div class="card-header">
+  <!-- <div class="card-header">
     <h3 class="card-title"><span class="align-middle">{{'LABEL.EXTRA' | translate}}</span></h3>
-  </div>
+  </div> -->
 
   <div class="card-body">
 
@@ -33,5 +33,12 @@
       <input id="dryPrice" type="number" class="form-control" [(ngModel)]="item.price">
     </div>
 
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <a href="#" class="btn btn-secondary" routerLink="..">{{'BUTTON.CANCEL' | translate}}</a>
+    <input type="submit" value="{{'BUTTON.NEW' | translate}}" class="btn btn-success float-right">
   </div>
 </div>

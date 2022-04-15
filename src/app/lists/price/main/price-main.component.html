@@ -1,4 +1,4 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="/price/add">{{ 'PRICE.TITLE' | translate }}</app-title>
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add">{{ 'PRICE.TITLE' | translate }}</app-title>
 
 <app-list>
     <table id="table" #table datatable [dtOptions]="dtOptions"
@@ -13,12 +13,12 @@
             <tr *ngFor="let item of items">
                 <td class="w-100">{{ item.name }}</td>
                 <td class="w-content project-actions text-centern">
-                    <a class="btn-grass-primary" [routerLink]="['/price/edit', item.priceId]">
+                    <a class="btn-grass-primary" [routerLink]="['edit', item.priceId]">
                         <i class="fas fa-pencil-alt">
                         </i>
                         <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
                     </a>
-                    <a class="btn-grass-danger ml-1" [routerLink]="['/price/del', item.priceId]">
+                    <a class="btn-grass-danger ml-1" [routerLink]="['del', item.priceId]">
                         <i class="fas fa-trash">
                         </i>
                         <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>

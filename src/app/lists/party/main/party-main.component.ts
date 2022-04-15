@@ -5,7 +5,7 @@ import { DataTablesResponse } from 'app/utils/common';
 
 import { Router } from '@angular/router';
 
-import { Party, urlToPartyType, PARTY_DRYING, PARTY_TRADE, getRootUrl } from '../party.model';
+import { Party, urlToPartyType, PARTY_DRYING, PARTY_TRADE } from '../party.model';
 
 import { DataTablesService } from 'app/services/datatables.service';
 
@@ -23,11 +23,9 @@ export class PartyMainComponent implements OnInit {
   partyType: number = 0;
   isDrying: boolean;
   isTrade: boolean;
-  baseLink: string;
 
   constructor(private http: HttpClient, private dataTables: DataTablesService, router: Router) {
     this.partyType = urlToPartyType(router.url);
-    this.baseLink = getRootUrl(this.partyType);
     this.isDrying = this.partyType == PARTY_DRYING;
     this.isTrade = this.partyType == PARTY_TRADE;
   }

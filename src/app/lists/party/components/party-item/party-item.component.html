@@ -225,7 +225,7 @@
 
   <div class="row">
     <div class="col-12">
-      <a href="#" class="btn btn-secondary" [routerLink]="[baseLink]">{{'BUTTON.CANCEL' | translate}}</a>
+      <a href="#" class="btn btn-secondary" routerLink="..">{{'BUTTON.CANCEL' | translate}}</a>
       <input *ngIf="!isNew" type="submit" value="{{'BUTTON.SAVE' | translate}}" class="btn btn-primary float-right">
       <input *ngIf="isNew" type="submit" value="{{'BUTTON.NEW' | translate}}" class="btn btn-success float-right">
     </div>

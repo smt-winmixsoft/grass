@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from "environments/environment"
 import { HttpClient } from "@angular/common/http"
-import { getRootUrl, Party, urlToPartyType } from '../party.model';
+import { Party, urlToPartyType } from '../party.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-party-del',
@@ -11,17 +12,12 @@ import { getRootUrl, Party, urlToPartyType } from '../party.model';
 })
 export class PartyDelComponent implements OnInit {
   public item: Party;
-
   partyType: number = 0;
-  baseLink: string;
 
-  constructor(route: ActivatedRoute, private router: Router, private http: HttpClient) {
+  constructor(route: ActivatedRoute, private router: Router, private http: HttpClient, private location: Location) {
     this.item = new Party()
     route.params.subscribe(params => { this.item.partyId = params['id']; });
-
     this.partyType = urlToPartyType(router.url);
-    this.baseLink = getRootUrl(this.partyType);
-
   }
 
   ngOnInit(): void {
@@ -35,7 +31,7 @@ export class PartyDelComponent implements OnInit {
   onSubmit(): void {
     this.http.delete<any>(environment.urlApi + 'Party/' + this.item.partyId)
       .subscribe({
-        next: () => this.router.navigate([this.baseLink]),
+        next: () => this.location.back(),
         error: console.error
       });
   }

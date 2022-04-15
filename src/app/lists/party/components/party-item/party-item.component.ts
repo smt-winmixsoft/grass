@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Party, Client, Material, PackType, Organic, Probe, urlToPartyType, getRootUrl, PARTY_DRYING, PARTY_TRADE, CLIENT_LD, CLIENT_H } from '../../party.model';
+import { Party, Client, Material, PackType, Organic, Probe, urlToPartyType, PARTY_DRYING, PARTY_TRADE, CLIENT_LD, CLIENT_H } from '../../party.model';
 
 import { HttpClient } from "@angular/common/http"
 import { Router } from '@angular/router';
@@ -39,7 +39,6 @@ export class PartyItemComponent implements OnInit  {
   clientType: number = 0;
 
   partyType: number = 0;
-  baseLink: string;
   isDrying: boolean;
   isTrade: boolean;
 
@@ -50,7 +49,6 @@ export class PartyItemComponent implements OnInit  {
 
   constructor(private http: HttpClient, router: Router) {
     this.partyType = urlToPartyType(router.url);
-    this.baseLink = getRootUrl(this.partyType);
     this.isDrying = this.partyType == PARTY_DRYING;
     this.isTrade = this.partyType == PARTY_TRADE;
   }

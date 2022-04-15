@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from "environments/environment"
 import { Router } from '@angular/router';
 import { HttpClient } from "@angular/common/http"
-import { Party, forSave, urlToPartyType, getRootUrl } from '../party.model';
+import { Party, forSave, urlToPartyType } from '../party.model';
 import { abort, AbortError } from 'app/utils/common';
 import { PartyItemComponent } from '../components/party-item/party-item.component';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-party-add',
@@ -18,11 +19,9 @@ export class PartyAddComponent implements OnInit {
   public item: Party = new Party();
 
   partyType: number = 0;
-  baseLink: string;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private location: Location) {
     this.partyType = urlToPartyType(router.url);
-    this.baseLink = getRootUrl(this.partyType);
   }
 
   ngOnInit(): void {
@@ -32,7 +31,7 @@ export class PartyAddComponent implements OnInit {
   save(): void {
     this.http.post<any>(environment.urlApi + 'Party/', forSave(this.item))
       .subscribe({
-        next: () => this.router.navigate([this.baseLink]),
+        next: () => this.location.back(),
         error: console.error
       });
   }

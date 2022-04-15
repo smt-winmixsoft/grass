@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
-import { Party, getRootUrl, urlToPartyType } from '../../party.model';
+import { Party, urlToPartyType } from '../../party.model';
 import { concatMap, tap } from 'rxjs/operators';
 import { environment } from "environments/environment"
 
@@ -13,14 +13,12 @@ import { environment } from "environments/environment"
 export class ShipMainComponent implements OnInit {
 
   partyType: number;
-  baseLink: string;
 
   partyId: number;
   party: Party;
 
   constructor(private http: HttpClient, route: ActivatedRoute, router: Router) {
     this.partyType = urlToPartyType(router.url);
-    this.baseLink = getRootUrl(this.partyType);
 
     route.params
       .pipe(

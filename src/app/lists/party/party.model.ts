@@ -45,17 +45,6 @@ export function urlToPartyType(url: string): number {
   }
 }
 
-export function getRootUrl(partyType: number): string {
-  switch (partyType) {
-    case PARTY_DRYING:
-      return "/drying";
-    case PARTY_TRADE:
-      return "/trade";
-    default:
-      return "/";
-  }
-}
-
 export function forSave(item: Party): Party {
   return {
     partyId: item.partyId,

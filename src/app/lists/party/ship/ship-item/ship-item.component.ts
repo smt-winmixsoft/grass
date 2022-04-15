@@ -3,7 +3,7 @@ import { PackType, PartyOut, Party } from '../../party.model';
 import { environment } from "environments/environment"
 import { HttpClient } from "@angular/common/http"
 import { ActivatedRoute, Router } from '@angular/router';
-import { getRootUrl, urlToPartyType } from '../../party.model';
+//import { getRootUrl, urlToPartyType } from '../../party.model';
 import { concatMap, tap } from 'rxjs/operators';
 
 @Component({
@@ -18,13 +18,11 @@ export class ShipItemComponent implements OnInit {
   party: Party;
 
   partyType: number;
-  baseLink: string;
 
   packTypes: PackType[];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, router: Router) {
-    this.partyType = urlToPartyType(router.url);
-    this.baseLink = getRootUrl(this.partyType);
+//    this.partyType = urlToPartyType(router.url);
   }
 
   ngOnInit(): void {
