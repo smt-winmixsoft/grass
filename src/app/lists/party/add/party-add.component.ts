@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from "environments/environment"
 import { Router } from '@angular/router';
 import { HttpClient } from "@angular/common/http"
-import { Party, forSave, urlToPartyType } from '../party.model';
+import { Party, forSave } from '../party.model';
 import { abort, AbortError } from 'app/utils/common';
 import { PartyItemComponent } from '../components/party-item/party-item.component';
 import { Location } from '@angular/common'
@@ -18,14 +18,10 @@ export class PartyAddComponent implements OnInit {
 
   public item: Party = new Party();
 
-  partyType: number = 0;
-
   constructor(private router: Router, private http: HttpClient, private location: Location) {
-    this.partyType = urlToPartyType(router.url);
   }
 
   ngOnInit(): void {
-    this.item.partyType = 0;
   }
 
   save(): void {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PartyOut } from '../../party.model';
 
 @Component({
   selector: 'app-ship-add',
@@ -11,10 +10,5 @@ export class ShipAddComponent implements OnInit {
   constructor() {  }
 
   ngOnInit(): void {
-  }
-
-
-  onSubmit(): void {
-
   }
 }

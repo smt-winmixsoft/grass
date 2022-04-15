@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
-import { Party, urlToPartyType } from '../../party.model';
+import { Party, PartyOut } from '../../party.model';
 import { concatMap, tap } from 'rxjs/operators';
 import { environment } from "environments/environment"
 
@@ -12,13 +12,11 @@ import { environment } from "environments/environment"
 })
 export class ShipMainComponent implements OnInit {
 
-  partyType: number;
-
   partyId: number;
   party: Party;
+  items: PartyOut[];
 
   constructor(private http: HttpClient, route: ActivatedRoute, router: Router) {
-    this.partyType = urlToPartyType(router.url);
 
     route.params
       .pipe(
@@ -30,6 +28,14 @@ export class ShipMainComponent implements OnInit {
           next: (result) => this.party = result,
           error: console.error
         }),
+
+        // Get party out
+        concatMap(() => this.http.get<PartyOut[]>(environment.urlApi + 'PartyOut/byParty/' + this.partyId)),
+        tap({
+          next: (result) => this.items = result,
+          error: console.error
+        }),
+
       )
       .subscribe();
   }

@@ -8,7 +8,6 @@ export class Party {
   area: number = null;
   freshProduct: number = null;
   dryProduct: number = null;
-  shippedProduct: number = null;
   humidity: number = null;
   dryPrice: number = null;
   materialId: number = 0;
@@ -56,7 +55,6 @@ export function forSave(item: Party): Party {
     area: item.area,
     freshProduct: item.freshProduct,
     dryProduct: item.dryProduct,
-    shippedProduct: item.shippedProduct,
     humidity: item.humidity,
     dryPrice: item.dryPrice,
     materialId: item.materialId,
@@ -116,14 +114,26 @@ export class Probe {
 }
 
 export class PartyOut {
+  partyOutId: number = 0;
   partyId: number = null;
-  partyOutId: number = null;
   clientId: number = null;
   packTypeId: number = null;
   outDate: Date = new Date();
   product: number = null;
   price: number = null;
   client: Client = new Client();
+}
+
+export function forSaveOut(item: PartyOut): PartyOut {
+  return {
+    partyOutId: item.partyOutId,
+    partyId: item.partyId,
+    clientId: item.clientId,
+    packTypeId: item.packTypeId,
+    outDate: item.outDate,
+    product: item.product,
+    price: item.price,
+  } as PartyOut;
 }
 
 function comparePartyOutDate(a: PartyOut, b: PartyOut) {

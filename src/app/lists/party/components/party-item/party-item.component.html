@@ -1,9 +1,7 @@
 <app-message #message (closeEvent)="closeEvent($event)"></app-message>
 
-<app-client *ngIf="isClientEditor" title="{{'CLIENT.TITLE' | translate}}" buttonCaption="{{'BUTTON.BACK' | translate}}" [clientType]="clientType"
-  (editorResult)="clientSave($event)" (editorClose)="clientCancel()"></app-client>
-
-<app-ship *ngIf="isShippedEditor" (closeEditor)="shippedCancel()" [packTypes]="packTypes" [party]="item"></app-ship>
+<app-client *ngIf="isClientEditor" title="{{'CLIENT.TITLE' | translate}}" buttonCaption="{{'BUTTON.BACK' | translate}}"
+  [clientType]="clientType" (editorResult)="clientSave($event)" (editorClose)="clientCancel()"></app-client>
 
 <div *ngIf="isMain">
   <div class="row">
@@ -122,7 +120,8 @@
     <div class="col-xxl-6">
 
 
-      <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [isEdit]="isNew" [client]="item.client" (clickEdit)="clientOpen()"></app-client-info>
+      <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [isEdit]="isNew" [client]="item.client"
+        (clickEdit)="clientOpen()"></app-client-info>
 
 
       <div class="card card-secondary card-outline">
@@ -146,27 +145,6 @@
             </div>
             <div class="col">
 
-              <!-- Shipped Product -->
-              <div class="form-group">
-                <label for="shippedProduct">{{'PARTY.LABEL.SHIPPED' | translate}}</label>
-                <div class="input-group">
-                  <input id="shippedProduct" type="number" class="form-control" [(ngModel)]="item.shippedProduct"
-                    readonly>
-                  <span class="input-group-append">
-                    <a class="btn btn-outline-info" (click)="shippedOpen()">
-                      <i class="fas fa-sync"></i>
-                      <span>{{ 'BUTTON.EDIT' | translate }}</span>
-                    </a>
-                  </span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-
               <!-- Humidity -->
               <div class="form-group">
                 <label for="humidity">{{'PARTY.LABEL.HUMIDITY' | translate}}</label>
@@ -174,19 +152,15 @@
               </div>
 
             </div>
-            <div class="col">
-
-              <!-- PackType  -->
-              <div class="form-group">
-                <label for="packType">{{'PACK_TYPE.LABEL.NAME' | translate}}</label>
-                <select id="packType" class="form-select" [(ngModel)]="item.packTypeId">
-                  <option *ngFor="let packType of packTypes" [value]="packType.packTypeId">{{packType.name}}</option>
-                </select>
-              </div>
-
-            </div>
           </div>
 
+          <!-- PackType  -->
+          <div class="form-group">
+            <label for="packType">{{'PACK_TYPE.LABEL.NAME' | translate}}</label>
+            <select id="packType" class="form-select" [(ngModel)]="item.packTypeId">
+              <option *ngFor="let packType of packTypes" [value]="packType.packTypeId">{{packType.name}}</option>
+            </select>
+          </div>
 
           <!-- Price -->
           <div class="form-group">
@@ -225,7 +199,7 @@
 
   <div class="row">
     <div class="col-12">
-      <a href="#" class="btn btn-secondary" routerLink="..">{{'BUTTON.CANCEL' | translate}}</a>
+      <a href="#" class="btn btn-secondary" [routerLink]="backLink()">{{'BUTTON.CANCEL' | translate}}</a>
       <input *ngIf="!isNew" type="submit" value="{{'BUTTON.SAVE' | translate}}" class="btn btn-primary float-right">
       <input *ngIf="isNew" type="submit" value="{{'BUTTON.NEW' | translate}}" class="btn btn-success float-right">
     </div>

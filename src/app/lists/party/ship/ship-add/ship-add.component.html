@@ -3,7 +3,5 @@
 </app-title>
 
 <app-editor>
-  <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
-    <app-ship-item #party [isNew]="true"></app-ship-item>
-  </form>
+  <app-ship-item [isNew]="true"></app-ship-item>
 </app-editor>

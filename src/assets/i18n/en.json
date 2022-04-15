@@ -120,7 +120,6 @@
       "FRESH": "Fresh product",
       "DRY": "Dried product",
       "SHIPPED": "Shipped product",
-      "SHIPPED.EDIT": "Edit shipped product",
       "AVAILABLE": "Available",
       "PRODUCT": "Product",
       "HUMIDITY": "Humidity",
@@ -138,6 +137,11 @@
     }
   },
   "SHIP": {
-    "TITLE": "Shipping"
+    "TITLE": "Shipping",
+    "ERROR": {
+      "PRODUCT": "Product is required",
+      "PRICE": "Price is required",
+      "PRODUCT.MAX": "Product is exceed available amount"
+    }
   }
 }

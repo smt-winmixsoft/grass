@@ -20,7 +20,6 @@ import { PartyEditComponent } from './edit/party-edit.component';
 import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PartyItemComponent } from './components/party-item/party-item.component';
-import { ShipComponent } from './components/ship/ship.component';
 import { ClientComponent } from './components/client/client.component';
 import { ClientInfoComponent } from './components/client-info/client-info.component';
 import { ShipMainComponent } from './ship/ship-main/ship-main.component';
@@ -57,7 +56,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PartyDelComponent,
     PartyEditComponent,
     PartyItemComponent,
-    ShipComponent,
     ClientComponent,
     ClientInfoComponent,
     ShipMainComponent,

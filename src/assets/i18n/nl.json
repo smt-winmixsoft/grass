@@ -122,7 +122,6 @@
       "FRESH": "Vers product",
       "DRY": "Gedroogd product",
       "SHIPPED": "Verzonden product",
-      "SHIPPED.EDIT": "Verzonden product bewerken",
       "AVAILABLE": "Beschikbaar",
       "PRODUCT": "Product",
       "HUMIDITY": "Vochtpercentage",
@@ -137,6 +136,14 @@
       "SAMPLE1": "Voorbeeld nummer 1 '$1' is al gebruikt",
       "SAMPLE2": "Voorbeeld nummer 2 '$1' is al gebruikt",
       "CLIENT": "Klant is verplicht"
+    }
+  },
+  "SHIP": {
+    "TITLE": "Verzending",
+    "ERROR": {
+      "PRODUCT": "Product is vereist",
+      "PRICE": "Prijs is verplicht",
+      "PRODUCT.MAX": "Product is groter dan beschikbare hoeveelheid"
     }
   }
 }
