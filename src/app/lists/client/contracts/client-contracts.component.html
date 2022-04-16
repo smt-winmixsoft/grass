@@ -1,3 +1,5 @@
+<app-message #message (closeEvent)="closeEvent($event)"></app-message>
+
 <app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" (buttonClick)="add()">
   {{ 'CONTRACT.TITLE' | translate }}
 </app-title>
@@ -8,40 +10,43 @@
 
       <div class="card card-primary card-outline">
 
-        <div class="card-header">
-          <h3 class="card-title"><span class="align-middle">{{'PARTY.LABEL.TRADE.INFO' | translate}}</span></h3>
-        </div>
-
         <div class="card-body">
 
-          <!-- <table id="table" #table class="table table-sm table-bordered table-striped">
+          <table id="table" #table class="table table-sm table-bordered table-striped">
             <thead>
               <tr>
+                <th></th>
+                <th>{{ 'CONTRACT.LABEL.YEAR' | translate }}</th>
                 <th>{{ 'LABEL.DATE' | translate }}</th>
-                <th>{{ 'CLIENT.LABEL.NAME' | translate }}</th>
-                <th>{{ 'PARTY.LABEL.WEIGHT' | translate }}</th>
-                <th>{{ 'PARTY.LABEL.PRODUCE' | translate }}</th>
-                <th>{{ 'PARTY.LABEL.PRICE' | translate }}</th>
-                <th>{{ 'PARTY.LABEL.TOTAL' | translate }}</th>
+                <th>{{ 'CONTRACT.LABEL.SEND' | translate }}</th>
+                <th>{{ 'CONTRACT.LABEL.SIGN' | translate }}</th>
                 <th></th>
               </tr>
             </thead>
             <tbody *ngIf="items?.length !== 0">
               <tr *ngFor="let item of items">
-                <td style="width:5%">{{ item.outDate | date:'dd-MM' }}</td>
-                <td style="width:50%">{{ item.client?.name }}</td>
-                <td style="width:10%" class="text-end">{{ item.product }}</td>
-                <td style="width:15%">{{ item.packType?.name }}</td>
-                <td style="width:10%" class="text-end">{{ item.price | number:'1.2' }}</td>
-                <td style="width:10%" class="text-end">{{ getTotal(item) | number:'1.2' }}</td>
+                <td style="width:5%" class="text-center">
+                  <i *ngIf="item.contractState === 1" class="fa fa-envelope text-primary"></i>
+                  <i *ngIf="item.contractState === 2" class="fa fa-check text-success"></i>
+                </td>
+                <td style="width:20%" class="text-center">{{ item.contractYear }}</td>
+                <td style="width:25%" class="text-center">{{ item.inDate | date:'dd-MM-yyyy' }}</td>
+                <td style="width:25%" class="text-center">{{ item.sendDate | date:'dd-MM-yyyy' }}</td>
+                <td style="width:25%" class="text-center">{{ item.signDate | date:'dd-MM-yyyy' }}</td>
                 <td class="w-content project-actions text-center">
-                  <a class="btn-grass-primary" [routerLink]="['edit', item.partyOutId]"
-                    ngbTooltip="{{ 'BUTTON.EDIT' | translate }}" tooltipClass="tooltip-grass">
-                    <i class="fas fa-pencil-alt">
+                  <a class="btn-grass-primary" (click)="send(item.clientContractId)"
+                    ngbTooltip="{{ 'CONTRACT.LABEL.SEND' | translate }}" tooltipClass="tooltip-grass">
+                    <i class="fa fa-envelope">
                     </i>
-                    <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
+                    <span class="btn-text">{{ 'CONTRACT.LABEL.SEND' | translate }}</span>
                   </a>
-                  <a class="btn-grass-danger ml-1" [routerLink]="['del', item.partyOutId]"
+                  <a class="btn-grass-success ml-1" (click)="sign(item.clientContractId)"
+                    ngbTooltip="{{ 'CONTRACT.LABEL.SIGN' | translate }}" tooltipClass="tooltip-grass">
+                    <i class="fa fa-check">
+                    </i>
+                    <span class="btn-text">{{ 'CONTRACT.LABEL.SIGN' | translate }}</span>
+                  </a>
+                  <a class="btn-grass-danger ml-1" (click)="del(item.clientContractId)"
                     ngbTooltip="{{ 'BUTTON.DELETE' | translate }}" tooltipClass="tooltip-grass">
                     <i class="fas fa-trash">
                     </i>
@@ -50,47 +55,22 @@
                 </td>
               </tr>
 
-              <tr *ngIf="items" style="border-top: 1pt solid black;">
-                <td colspan="5" class="text-end text-bolder">{{ 'PARTY.LABEL.TOTAL.OUT' | translate }}:</td>
-                <td class="text-end text-primary">{{totalOut | number:'1.2'}}</td>
-                <td class="w-content"></td>
-              </tr>
-
-              <tr *ngIf="items">
-                <td colspan="5" class="text-end text-bolder">{{ 'PARTY.LABEL.TOTAL.IN' | translate }}:</td>
-                <td class="text-end text-primary">{{totalIn | number:'1.2'}}</td>
-                <td class="w-content"></td>
-              </tr>
-
-              <tr *ngIf="items">
-                <td colspan="5" class="text-end text-bold">{{ 'PARTY.LABEL.TOTAL.DIFF' | translate }}:</td>
-                <td class="text-end text-bold text-primary">{{totalDiff | number:'1.2'}}</td>
-                <td class="w-content"></td>
-              </tr>
-
             </tbody>
             <tbody *ngIf="items?.length === 0">
               <tr>
-                <td colspan="7" class="no-data-available text-center">{{ 'LABEL.NO_DATA' | translate }}!</td>
+                <td colspan="6" class="no-data-available text-center">{{ 'LABEL.NO_DATA' | translate }}!</td>
               </tr>
             </tbody>
-          </table> -->
-
-          <!-- <div *ngIf="isSold" class="alert alert-warning py-2 mt-2 text-center">
-            {{ 'PARTY.LABEL.SOLD' | translate }}
-          </div> -->
+          </table>
 
         </div>
       </div>
-
 
     </div>
     <div class="col">
       <app-client-info title="{{'PARTY.LABEL.CUSTOMER' | translate}}" [client]="client"></app-client-info>
     </div>
   </div>
-
-
 
   <div class="row">
     <div class="col">

@@ -153,5 +153,18 @@
       "PRICE": "Prijs is verplicht",
       "PRODUCT.MAX": "Product is groter dan beschikbare hoeveelheid"
     }
+  },
+  "CONTRACT": {
+    "TITLE": "Klant contracten",
+    "LABEL": {
+      "YEAR": "Jaar",
+      "SEND": "Versturen",
+      "SIGN": "Teken"
+    },
+    "ERROR": {
+      "DELETE": "U kunt alleen een nieuw contract verwijderen",
+      "SEND": "U kunt alleen een nieuw contract verzenden",
+      "SIGN": "U kunt ondertekenen alleen verzenden contract"
+    }
   }
 }

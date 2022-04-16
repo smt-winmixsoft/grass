@@ -225,6 +225,11 @@ input[type=number] {
   @extend .btn-outline-info;
 }
 
+.btn-success-info {
+  @extend .btn-grass;
+  @extend .btn-outline-success;
+}
+
 .btn-text {
   display: none;
 }

@@ -154,7 +154,15 @@
   },
   "CONTRACT": {
     "TITLE": "Client contracts",
+    "LABEL": {
+      "YEAR": "Year",
+      "SEND": "Send",
+      "SIGN": "Sign"
+    },
     "ERROR": {
+      "DELETE": "You can delete only new contract",
+      "SEND": "You can send only new contract",
+      "SIGN": "You can sign only send contract"
     }
   }
 }
