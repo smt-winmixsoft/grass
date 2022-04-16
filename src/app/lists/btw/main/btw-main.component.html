@@ -16,12 +16,14 @@
         <td class="w-75">{{ item.name }}</td>
         <td class="w-25 text-end">{{ item.value }}</td>
         <td class="w-content project-actions text-center">
-          <a class="btn-grass-primary" [routerLink]="['/btw/edit', item.btwId]">
+          <a class="btn-grass-primary" [routerLink]="['/btw/edit', item.btwId]"
+            ngbTooltip="{{ 'BUTTON.EDIT' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-pencil-alt">
             </i>
             <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
           </a>
-          <a class="btn-grass-danger ml-1" [routerLink]="['/btw/del', item.btwId]">
+          <a class="btn-grass-danger ml-1" [routerLink]="['/btw/del', item.btwId]"
+            ngbTooltip="{{ 'BUTTON.DELETE' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-trash">
             </i>
             <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>

@@ -6,7 +6,6 @@ import {
 } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -20,7 +19,7 @@ import { ClientEditComponent } from './edit/client-edit.component';
 
 import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module';
-import { ClientItemComponent } from './components/client-item/client-item.component';
+import { ClientItemComponent } from './item/client-item.component';
 
 
 export const routes: Routes = [
@@ -50,7 +49,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ClientComponent,
   ],
   imports: [
-    NgbModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

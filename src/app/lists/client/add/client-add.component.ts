@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http"
 import { Client } from '../client.model';
 import { TranslateService } from '@ngx-translate/core';
 import { abort, AbortError } from 'app/utils/common';
-import { ClientItemComponent } from '../components/client-item/client-item.component';
+import { ClientItemComponent } from '../item/client-item.component';
 
 @Component({
   selector: 'app-client-add',

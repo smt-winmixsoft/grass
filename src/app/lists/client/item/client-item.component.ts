@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Client, ClientRange, ClientType, ClientCheck } from '../../client.model';
+import { Client, ClientRange, ClientType, ClientCheck } from '../client.model';
 import { HttpClient } from "@angular/common/http"
 import { environment } from "environments/environment"
 import { MessageComponent } from 'app/components/message/message.component';

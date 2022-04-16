@@ -14,6 +14,7 @@ import { EditorComponent } from './editor/editor.component';
 import { ClientsComponent } from './clients/clients.component';
 
 import { AngularResizeEventModule } from 'angular-resize-event';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -34,12 +35,14 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MessageComponent,
     ClientsComponent,
     EditorComponent,
+    NgbModule
   ],
   imports: [
     RouterModule,
     DataTablesModule,
     CommonModule,
     AngularResizeEventModule,
+    NgbModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

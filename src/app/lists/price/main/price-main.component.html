@@ -13,12 +13,14 @@
       <tr *ngFor="let item of items">
         <td class="w-100">{{ item.name }}</td>
         <td class="w-content project-actions text-centern">
-          <a class="btn-grass-primary" [routerLink]="['edit', item.priceId]">
+          <a class="btn-grass-primary" [routerLink]="['edit', item.priceId]"
+            ngbTooltip="{{ 'BUTTON.EDIT' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-pencil-alt">
             </i>
             <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
           </a>
-          <a class="btn-grass-danger ml-1" [routerLink]="['del', item.priceId]">
+          <a class="btn-grass-danger ml-1" [routerLink]="['del', item.priceId]"
+            ngbTooltip="{{ 'BUTTON.DELETE' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-trash">
             </i>
             <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>
