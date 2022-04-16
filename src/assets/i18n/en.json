@@ -151,5 +151,10 @@
       "PRICE": "Price is required",
       "PRODUCT.MAX": "Product is exceed available amount"
     }
+  },
+  "CONTRACT": {
+    "TITLE": "Client contracts",
+    "ERROR": {
+    }
   }
 }

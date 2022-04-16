@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Client } from '../../party.model';
+import { Client } from './client.model';
 
 @Component({
   selector: 'app-client-info',

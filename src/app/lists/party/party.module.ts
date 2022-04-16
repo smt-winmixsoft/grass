@@ -1,15 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   RouterModule,
   Routes
 } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DataTablesModule } from 'angular-datatables';
-
-import { HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { PartyComponent } from './party.component';
 import { PartyMainComponent } from './main/party-main.component';
@@ -21,7 +14,6 @@ import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module';
 import { PartyItemComponent } from './components/party-item/party-item.component';
 import { ClientComponent } from './components/client/client.component';
-import { ClientInfoComponent } from './components/client-info/client-info.component';
 import { ShipMainComponent } from './ship/ship-main/ship-main.component';
 import { ShipAddComponent } from './ship/ship-add/ship-add.component';
 import { ShipDelComponent } from './ship/ship-del/ship-del.component';
@@ -42,11 +34,6 @@ export const routes: Routes = [
   { path: 'ship/:id/del/:shipId', component: ShipDelComponent },
 ];
 
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
-}
-
 
 @NgModule({
   declarations: [
@@ -57,7 +44,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PartyEditComponent,
     PartyItemComponent,
     ClientComponent,
-    ClientInfoComponent,
     ShipMainComponent,
     ShipAddComponent,
     ShipDelComponent,
@@ -69,20 +55,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PartyComponent,
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DataTablesModule,
     ComponentsModule,
     DirectivesModule,
     RouterModule.forChild(routes),
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
   ]
 })
 export class PartyModule { }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -12,6 +13,7 @@ import { ListComponent } from './list/list.component';
 import { MessageComponent } from './message/message.component';
 import { EditorComponent } from './editor/editor.component';
 import { ClientsComponent } from './clients/clients.component';
+import { ClientInfoComponent } from './client-info/client-info.component';
 
 import { AngularResizeEventModule } from 'angular-resize-event';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -27,15 +29,21 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ListComponent,
     MessageComponent,
     ClientsComponent,
-    EditorComponent
+    EditorComponent,
+    ClientInfoComponent
   ],
   exports: [
+    NgbModule,
+    CommonModule,
+    FormsModule,
+    DataTablesModule,
+    TranslateModule,
     TitleComponent,
     ListComponent,
     MessageComponent,
     ClientsComponent,
     EditorComponent,
-    NgbModule
+    ClientInfoComponent
   ],
   imports: [
     RouterModule,
@@ -43,6 +51,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommonModule,
     AngularResizeEventModule,
     NgbModule,
+    FormsModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

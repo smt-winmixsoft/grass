@@ -35,3 +35,13 @@ export class ClientType {
   clientTypeId: number;
   name: string;
 }
+
+export class ClientContract {
+  clientContractId: number;
+  clientId: number;
+  contractYear: number;
+  inDate: Date = new Date();
+  sendDate: Date = null;
+  signDate: Date = null;
+  contractState: number = 0;
+}
