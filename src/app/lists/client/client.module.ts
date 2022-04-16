@@ -20,6 +20,7 @@ import { ClientEditComponent } from './edit/client-edit.component';
 import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module';
 import { ClientItemComponent } from './item/client-item.component';
+import { ClientContractsComponent } from './contracts/client-contracts.component';
 
 
 export const routes: Routes = [
@@ -28,6 +29,7 @@ export const routes: Routes = [
   { path: 'add', component: ClientAddComponent },
   { path: 'edit/:id', component: ClientEditComponent },
   { path: 'del/:id', component: ClientDelComponent },
+  { path: 'contracts/:id', component: ClientContractsComponent },
 ];
 
 // AoT requires an exported function for factories
@@ -44,6 +46,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ClientDelComponent,
     ClientEditComponent,
     ClientItemComponent,
+    ClientContractsComponent,
   ],
   exports: [
     ClientComponent,
