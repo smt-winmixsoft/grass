@@ -34,8 +34,10 @@ export class MenuSidebarComponent implements OnInit {
 export const MENU = [
   {
     name: 'Dashboard',
-    path: ['/']
+    path: ['/'],
+    class: "fas fa-tachometer-alt"
   },
+
   // {
   //   name: 'Blank',
   //   path: ['/blank']
@@ -43,53 +45,64 @@ export const MENU = [
   {
     name: "References",
     i18n: "MENU.WORKIN",
+    class: "fas fa-calendar",
+
     children: [
       {
         name: "Drying",
         path: ['/drying'],
-        i18n: "PARTY.LABEL.DRYING"
+        i18n: "PARTY.LABEL.DRYING",
+        class: "fas fa-fire"
       },
       {
         name: "Trade",
         path: ['/trade'],
-        i18n: "PARTY.LABEL.TRADE"
+        i18n: "PARTY.LABEL.TRADE",
+        class: "fas fa-euro-sign"
       },
     ]
   },
   {
     name: "References",
     i18n: "MENU.REFERENCES",
+    class: "fas fa-book",
 
     children: [
       {
+        name: "Clients",
+        path: ['/client'],
+        i18n: "CLIENT.TITLE",
+        class: "fas fa-user"
+      },
+      {
         name: "Pack types",
         path: ['/pack-type'],
-        i18n: "PACK_TYPE.TITLE"
+        i18n: "PACK_TYPE.TITLE",
+        class: "far fa-circle"
       },
       {
         name: "Raw materials",
         path: ['/material'],
-        i18n: "MATERIAL.TITLE"
+        i18n: "MATERIAL.TITLE",
+        class: "far fa-circle"
       },
       {
         name: "Analysis types",
         path: ['/analysis-type'],
-        i18n: "ANALYSIS_TYPE.TITLE"
+        i18n: "ANALYSIS_TYPE.TITLE",
+        class: "far fa-circle"
       },
       {
         name: "Price-lists",
         path: ['/price'],
-        i18n: "PRICE.TITLE"
-      },
-      {
-        name: "Clients",
-        path: ['/client'],
-        i18n: "CLIENT.TITLE"
+        i18n: "PRICE.TITLE",
+        class: "far fa-circle"
       },
       {
         name: "BTW",
         path: ['/btw'],
-        i18n: "BTW.TITLE"
+        i18n: "BTW.TITLE",
+        class: "far fa-circle"
       },
     ]
   },

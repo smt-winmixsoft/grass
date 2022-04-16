@@ -25,7 +25,8 @@
     "CLOSE": "Close",
     "BACK": "Back",
     "CHOOSE": "Choose",
-    "SHIP": "Ship"
+    "SHIP": "Ship",
+    "CONTRACT": "Contract"
   },
   "LABEL": {
     "NO_DATA": "No data",

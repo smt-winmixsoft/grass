@@ -1,3 +1,4 @@
+
 <app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="/client/add">{{ 'CLIENT.TITLE' | translate }}
 </app-title>
 
@@ -20,12 +21,17 @@
         <td style="width:30%">{{ item.address }}</td>
         <td style="width:30%">{{ item.residence }}</td>
         <td class="w-content project-actions text-center">
-          <a class="btn-grass-primary" [routerLink]="['/client/edit', item.clientId]">
+          <a class="btn-grass-primary" [routerLink]="['/client/edit', item.clientId]" ngbTooltip="{{ 'BUTTON.EDIT' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-pencil-alt">
             </i>
             <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
           </a>
-          <a class="btn-grass-danger ml-1" [routerLink]="['/client/del', item.clientId]">
+          <a class="btn-grass-info ml-1" [routerLink]="['/client/edit', item.clientId]" ngbTooltip="{{ 'BUTTON.CONTRACT' | translate }}" tooltipClass="tooltip-grass">
+            <i class="fas fa-file">
+            </i>
+            <span class="btn-text">{{ 'BUTTON.CONTRACT' | translate }}</span>
+          </a>
+          <a class="btn-grass-danger ml-1" [routerLink]="['/client/del', item.clientId]" ngbTooltip="{{ 'BUTTON.DELETE' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-trash">
             </i>
             <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>

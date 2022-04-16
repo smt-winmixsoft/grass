@@ -25,7 +25,8 @@
     "CLOSE": "Dichtbij",
     "BACK": "Terug",
     "CHOOSE": "Kiezen",
-    "SHIP": "Verzending"
+    "SHIP": "Verzending",
+    "CONTRACT": "Contract"
   },
   "LABEL": {
     "NO_DATA": "Geen gegevens",

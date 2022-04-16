@@ -6,6 +6,7 @@ import {
 } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ClientComponent,
   ],
   imports: [
+    NgbModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
