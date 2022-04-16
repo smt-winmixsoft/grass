@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
-import { PackType, PartyOut, Party, Client, forSaveOut, CLIENT_I, urlToPartyType, PARTY_DRYING } from '../../party.model';
+import { PackType, PartyOut, Party, forSaveOut, CLIENT_I, urlToPartyType, PARTY_DRYING } from '../../party.model';
+import { Client } from '@components/client-info/client.model';
 import { environment } from "environments/environment"
 import { HttpClient } from "@angular/common/http"
 import { Router } from '@angular/router';

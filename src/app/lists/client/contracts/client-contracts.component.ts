@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { concatMap, tap } from 'rxjs/operators';
 import { environment } from "environments/environment"
 import { MessageComponent } from '@components/message/message.component';
+import { ClientInfoComponent } from '@components/client-info/client-info.component';
 
 @Component({
   selector: 'app-client-contracts',
@@ -15,6 +16,7 @@ import { MessageComponent } from '@components/message/message.component';
 export class ClientContractsComponent implements OnInit {
 
   @ViewChild('message') message: MessageComponent;
+  @ViewChild('clientInfo') clientInfo: ClientInfoComponent;
 
   items: ClientContract[];
   client: Client;
@@ -89,6 +91,7 @@ export class ClientContractsComponent implements OnInit {
         next: (result) => {
           item.contractState = result.contractState;
           item.signDate = result.signDate;
+          this.clientInfo.checkContract();
         },
         error: console.error
       });

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Party, Client, Material, PackType, Organic, Probe, urlToPartyType, PARTY_DRYING, PARTY_TRADE, CLIENT_LD, CLIENT_H } from '../../party.model';
+import { Party, Material, PackType, Organic, Probe, urlToPartyType, PARTY_DRYING, PARTY_TRADE, CLIENT_LD, CLIENT_H } from '../../party.model';
+import { Client } from '@components/client-info/client.model';
 
 import { HttpClient } from "@angular/common/http"
 import { Router } from '@angular/router';

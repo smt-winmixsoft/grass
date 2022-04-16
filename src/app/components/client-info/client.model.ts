@@ -16,6 +16,7 @@ export class Client {
   intercompany: boolean = false;
   notActive: boolean = false;
   contractSigned: boolean = false;
+  hasContract: boolean = false;
 }
 
 export class ClientType {

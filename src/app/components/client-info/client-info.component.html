@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <!-- Residence -->
+    <!-- Client Type -->
     <div class="row">
       <div class="col-xxl-4">
         <label>{{ 'CLIENT.LABEL.TYPE' | translate }}</label>
@@ -71,5 +71,17 @@
         <span>{{client?.clientType?.name}}</span>
       </div>
     </div>
+
+    <!-- Contract -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'CONTRACT.LABEL.NAME' | translate }}</label>
+      </div>
+      <div class="col-xxl-8">
+        <span *ngIf="client?.hasContract">{{ 'LABEL.YES' | translate }}</span>
+        <span *ngIf="!client?.hasContract">{{ 'LABEL.NO' | translate }}</span>
+      </div>
+    </div>
+
   </div>
 </div>

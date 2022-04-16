@@ -39,7 +39,9 @@
     "HUMIDITY": "Vochtigheid",
     "KG": "kg",
     "FROM": "Van",
-    "TO": "Naar"
+    "TO": "Naar",
+    "YES": "Ja",
+    "NO": "Nee"
   },
   "PACK_TYPE": {
     "TITLE": "Pakkettypes",

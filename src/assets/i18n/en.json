@@ -40,7 +40,9 @@
     "KG": "kg",
     "FROM": "From",
     "TO": "To",
-    "DATE": "Date"
+    "DATE": "Date",
+    "YES": "Yes",
+    "NO": "No"
   },
   "PACK_TYPE": {
     "TITLE": "Pack types",
@@ -155,6 +157,7 @@
   "CONTRACT": {
     "TITLE": "Client contracts",
     "LABEL": {
+      "NAME": "Contract",
       "YEAR": "Year",
       "SEND": "Send",
       "SIGN": "Sign"
