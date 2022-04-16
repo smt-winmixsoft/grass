@@ -1,35 +1,36 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="/material/add">{{ 'MATERIAL.TITLE' | translate }}</app-title>
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="/material/add">{{ 'MATERIAL.TITLE' | translate }}
+</app-title>
 
-<app-list>
-    <table id="table" #table datatable [dtOptions]="dtOptions"
-        class="dataTable table table-sm table-bordered table-striped projects">
-        <thead>
-            <tr>
-                <th>{{ 'LABEL.NAME' | translate }}</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody *ngIf="items?.length !== 0">
-            <tr *ngFor="let item of items">
-                <td class="w-100">{{ item.name }}</td>
-                <td class="w-content project-actions text-centern">
-                    <a class="btn-grass-primary" [routerLink]="['/material/edit', item.materialId]">
-                        <i class="fas fa-pencil-alt">
-                        </i>
-                        <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
-                    </a>
-                    <a class="btn-grass-danger ml-1" [routerLink]="['/material/del', item.materialId]">
-                        <i class="fas fa-trash">
-                        </i>
-                        <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-        <tbody *ngIf="items?.length === 0">
-            <tr>
-                <td colspan="2" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
-            </tr>
-        </tbody>
-    </table>
+<app-list (resized)="onResized($event)">
+  <table id="table" #table datatable [dtOptions]="dtOptions"
+    class="dataTable table table-sm table-bordered table-striped projects">
+    <thead>
+      <tr>
+        <th>{{ 'LABEL.NAME' | translate }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="items?.length !== 0">
+      <tr *ngFor="let item of items">
+        <td class="w-100">{{ item.name }}</td>
+        <td class="w-content project-actions text-centern">
+          <a class="btn-grass-primary" [routerLink]="['/material/edit', item.materialId]">
+            <i class="fas fa-pencil-alt">
+            </i>
+            <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
+          </a>
+          <a class="btn-grass-danger ml-1" [routerLink]="['/material/del', item.materialId]">
+            <i class="fas fa-trash">
+            </i>
+            <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="items?.length === 0">
+      <tr>
+        <td colspan="2" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+      </tr>
+    </tbody>
+  </table>
 </app-list>

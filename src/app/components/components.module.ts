@@ -13,6 +13,8 @@ import { MessageComponent } from './message/message.component';
 import { EditorComponent } from './editor/editor.component';
 import { ClientsComponent } from './clients/clients.component';
 
+import { AngularResizeEventModule } from 'angular-resize-event';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -23,20 +25,21 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TitleComponent,
     ListComponent,
     MessageComponent,
-    EditorComponent,
-    ClientsComponent
+    ClientsComponent,
+    EditorComponent
   ],
   exports: [
     TitleComponent,
     ListComponent,
     MessageComponent,
+    ClientsComponent,
     EditorComponent,
-    ClientsComponent
   ],
   imports: [
     RouterModule,
     DataTablesModule,
     CommonModule,
+    AngularResizeEventModule,
     TranslateModule.forChild({
       loader: {
         provide: TranslateLoader,

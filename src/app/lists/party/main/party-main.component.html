@@ -3,7 +3,7 @@
   <span *ngIf="isTrade">{{ 'PARTY.LABEL.TRADE' | translate }}</span>
 </app-title>
 
-<app-list>
+<app-list (resized)="onResized($event)">
   <table id="table" #table datatable [dtOptions]="dtOptions"
     class="dataTable table table-sm table-bordered table-striped projects">
     <thead>

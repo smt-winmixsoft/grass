@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ResizedEvent } from 'angular-resize-event';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  @Output() resized = new EventEmitter<ResizedEvent>()
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onResized(event: ResizedEvent) {
+    this.resized.emit(event);
+  }
 }

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Party, urlToPartyType, PARTY_DRYING, PARTY_TRADE } from '../party.model';
 
 import { DataTablesService } from 'app/services/datatables.service';
+import { ResizedEvent } from 'angular-resize-event';
 
 @Component({
   selector: 'app-party-main',
@@ -30,8 +31,7 @@ export class PartyMainComponent implements OnInit {
     this.isTrade = this.partyType == PARTY_TRADE;
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResized(event: ResizedEvent) {
     this.table.nativeElement.style.width = this.table.nativeElement.parentElement.style.width;
   }
 

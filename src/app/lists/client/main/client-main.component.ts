@@ -6,6 +6,7 @@ import { DataTablesResponse } from 'app/utils/common';
 import { Client } from '../client.model';
 
 import { DataTablesService } from 'app/services/datatables.service';
+import { ResizedEvent } from 'angular-resize-event';
 
 @Component({
   selector: 'app-client-main',
@@ -20,8 +21,7 @@ export class ClientMainComponent implements OnInit {
 
   constructor(private http: HttpClient, private dataTables: DataTablesService) {}
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResized(event: ResizedEvent) {
     this.table.nativeElement.style.width = this.table.nativeElement.parentElement.style.width;
   }
 
