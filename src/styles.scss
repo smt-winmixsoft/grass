@@ -225,9 +225,9 @@ input[type=number] {
   @extend .btn-outline-info;
 }
 
-.btn-success-info {
+.btn-grass-secondary {
   @extend .btn-grass;
-  @extend .btn-outline-success;
+  @extend .btn-outline-secondary;
 }
 
 .btn-text {
@@ -256,4 +256,13 @@ input[type=number] {
 .tooltip-grass .arrow::before {
   background-color: #343a40;
   font-size: 110%;
+}
+
+// dropdown
+
+.caret-off::before {
+  display: none;
+}
+.caret-off::after {
+  display: none;
 }

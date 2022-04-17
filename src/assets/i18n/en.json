@@ -15,6 +15,7 @@
     "RIGHTS": "All rights reserved."
   },
   "BUTTON": {
+    "OK": "OK",
     "CANCEL": "Cancel",
     "NEW": "Create new",
     "EDIT": "Edit",
@@ -163,9 +164,7 @@
       "SIGN": "Sign"
     },
     "ERROR": {
-      "DELETE": "You can delete only new contract",
-      "SEND": "You can send only new contract",
-      "SIGN": "You can sign only send contract"
+      "ISDELETE": "Do you really want to delete Contact?"
     }
   }
 }

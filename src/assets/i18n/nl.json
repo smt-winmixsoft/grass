@@ -15,6 +15,7 @@
     "RIGHTS": "Alle rechten voorbehouden."
   },
   "BUTTON": {
+    "OK": "OK",
     "CANCEL": "Annuleren",
     "NEW": "Maak nieuw",
     "EDIT": "Bewerking",
@@ -164,9 +165,7 @@
       "SIGN": "Teken"
     },
     "ERROR": {
-      "DELETE": "U kunt alleen een nieuw contract verwijderen",
-      "SEND": "U kunt alleen een nieuw contract verzenden",
-      "SIGN": "U kunt ondertekenen alleen verzenden contract"
+      "ISDELETE": "Wil je Contact echt verwijderen?"
     }
   }
 }

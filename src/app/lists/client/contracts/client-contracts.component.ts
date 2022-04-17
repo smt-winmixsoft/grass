@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClientContract, sortContact, delContact, getContact, CONTRACT_NEW, CONTRACT_SEND } from '../client.model';
+import { ClientContract, sortContact, delContact, getContact } from '../client.model';
 import { Client } from '@components/client-info/client.model';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
 import { concatMap, tap } from 'rxjs/operators';
 import { environment } from "environments/environment"
-import { MessageComponent } from '@components/message/message.component';
+import { MessageComponent, AskInfo, AskResult } from '@components/message/message.component';
 import { ClientInfoComponent } from '@components/client-info/client-info.component';
 
 @Component({
@@ -20,6 +20,8 @@ export class ClientContractsComponent implements OnInit {
 
   items: ClientContract[];
   client: Client;
+
+  tag_delete: number = 1;
 
   constructor(private http: HttpClient, route: ActivatedRoute) {
 
@@ -70,50 +72,52 @@ export class ClientContractsComponent implements OnInit {
 
   send(id: number): void {
     let item = getContact(this.items, id);
-    if (item.contractState == CONTRACT_NEW) {
-      this.http.put<ClientContract>(environment.urlApi + 'ClientContract/send/' + id, item).subscribe({
-        next: (result) => {
-          item.contractState = result.contractState;
-          item.sendDate = result.sendDate;
-        },
-        error: console.error
-      });
-    }
-    else {
-      this.message.show('', 'CONTRACT.ERROR.SEND');
-    }
+    this.http.put<ClientContract>(environment.urlApi + 'ClientContract/send/' + id, item).subscribe({
+      next: (result) => {
+        item.contractState = result.contractState;
+        item.sendDate = result.sendDate;
+        item.signDate = result.signDate;
+        this.clientInfo.checkContract();
+      },
+      error: console.error
+    });
   }
 
   sign(id: number): void {
     let item = getContact(this.items, id);
-    if (item.contractState == CONTRACT_SEND) {
-      this.http.put<ClientContract>(environment.urlApi + 'ClientContract/sign/' + id, item).subscribe({
-        next: (result) => {
-          item.contractState = result.contractState;
-          item.signDate = result.signDate;
-          this.clientInfo.checkContract();
-        },
-        error: console.error
-      });
-    }
-    else {
-      this.message.show('', 'CONTRACT.ERROR.SIGN');
-    }
+    this.http.put<ClientContract>(environment.urlApi + 'ClientContract/sign/' + id, item).subscribe({
+      next: (result) => {
+        item.contractState = result.contractState;
+        item.signDate = result.signDate;
+        this.clientInfo.checkContract();
+      },
+      error: console.error
+    });
   }
 
   del(id: number): void {
-    let item = getContact(this.items, id);
-    if (item.contractState === CONTRACT_NEW) {
-      this.http.delete<any>(environment.urlApi + 'ClientContract/' + id).subscribe({
-        next: () => delContact(this.items, id),
-        error: console.error
-      });
-    }
-    else {
-      this.message.show('', 'CONTRACT.ERROR.DELETE');
-    }
+    this.message.ask({
+      tag: this.tag_delete,
+      message: 'CONTRACT.ERROR.ISDELETE',
+      isDelete: true,
+      data: id
+    } as AskInfo);
   }
 
-  closeEvent(tag: string) {
+  answerEvent(result: AskResult) {
+
+    if (result.answer > 0) return;
+
+    switch (result.tag) {
+      case this.tag_delete:
+        this.http.delete<any>(environment.urlApi + 'ClientContract/' + result.data).subscribe({
+          next: () => {
+            delContact(this.items, result.data);
+            this.clientInfo.checkContract();
+          },
+          error: console.error
+        });
+        break;
+    }
   }
 }

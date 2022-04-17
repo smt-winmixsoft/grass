@@ -1,4 +1,4 @@
-<app-message #message (closeEvent)="closeEvent($event)"></app-message>
+<app-message #message (answerEvent)="answerEvent($event)"></app-message>
 
 <app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" (buttonClick)="add()">
   {{ 'CONTRACT.TITLE' | translate }}
@@ -34,24 +34,40 @@
                 <td style="width:25%" class="text-center">{{ item.sendDate | date:'dd-MM-yyyy' }}</td>
                 <td style="width:25%" class="text-center">{{ item.signDate | date:'dd-MM-yyyy' }}</td>
                 <td class="w-content project-actions text-center">
-                  <a class="btn-grass-primary" (click)="send(item.clientContractId)"
+                  <a *ngIf="item.contractState === 0" class="btn-grass-primary" (click)="send(item.clientContractId)"
                     ngbTooltip="{{ 'CONTRACT.LABEL.SEND' | translate }}" tooltipClass="tooltip-grass">
                     <i class="fa fa-envelope">
                     </i>
                     <span class="btn-text">{{ 'CONTRACT.LABEL.SEND' | translate }}</span>
                   </a>
-                  <a class="btn-grass-success ml-1" (click)="sign(item.clientContractId)"
-                    ngbTooltip="{{ 'CONTRACT.LABEL.SIGN' | translate }}" tooltipClass="tooltip-grass">
+                  <a *ngIf="item.contractState === 1" class="btn-grass-success ml-1"
+                    (click)="sign(item.clientContractId)" ngbTooltip="{{ 'CONTRACT.LABEL.SIGN' | translate }}"
+                    tooltipClass="tooltip-grass">
                     <i class="fa fa-check">
                     </i>
                     <span class="btn-text">{{ 'CONTRACT.LABEL.SIGN' | translate }}</span>
                   </a>
-                  <a class="btn-grass-danger ml-1" (click)="del(item.clientContractId)"
+                  <a *ngIf="item.contractState === 0" class="btn-grass-danger ml-1" (click)="del(item.clientContractId)"
                     ngbTooltip="{{ 'BUTTON.DELETE' | translate }}" tooltipClass="tooltip-grass">
                     <i class="fas fa-trash">
                     </i>
                     <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>
                   </a>
+
+                  <div *ngIf="item.contractState === 2" ngbDropdown class="d-inline-block">
+                    <a class="btn-grass-secondary caret-off" ngbTooltip="{{ 'BUTTON.CHOOSE' | translate }}"
+                      tooltipClass="tooltip-grass" id="dropdownBasic1" ngbDropdownToggle>
+                      <i class="fas fa-bars ">
+                      </i>
+                      <span class="btn-text">{{ 'BUTTON.CHOOSE' | translate }}</span>
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button ngbDropdownItem (click)="send(item.clientContractId)">Send again</button>
+                      <div class="dropdown-divider"></div>
+                      <button ngbDropdownItem class="text-danger" (click)="del(item.clientContractId)">Delete</button>
+                    </div>
+                  </div>
+
                 </td>
               </tr>
 
