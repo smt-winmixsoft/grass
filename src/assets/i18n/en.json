@@ -27,7 +27,8 @@
     "BACK": "Back",
     "CHOOSE": "Choose",
     "SHIP": "Ship",
-    "CONTRACT": "Contract"
+    "CONTRACT": "Contract",
+    "PRINT": "Print"
   },
   "LABEL": {
     "NO_DATA": "No data",
@@ -161,7 +162,8 @@
       "NAME": "Contract",
       "YEAR": "Year",
       "SEND": "Send",
-      "SIGN": "Sign"
+      "SIGN": "Sign",
+      "UNSIGN": "Unsign"
     },
     "ERROR": {
       "ISDELETE": "Do you really want to delete Contact?"

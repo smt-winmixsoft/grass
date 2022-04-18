@@ -14,6 +14,7 @@ import { ComponentsModule } from '../../components/components.module';
 import { DirectivesModule } from '../../directives/directives.module';
 import { ClientItemComponent } from './item/client-item.component';
 import { ClientContractsComponent } from './contracts/client-contracts.component';
+import { ClientContractPrintComponent } from './contracts/print/client-contract-print.component';
 
 
 export const routes: Routes = [
@@ -35,6 +36,7 @@ export const routes: Routes = [
     ClientEditComponent,
     ClientItemComponent,
     ClientContractsComponent,
+    ClientContractPrintComponent,
   ],
   exports: [
     ClientComponent,

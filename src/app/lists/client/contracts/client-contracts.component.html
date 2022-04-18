@@ -27,34 +27,37 @@
               <tr *ngFor="let item of items">
                 <td style="width:5%" class="text-center">
                   <i *ngIf="item.contractState === 1" class="fa fa-envelope text-primary"></i>
-                  <i *ngIf="item.contractState === 2" class="fa fa-check text-success"></i>
+                  <i *ngIf="item.contractState === 2" class="fa fa-print text-success"></i>
+                  <i *ngIf="item.contractState === 3" class="fa fa-check text-success"></i>
                 </td>
                 <td style="width:20%" class="text-center">{{ item.contractYear }}</td>
                 <td style="width:25%" class="text-center">{{ item.inDate | date:'dd-MM-yyyy' }}</td>
-                <td style="width:25%" class="text-center">{{ item.sendDate | date:'dd-MM-yyyy' }}</td>
-                <td style="width:25%" class="text-center">{{ item.signDate | date:'dd-MM-yyyy' }}</td>
-                <td class="w-content project-actions text-center">
-                  <a *ngIf="item.contractState === 0" class="btn-grass-primary" (click)="send(item.clientContractId)"
+                <td style="width:25%" [class] = "item.contractState < 3 ? '' : 'text-center'">
+                  <a *ngIf="item.contractState < 3" class="btn-grass-primary" (click)="send(item.clientContractId)"
                     ngbTooltip="{{ 'CONTRACT.LABEL.SEND' | translate }}" tooltipClass="tooltip-grass">
                     <i class="fa fa-envelope">
                     </i>
-                    <span class="btn-text">{{ 'CONTRACT.LABEL.SEND' | translate }}</span>
                   </a>
-                  <a *ngIf="item.contractState === 1" class="btn-grass-success ml-1"
+                  <a *ngIf="item.contractState < 3" class="btn-grass-info ml-1" (click)="print(item.clientContractId)"
+                    ngbTooltip="{{ 'BUTTON.PRINT' | translate }}" tooltipClass="tooltip-grass">
+                    <i class="fa fa-print">
+                    </i>
+                  </a>
+                  <span class="ml-2">{{ item.sendDate | date:'dd-MM-yyyy' }}</span>
+                </td>
+
+                <td style="width:25%" [class] = "item.contractState < 3 ? '' : 'text-center'">
+                  <a *ngIf="item.contractState < 3" class="btn-grass-success ml-1"
                     (click)="sign(item.clientContractId)" ngbTooltip="{{ 'CONTRACT.LABEL.SIGN' | translate }}"
                     tooltipClass="tooltip-grass">
                     <i class="fa fa-check">
                     </i>
-                    <span class="btn-text">{{ 'CONTRACT.LABEL.SIGN' | translate }}</span>
                   </a>
-                  <a *ngIf="item.contractState === 0" class="btn-grass-danger ml-1" (click)="del(item.clientContractId)"
-                    ngbTooltip="{{ 'BUTTON.DELETE' | translate }}" tooltipClass="tooltip-grass">
-                    <i class="fas fa-trash">
-                    </i>
-                    <span class="btn-text">{{ 'BUTTON.DELETE' | translate }}</span>
-                  </a>
+                  <span class="ml-2">{{ item.signDate | date:'dd-MM-yyyy' }}</span>
+                </td>
 
-                  <div *ngIf="item.contractState === 2" ngbDropdown class="d-inline-block">
+                <td class="w-content project-actions text-center">
+                  <div ngbDropdown class="d-inline-block">
                     <a class="btn-grass-secondary caret-off" ngbTooltip="{{ 'BUTTON.CHOOSE' | translate }}"
                       tooltipClass="tooltip-grass" id="dropdownBasic1" ngbDropdownToggle>
                       <i class="fas fa-bars ">
@@ -62,12 +65,14 @@
                       <span class="btn-text">{{ 'BUTTON.CHOOSE' | translate }}</span>
                     </a>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      <button ngbDropdownItem (click)="send(item.clientContractId)">Send again</button>
+                      <button ngbDropdownItem (click)="unsign(item.clientContractId)">{{ 'CONTRACT.LABEL.UNSIGN' | translate }}</button>
+                      <div class="dropdown-divider"></div>
+                      <button ngbDropdownItem (click)="send(item.clientContractId)">{{ 'CONTRACT.LABEL.SEND' | translate }}</button>
+                      <button ngbDropdownItem (click)="print(item.clientContractId)">{{ 'BUTTON.PRINT' | translate }}</button>
                       <div class="dropdown-divider"></div>
                       <button ngbDropdownItem class="text-danger" (click)="del(item.clientContractId)">Delete</button>
                     </div>
                   </div>
-
                 </td>
               </tr>
 
@@ -93,5 +98,9 @@
       <a href="#" class="btn btn-primary" routerLink="../..">{{'BUTTON.CLOSE' | translate}}</a>
     </div>
   </div>
-
 </app-editor>
+
+<div *ngIf="printId" id="dataToPrint">
+  <app-client-contract-print #contract [printId]="printId" [client]="client"></app-client-contract-print>
+</div>
+

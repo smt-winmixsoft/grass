@@ -6,6 +6,7 @@ export class Client {
   clientNumber: number = 0;
   address: string = "";
   postcode: string = "";
+  postcodeId: string = "";
   residence: string = "";
   phone: string = "";
   eco: boolean = false;

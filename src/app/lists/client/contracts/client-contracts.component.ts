@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClientContract, sortContact, delContact, getContact } from '../client.model';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ClientContract, sortContact, delContact, getContact, CONTRACT_SEND, CONTRACT_SIGN, CONTRACT_PRINT, CONTRACT_UNSIGN } from '../client.model';
 import { Client } from '@components/client-info/client.model';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
@@ -7,6 +7,7 @@ import { concatMap, tap } from 'rxjs/operators';
 import { environment } from "environments/environment"
 import { MessageComponent, AskInfo, AskResult } from '@components/message/message.component';
 import { ClientInfoComponent } from '@components/client-info/client-info.component';
+import { ClientContractPrintComponent } from './print/client-contract-print.component';
 
 @Component({
   selector: 'app-client-contracts',
@@ -17,11 +18,14 @@ export class ClientContractsComponent implements OnInit {
 
   @ViewChild('message') message: MessageComponent;
   @ViewChild('clientInfo') clientInfo: ClientInfoComponent;
+  @ViewChild('contract') contract: ClientContractPrintComponent;
 
   items: ClientContract[];
   client: Client;
 
   tag_delete: number = 1;
+
+  printId: number = null;
 
   constructor(private http: HttpClient, route: ActivatedRoute) {
 
@@ -70,29 +74,28 @@ export class ClientContractsComponent implements OnInit {
     });
   }
 
-  send(id: number): void {
+  state(id: number, state: number): void {
     let item = getContact(this.items, id);
-    this.http.put<ClientContract>(environment.urlApi + 'ClientContract/send/' + id, item).subscribe({
+    this.http.put<ClientContract>(environment.urlApi + `ClientContract/state/${id}/${state}`, item).subscribe({
       next: (result) => {
-        item.contractState = result.contractState;
-        item.sendDate = result.sendDate;
-        item.signDate = result.signDate;
+        Object.assign(item, result);
         this.clientInfo.checkContract();
       },
       error: console.error
     });
   }
 
+
+  send(id: number): void {
+    this.state(id, CONTRACT_SEND);
+  }
+
   sign(id: number): void {
-    let item = getContact(this.items, id);
-    this.http.put<ClientContract>(environment.urlApi + 'ClientContract/sign/' + id, item).subscribe({
-      next: (result) => {
-        item.contractState = result.contractState;
-        item.signDate = result.signDate;
-        this.clientInfo.checkContract();
-      },
-      error: console.error
-    });
+    this.state(id, CONTRACT_SIGN);
+  }
+
+  unsign(id: number): void {
+    this.state(id, CONTRACT_UNSIGN);
   }
 
   del(id: number): void {
@@ -120,4 +123,19 @@ export class ClientContractsComponent implements OnInit {
         break;
     }
   }
+
+  print(id: number) {
+    this.printId = id;
+    this.state(id, CONTRACT_PRINT);
+    setTimeout(() => {
+      if (this.contract?.printId == id) {
+        let printData = document.getElementById('dataToPrint').cloneNode(true);
+        document.body.appendChild(printData);
+        window.print();
+        document.body.removeChild(printData);
+      }
+    }, 100)
+  }
 }
+
+

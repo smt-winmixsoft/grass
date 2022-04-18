@@ -19,7 +19,7 @@ export class BtwEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(environment.urlApi + 'Btw/' + this.item.btwId)
+    this.http.get<Btw>(environment.urlApi + 'Btw/' + this.item.btwId)
       .subscribe({
         next: (result) => this.item = result,
         error: console.error

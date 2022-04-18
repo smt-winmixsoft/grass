@@ -1,3 +1,5 @@
+// Object.assign(this.item, result)
+
 export class Client {
   clientId: number = 0;
   name: string = null;
@@ -38,7 +40,9 @@ export class ClientType {
 
 export const CONTRACT_NEW: number = 0;
 export const CONTRACT_SEND: number = 1;
-export const CONTRACT_SIGN: number = 2;
+export const CONTRACT_PRINT: number = 2;
+export const CONTRACT_SIGN: number = 3;
+export const CONTRACT_UNSIGN: number = 4;
 
 
 export class ClientContract {
@@ -49,6 +53,7 @@ export class ClientContract {
   sendDate: Date = null;
   signDate: Date = null;
   contractState: number = 0;
+  sendState: number = 0;
 }
 
 export function forSave(item: ClientContract): ClientContract {
@@ -59,7 +64,8 @@ export function forSave(item: ClientContract): ClientContract {
     inDate: item.inDate,
     sendDate: item.sendDate,
     signDate: item.signDate,
-    contractState: item.contractState
+    contractState: item.contractState,
+    sendState: item.sendState
   } as ClientContract;
 }
 
@@ -89,5 +95,3 @@ export function getContact(items: ClientContract[], id: number): ClientContract 
   else
     return null;
 }
-
-

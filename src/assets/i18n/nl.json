@@ -27,7 +27,8 @@
     "BACK": "Terug",
     "CHOOSE": "Kiezen",
     "SHIP": "Verzending",
-    "CONTRACT": "Contract"
+    "CONTRACT": "Contract",
+    "PRINT": "Afdrukken"
   },
   "LABEL": {
     "NO_DATA": "Geen gegevens",
@@ -162,7 +163,8 @@
     "LABEL": {
       "YEAR": "Jaar",
       "SEND": "Versturen",
-      "SIGN": "Teken"
+      "SIGN": "Teken",
+      "UNSIGN": "Afmelden"
     },
     "ERROR": {
       "ISDELETE": "Wil je Contact echt verwijderen?"
