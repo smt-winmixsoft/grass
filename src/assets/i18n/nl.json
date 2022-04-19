@@ -28,7 +28,8 @@
     "CHOOSE": "Kiezen",
     "SHIP": "Verzending",
     "CONTRACT": "Contract",
-    "PRINT": "Afdrukken"
+    "PRINT": "Afdrukken",
+    "COMMANDS": "Commando's"
   },
   "LABEL": {
     "NO_DATA": "Geen gegevens",
@@ -105,7 +106,8 @@
       "PAPER": "Papier",
       "INTERCOMPANY": "Intercompany",
       "NOTACTIVE": "Niet actief",
-      "SIGNED": "Contract ondertekend"
+      "SIGNED": "Contract ondertekend",
+      "MINAS": "MINAS"
     },
     "ERROR": {
       "NUMBER": "Klantnummer '$1' wordt gebruikt door klant '$2'",

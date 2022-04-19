@@ -28,7 +28,8 @@
     "CHOOSE": "Choose",
     "SHIP": "Ship",
     "CONTRACT": "Contract",
-    "PRINT": "Print"
+    "PRINT": "Print",
+    "COMMANDS": "Commands"
   },
   "LABEL": {
     "NO_DATA": "No data",
@@ -103,7 +104,8 @@
       "PAPER": "Paper",
       "INTERCOMPANY": "Intercompany",
       "NOTACTIVE": "Not Active",
-      "SIGNED": "Contract signed"
+      "SIGNED": "Contract signed",
+      "MINAS": "MINAS"
     },
     "ERROR": {
       "NUMBER": "Client number '$1' is used by client '$2'",

@@ -70,4 +70,8 @@ export class ShipMainComponent implements OnInit {
   getTotal(item: PartyOut) {
     return (item?.price * item?.product) / 100;
   }
+
+  print() {
+    alert('Print');
+  }
 }

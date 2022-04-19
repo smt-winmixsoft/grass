@@ -1,6 +1,21 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="add" [isButtons]="isButtons">
-  {{ 'SHIP.TITLE' | translate }}
-</app-title>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{ 'SHIP.TITLE' | translate }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <a *ngIf="isButtons" class="btn btn-success float-right ml-1" routerLink="add">{{ 'BUTTON.NEW' | translate
+          }}</a>
+        <a class="btn btn-info float-right" (click)="print()">
+          <i class="fas fa-print">
+          </i>
+          <span>{{ 'BUTTON.PRINT' | translate }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <app-editor>
   <div *ngIf="party" class="row">
@@ -11,7 +26,6 @@
       <app-party-info [party]="party"></app-party-info>
     </div>
   </div>
-
 
   <div class="card card-primary card-outline">
 
