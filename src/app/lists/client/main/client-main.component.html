@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody *ngIf="items?.length !== 0">
-      <tr *ngFor="let item of items">
+      <tr *ngFor="let item of items" [class]="item.notActive ? 'text-secondary' : ''">
         <td style="width:35%">{{ item.name }}</td>
         <td style="width:5%">{{ getClientType(item.clientTypeId) }}</td>
         <td style="width:30%">{{ item.address }}</td>

@@ -15,10 +15,8 @@ export class Client {
   ubn: string = null;
   mestnummer: string = null;
   gmp: boolean = false;
-  paper: boolean = false;
   intercompany: boolean = false;
   notActive: boolean = false;
-  contractSigned: boolean = false;
 }
 
 export class ClientCheck {
@@ -38,12 +36,13 @@ export class ClientType {
   name: string;
 }
 
-export const CONTRACT_NEW: number = 0;
-export const CONTRACT_SEND: number = 1;
-export const CONTRACT_PRINT: number = 2;
-export const CONTRACT_SIGN: number = 3;
-export const CONTRACT_UNSIGN: number = 4;
-
+export class ContractState {
+  static NEW: number = 0;
+  static SEND: number = 1;
+  static PRINT: number = 2;
+  static SIGN: number = 3;
+  static UNSIGN: number = 4;
+}
 
 export class ClientContract {
   clientContractId: number;
@@ -56,42 +55,31 @@ export class ClientContract {
   sendState: number = 0;
 }
 
-export function forSave(item: ClientContract): ClientContract {
-  return {
-    clientContractId: item.clientContractId,
-    clientId: item.clientId,
-    contractYear: item.contractYear,
-    inDate: item.inDate,
-    sendDate: item.sendDate,
-    signDate: item.signDate,
-    contractState: item.contractState,
-    sendState: item.sendState
-  } as ClientContract;
+export class ClientContractList extends Array<ClientContract> {
+  resort() {
+    this.sort((a: ClientContract, b: ClientContract) => {
+      if (a.contractYear > b.contractYear)
+        return -1;
+      else if (a.contractYear < b.contractYear)
+        return 1;
+      else
+        return 0;
+    });
+  };
+
+  del(id: number) {
+    let index = this.findIndex((x) => x.clientContractId === id);
+    if (index > -1)
+      this.splice(index, 1);
+  };
+
+  get(id: number): ClientContract {
+    let index = this.findIndex((x) => x.clientContractId === id);
+    if (index > -1)
+      return this[index];
+    else
+      return null;
+  }
 }
 
-function compareYear(a: ClientContract, b: ClientContract) {
-  if (a.contractYear > b.contractYear)
-    return -1;
-  else if (a.contractYear < b.contractYear)
-    return 1;
-  else
-    return 0;
-}
 
-export function sortContact(items: ClientContract[]) {
-  items.sort(compareYear);
-}
-
-export function delContact(items: ClientContract[], id: number) {
-  let index = items.findIndex((x) => x.clientContractId === id);
-  if (index > -1)
-    items.splice(index, 1);
-}
-
-export function getContact(items: ClientContract[], id: number): ClientContract {
-  let index = items.findIndex((x) => x.clientContractId === id);
-  if (index > -1)
-    return items[index];
-  else
-    return null;
-}

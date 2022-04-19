@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ClientContract, sortContact, delContact, getContact, CONTRACT_SEND, CONTRACT_SIGN, CONTRACT_PRINT, CONTRACT_UNSIGN } from '../client.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ClientContract, ClientContractList, ContractState } from '../client.model';
 import { Client } from '@components/client-info/client.model';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
@@ -20,7 +20,7 @@ export class ClientContractsComponent implements OnInit {
   @ViewChild('clientInfo') clientInfo: ClientInfoComponent;
   @ViewChild('contract') contract: ClientContractPrintComponent;
 
-  items: ClientContract[];
+  items = new ClientContractList();
   client: Client;
 
   tag_delete: number = 1;
@@ -43,9 +43,9 @@ export class ClientContractsComponent implements OnInit {
         }),
 
         // Get contracts
-        concatMap(() => this.http.get<ClientContract[]>(environment.urlApi + 'ClientContract/byClient/' + clientId)),
+        concatMap(() => this.http.get<ClientContractList>(environment.urlApi + 'ClientContract/byClient/' + clientId)),
         tap({
-          next: (result) => this.items = result,
+          next: (result) => Object.assign(this.items, result),
           error: console.error
         }),
       )
@@ -65,7 +65,7 @@ export class ClientContractsComponent implements OnInit {
         this.http.post<ClientContract>(environment.urlApi + 'ClientContract/', item).subscribe({
           next: (result) => {
             this.items.push(result);
-            sortContact(this.items);
+            this.items.resort();
           },
           error: console.error
         });
@@ -75,7 +75,7 @@ export class ClientContractsComponent implements OnInit {
   }
 
   state(id: number, state: number): void {
-    let item = getContact(this.items, id);
+    let item = this.items.get(id);
     this.http.put<ClientContract>(environment.urlApi + `ClientContract/state/${id}/${state}`, item).subscribe({
       next: (result) => {
         Object.assign(item, result);
@@ -83,24 +83,38 @@ export class ClientContractsComponent implements OnInit {
       },
       error: (result) => {
         console.error(result);
-        if (result?.error === 123)
-        {
-          this.message.show("", "CLIENT.ERROR.NOMAIL");
+
+        var msg: string = null;
+        switch (result?.error) {
+          case 100: //ERR_NO_MAIL
+            msg = "CLIENT.ERROR.NOMAIL";
+            break;
+          case 101: //ERR_SEND
+            msg = "CONTRACT.ERROR.SEND";
+            break;
+          case 102: //ERR_NO_CLIENT
+            msg = "CONTRACT.ERROR.NOCLIENT";
+            break;
+          default:
+            msg = "ERROR.UNKNOWN";
+            break;
         }
+
+        this.message.show("", msg, null, result?.error);
       }
     });
   }
 
   send(id: number): void {
-    this.state(id, CONTRACT_SEND);
+    this.state(id, ContractState.SEND);
   }
 
   sign(id: number): void {
-    this.state(id, CONTRACT_SIGN);
+    this.state(id, ContractState.SIGN);
   }
 
   unsign(id: number): void {
-    this.state(id, CONTRACT_UNSIGN);
+    this.state(id, ContractState.UNSIGN);
   }
 
   del(id: number): void {
@@ -120,7 +134,7 @@ export class ClientContractsComponent implements OnInit {
       case this.tag_delete:
         this.http.delete<any>(environment.urlApi + 'ClientContract/' + result.data).subscribe({
           next: () => {
-            delContact(this.items, result.data);
+            this.items.del(result.data);
             this.clientInfo.checkContract();
           },
           error: console.error
@@ -131,7 +145,7 @@ export class ClientContractsComponent implements OnInit {
 
   print(id: number) {
     this.printId = id;
-    this.state(id, CONTRACT_PRINT);
+    this.state(id, ContractState.PRINT);
     setTimeout(() => {
       if (this.contract?.printId == id) {
         let printData = document.getElementById('dataToPrint').cloneNode(true);
@@ -142,5 +156,3 @@ export class ClientContractsComponent implements OnInit {
     }, 100)
   }
 }
-
-

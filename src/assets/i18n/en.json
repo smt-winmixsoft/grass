@@ -46,6 +46,9 @@
     "YES": "Yes",
     "NO": "No"
   },
+  "ERROR": {
+    "UNKNOWN": "Unknown error"
+  },
   "PACK_TYPE": {
     "TITLE": "Pack types",
     "NEW": "New pack type",
@@ -168,7 +171,8 @@
     },
     "ERROR": {
       "ISDELETE": "Do you really want to delete Contact?",
-      "NOMAIL": "Client does not have e-mail!"
+      "SEND": "Send mail failed",
+      "NOCLIENT": "Client not found"
     }
   }
 }

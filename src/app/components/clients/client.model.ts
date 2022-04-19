@@ -11,8 +11,6 @@ export class Client {
   ubn: string = "";
   mestnummer: string = "";
   gmp: boolean = false;
-  paper: boolean = false;
   intercompany: boolean = false;
   notActive: boolean = false;
-  contractSigned: boolean = false;
 }

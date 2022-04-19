@@ -3,7 +3,6 @@ import { Client } from './client.model';
 import { HttpClient } from "@angular/common/http"
 import { environment } from "environments/environment"
 
-
 @Component({
   selector: 'app-client-info',
   templateUrl: './client-info.component.html',
@@ -43,5 +42,4 @@ export class ClientInfoComponent implements OnInit, AfterViewInit, DoCheck {
         error: console.error
       });
   }
-
 }

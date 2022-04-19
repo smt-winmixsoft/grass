@@ -45,6 +45,9 @@
     "YES": "Ja",
     "NO": "Nee"
   },
+  "ERROR" : {
+    "UNKNOWN": "Onbekende fout"
+  },
   "PACK_TYPE": {
     "TITLE": "Pakkettypes",
     "NEW": "Nieuw pakkettype",
@@ -168,7 +171,9 @@
       "UNSIGN": "Afmelden"
     },
     "ERROR": {
-      "ISDELETE": "Wil je Contact echt verwijderen?"
+      "ISDELETE": "Wil je Contact echt verwijderen?",
+      "SEND": "E-mail verzenden mislukt",
+      "NOCLIENT": "Klant niet gevonden"
     }
   }
 }
