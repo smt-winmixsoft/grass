@@ -81,10 +81,15 @@ export class ClientContractsComponent implements OnInit {
         Object.assign(item, result);
         this.clientInfo.checkContract();
       },
-      error: console.error
+      error: (result) => {
+        console.error(result);
+        if (result?.error === 123)
+        {
+          this.message.show("", "CLIENT.ERROR.NOMAIL");
+        }
+      }
     });
   }
-
 
   send(id: number): void {
     this.state(id, CONTRACT_SEND);

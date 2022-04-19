@@ -105,7 +105,8 @@
       "SIGNED": "Contract ondertekend"
     },
     "ERROR": {
-      "NUMBER": "Klantnummer '$1' wordt gebruikt door klant '$2'"
+      "NUMBER": "Klantnummer '$1' wordt gebruikt door klant '$2'",
+      "NOMAIL": "Klant heeft geen e-mail!"
     }
   },
   "BTW": {

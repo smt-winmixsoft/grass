@@ -103,7 +103,8 @@
       "SIGNED": "Contract signed"
     },
     "ERROR": {
-      "NUMBER": "Client number '$1' is used by client '$2'"
+      "NUMBER": "Client number '$1' is used by client '$2'",
+      "NOMAIL": "Client does not have e-mail!"
     }
   },
   "BTW": {
@@ -166,7 +167,8 @@
       "UNSIGN": "Unsign"
     },
     "ERROR": {
-      "ISDELETE": "Do you really want to delete Contact?"
+      "ISDELETE": "Do you really want to delete Contact?",
+      "NOMAIL": "Client does not have e-mail!"
     }
   }
 }
