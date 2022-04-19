@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Client } from '@components/client-info/client.model';
 
 @Component({
@@ -8,12 +8,16 @@ import { Client } from '@components/client-info/client.model';
 })
 export class ClientContractPrintComponent implements OnInit {
 
-  @Input() printId: number;
-  @Input() client: Client;
-  date = new Date();
+  client: Client;
+  date: Date;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  init(client: Client, date: Date) {
+    this.client = client;
+    this.date = date;
   }
 }

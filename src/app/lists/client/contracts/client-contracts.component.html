@@ -100,7 +100,7 @@
   </div>
 </app-editor>
 
-<div *ngIf="printId" id="dataToPrint">
-  <app-client-contract-print #contract [printId]="printId" [client]="client"></app-client-contract-print>
+<div *ngIf="isPrint" id="dataToPrint">
+  <app-client-contract-print #contract></app-client-contract-print>
 </div>
 

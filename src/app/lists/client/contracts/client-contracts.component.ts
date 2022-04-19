@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ClientContract, ClientContractList, ContractState } from '../client.model';
 import { Client } from '@components/client-info/client.model';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import { environment } from "environments/environment"
 import { MessageComponent, AskInfo, AskResult } from '@components/message/message.component';
 import { ClientInfoComponent } from '@components/client-info/client-info.component';
 import { ClientContractPrintComponent } from './print/client-contract-print.component';
+import { doAfter } from 'app/utils/common';
 
 @Component({
   selector: 'app-client-contracts',
@@ -25,9 +26,9 @@ export class ClientContractsComponent implements OnInit {
 
   tag_delete: number = 1;
 
-  printId: number = null;
+  isPrint: boolean = true;
 
-  constructor(private http: HttpClient, route: ActivatedRoute) {
+  constructor(private http: HttpClient, route: ActivatedRoute, private zone: NgZone) {
 
     var clientId: number;
 
@@ -144,15 +145,16 @@ export class ClientContractsComponent implements OnInit {
   }
 
   print(id: number) {
-    this.printId = id;
+    this.isPrint = true;
     this.state(id, ContractState.PRINT);
-    setTimeout(() => {
-      if (this.contract?.printId == id) {
+    doAfter(this.zone, () => {
+      this.contract.init(this.client, this.items.get(id).inDate);
+      doAfter(this.zone, () => {
         let printData = document.getElementById('dataToPrint').cloneNode(true);
         document.body.appendChild(printData);
         window.print();
         document.body.removeChild(printData);
-      }
-    }, 100)
+      });
+    });
   }
 }

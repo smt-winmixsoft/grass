@@ -1,4 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http"
+import { NgZone } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 export class DataTablesResponse {
   data: any[] = [];
@@ -45,3 +47,11 @@ export function check404(e: any) {
   }
   else throw e;
 }
+
+export function doAfter(zone: NgZone, next: () => void): void {
+  zone.onMicrotaskEmpty
+    .asObservable()
+    .pipe(take(1))
+    .subscribe(() => next());
+}
+
