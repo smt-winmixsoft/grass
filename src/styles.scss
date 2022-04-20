@@ -284,14 +284,9 @@ input[type=number] {
     display: block;
   }
 
-  table th,
-  table td {
-    width: 200pt;
-  }
-
   @page {
     size: 210mm 297mm;
-    margin: 27mm 16mm 27mm 16mm;
+    margin: 10mm 10mm 10mm 10mm;
   }
 
   p {

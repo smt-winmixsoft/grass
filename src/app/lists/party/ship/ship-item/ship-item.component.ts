@@ -48,6 +48,7 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private location: Location, router: Router) {
     this.item = new PartyOut();
+    this.party = new Party();
     this.partyType = urlToPartyType(router.url);
     this.isDrying = this.partyType == PARTY_DRYING;
   }
@@ -87,7 +88,8 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
         concatMap(() => this.http.get<Party>(environment.urlApi + 'Party/' + partyId)),
         tap({
           next: (result) => {
-            this.party = result;
+            Object.assign(this.party, result);
+            this.party.init();
             if (this.isNew) {
               this.item.packTypeId = this.party.packTypeId;
               this.item.price = this.party.dryPrice;

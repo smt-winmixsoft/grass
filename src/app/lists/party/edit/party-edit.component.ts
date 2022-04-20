@@ -31,9 +31,9 @@ export class PartyEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<any>(environment.urlApi + 'Party/' + this.item.partyId)
+    this.http.get<Party>(environment.urlApi + 'Party/' + this.item.partyId)
       .subscribe({
-        next: (result) => this.item = result,
+        next: (result) => Object.assign(this.item, result),
         error: console.error
       });
   }

@@ -1,0 +1,194 @@
+<div class="report">
+
+  <div class="row border-top border-bottom">
+    <div class="col-5">
+      <span>Groenvoer Opeinde Friesland b. v.</span>
+    </div>
+    <div class="col-5 border-start border-end">
+      <span>Werkresultaten van: </span>
+      <span class="text-bold">{{party?.inDate | date:'dd-MM-yyy'}}</span>
+    </div>
+    <div class="col-2">
+      <span>Nr: </span>
+      <span class="text-bold">{{party?.partyNumber}}</span>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+
+      <div class="row">
+        <span>Klant gegevens:</span>
+      </div>
+
+      <table class="ml-1">
+        <tr>
+          <td>UBN</td>
+          <td class="px-2">:</td>
+          <td style="width: 100%;">{{party?.client?.ubn}}</td>
+        </tr>
+        <tr>
+          <td>KlantNr</td>
+          <td class="px-2">:</td>
+          <td>{{party?.client?.clientNumber}}</td>
+        </tr>
+        <tr>
+          <td>Naam</td>
+          <td class="px-2">:</td>
+          <td>{{party?.client?.name}}</td>
+        </tr>
+        <tr>
+          <td>Adres</td>
+          <td class="px-2">:</td>
+          <td>{{party?.client?.address}}</td>
+        </tr>
+        <tr>
+          <td>Woonplaats</td>
+          <td class="px-2">:</td>
+          <td>{{party?.client?.residence}}</td>
+        </tr>
+        <tr>
+          <td>Bestaansvorm</td>
+          <td class="px-2">:</td>
+          <td>{{party?.client?.clientType?.name}}</td>
+        </tr>
+      </table>
+
+    </div>
+    <div class="col">
+
+      <div class="row">
+        <span>Droogopdracht gegevens:</span>
+      </div>
+
+      <table class="ml-1">
+        <tr>
+          <td>Datum</td>
+          <td class="px-2">:</td>
+          <td style="width: 100%;">{{party?.inDate | date:'dd-MM-yyy'}}</td>
+        </tr>
+        <tr>
+          <td>ContractNr</td>
+          <td class="px-2">:</td>
+          <td>{{party?.client?.contractNumber}}</td>
+        </tr>
+        <tr>
+          <td>Oppervlakte</td>
+          <td class="px-2">:</td>
+          <td>{{party?.area}}</td>
+        </tr>
+        <tr>
+          <td>Monster</td>
+          <td class="px-2">:</td>
+          <td>
+            <span *ngIf="party?.isSample">{{'LABEL.YES' | translate }}</span>
+            <span *ngIf="!party?.isSample">{{'LABEL.NO' | translate }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Inkoopprijs</td>
+          <td class="px-2">:</td>
+          <td>{{party?.dryPrice | number: '1.2' }}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="row border-top pt-3 mt-3">
+    <div class="col">
+      <span class="mr-2">Aanvoerder: </span>
+      <span class="text-bold">{{party?.freshProduct}}</span>
+      <span class="ml-1">kg nat</span>
+    </div>
+    <div class="col">
+      <span class="mr-2">Afvoerder: </span>
+      <span class="text-bold">{{party?.dryProduct}}</span>
+      <span class="ml-1">kg droog</span>
+      <i class="fa fa-arrow-right mx-2 text-black-50"></i>
+      <span class="text-bold">{{party?.humidity}}</span>
+      <span>%</span>
+    </div>
+  </div>
+
+  <div class="mt-5 mb-1">Eindprodukt gegevens:</div>
+
+  <table style="width: 100%;">
+    <tr class="border-bottom">
+      <td style="width: 16%;" class="p-2 border-end text-center text-bottom">produkt</td>
+      <td style="width: 12%;" class="p-2 border-end text-center text-bottom">kilogram</td>
+      <td style="width: 12%;" class="p-2 border-end text-center text-bottom">basis</td>
+      <td style="width: 12%;" class="p-2 border-end text-center text-bottom">korting</td>
+      <td style="width: 12%;" class="p-2 border-end text-center text-bottom">kortng<br>bignag</td>
+      <td style="width: 12%;" class="p-2 border-end text-center text-bottom">toeslag<br>zakgoed</td>
+      <td style="width: 12%;" class="p-2 border-end text-center text-bottom">prijs<br>(ct)</td>
+      <td style="width: 12%;" class="p-2 text-center text-bottom">totaal<br>(EUR)</td>
+    </tr>
+    <tr>
+      <td class="p-2 border-end">{{party?.packType?.name}}</td>
+      <td class="p-2 border-end text-end">{{party?.dryProduct}}</td>
+      <td class="p-2 border-end text-end">{{party?.dryPrice | number: '1.2'}}</td>
+      <td class="p-2 border-end text-end">{{party?.discountSupply | number: '1.2'}}</td>
+      <td class="p-2 border-end text-end">{{party?.discountDisposal | number: '1.2'}}</td>
+      <td class="p-2 border-end text-end">{{party?.surcharge | number: '1.2'}}</td>
+      <td class="p-2 border-end text-end">{{party?.price | number: '1.2'}}</td>
+      <td class="p-2 text-end">{{party?.total | number: '1.2'}}</td>
+    </tr>
+
+    <tr *ngIf="party?.priceSample > 0" >
+      <td colspan="7" class="text-end pe-2">Kosten monster:</td>
+      <td class="p-1 text-end">{{party?.priceSample | number: '1.2'}}</td>
+    </tr>
+
+    <tr>
+      <td colspan="7" class="text-end pe-2">Totaal:</td>
+      <td class="p-1 text-end text-bold">{{party?.finalTotal | number: '1.2'}}</td>
+    </tr>
+  </table>
+
+
+  <div *ngIf="items?.length > 0">
+    <div class="mt-5 mb-1">Handel gegevens:</div>
+
+    <table style="width: 100%;">
+      <tr class="border-bottom">
+        <td style="width: 12%;" class="p-2 border-end text-center text-bottom">Nummer</td>
+        <td style="width: 40%;" class="p-2 border-end text-center text-bottom">Naam</td>
+        <td style="width: 12%;" class="p-2 border-end text-center text-bottom">gewicht</td>
+        <td style="width: 12%;" class="p-2 border-end text-center text-bottom">produkt</td>
+        <td style="width: 12%;" class="p-2 border-end text-center text-bottom">prs (ct)</td>
+        <td style="width: 12%;" class="p-2 text-center text-bottom">totaal(E)</td>
+      </tr>
+      <tr *ngFor="let item of items">
+        <td class="p-2 border-end text-end">{{item.client?.clientNumber}}</td>
+        <td class="p-2 border-end">{{item.client?.name}}</td>
+        <td class="p-2 border-end text-end">{{item.product}}</td>
+        <td class="p-2 border-end">{{item.packType?.name}}</td>
+        <td class="p-2 border-end text-end">{{item.price | number: '1.2'}}</td>
+        <td class="p-2 text-end">{{item.total | number: '1.2'}}</td>
+      </tr>
+
+      <!-- <tr *ngIf="party?.priceSample > 0" >
+        <td colspan="7" class="text-end pe-2">Kosten monster:</td>
+        <td class="p-1 text-end">{{party?.priceSample | number: '1.2'}}</td>
+      </tr>
+
+      <tr>
+        <td colspan="7" class="text-end pe-2">Totaal:</td>
+        <td class="p-1 text-end text-bold">{{party?.finalTotal | number: '1.2'}}</td>
+      </tr> -->
+    </table>
+
+
+    <p *ngIf="items?.isSold" class="mt-3">
+      De hele partij is verkocht
+    </p>
+
+
+
+  </div>
+
+
+</div>
+
+

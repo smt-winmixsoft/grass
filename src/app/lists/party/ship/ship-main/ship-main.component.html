@@ -54,7 +54,7 @@
             <td style="width:10%" class="text-end">{{ item.product }}</td>
             <td style="width:15%">{{ item.packType?.name }}</td>
             <td style="width:10%" class="text-end">{{ item.price | number:'1.2' }}</td>
-            <td style="width:10%" class="text-end">{{ getTotal(item) | number:'1.2' }}</td>
+            <td style="width:10%" class="text-end">{{ item.total | number:'1.2' }}</td>
             <td class="w-content project-actions text-center">
               <a class="btn-grass-primary" [routerLink]="['edit', item.partyOutId]"
                 ngbTooltip="{{ 'BUTTON.EDIT' | translate }}" tooltipClass="tooltip-grass">
@@ -73,19 +73,19 @@
 
           <tr *ngIf="items" style="border-top: 1pt solid black;">
             <td colspan="5" class="text-end text-bolder">{{ 'PARTY.LABEL.TOTAL.OUT' | translate }}:</td>
-            <td class="text-end text-primary">{{totalOut | number:'1.2'}}</td>
+            <td class="text-end text-primary">{{items.total | number:'1.2'}}</td>
             <td class="w-content"></td>
           </tr>
 
           <tr *ngIf="items">
             <td colspan="5" class="text-end text-bolder">{{ 'PARTY.LABEL.TOTAL.IN' | translate }}:</td>
-            <td class="text-end text-primary">{{totalIn | number:'1.2'}}</td>
+            <td class="text-end text-primary">{{party.finalTotal | number:'1.2'}}</td>
             <td class="w-content"></td>
           </tr>
 
           <tr *ngIf="items">
             <td colspan="5" class="text-end text-bold">{{ 'PARTY.LABEL.TOTAL.DIFF' | translate }}:</td>
-            <td class="text-end text-bold text-primary">{{totalDiff | number:'1.2'}}</td>
+            <td class="text-end text-bold text-primary">{{items.totalDiff | number:'1.2'}}</td>
             <td class="w-content"></td>
           </tr>
 
@@ -97,7 +97,7 @@
         </tbody>
       </table>
 
-      <div *ngIf="isSold" class="alert alert-warning py-2 mt-2 text-center">
+      <div *ngIf="items?.isSold" class="alert alert-warning py-2 mt-2 text-center">
         {{ 'PARTY.LABEL.SOLD' | translate }}
       </div>
 
@@ -109,5 +109,9 @@
       <a href="#" class="btn btn-primary" routerLink="../..">{{'BUTTON.CLOSE' | translate}}</a>
     </div>
   </div>
-
 </app-editor>
+
+<div *ngIf="isPrint" id="dataToPrint">
+  <app-ship-print #print></app-ship-print>
+</div>
+

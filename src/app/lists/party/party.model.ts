@@ -1,6 +1,7 @@
 import { Client } from '@components/client-info/client.model';
+import { ObjectInit, doAssign } from 'app/utils/common';
 
-export class Party {
+export class Party implements ObjectInit {
   partyId: number = 0;
   clientId: number = null;
   inDate: Date = new Date();
@@ -22,6 +23,36 @@ export class Party {
   probeId: number = 0;
   client: Client = new Client();
   packType: PackType = new PackType();
+  probe: Probe = new Probe();
+
+  init() {
+    this.client = doAssign(Client, this.client);
+  }
+
+  get surcharge(): number {
+    return null;
+  }
+
+  get priceSample(): number {
+    return this.probe?.price;
+  }
+
+  get isSample(): boolean {
+    return this.sampleNumber1 != null || this.sampleNumber2 != null
+  }
+
+  get price(): number {
+    return this.dryPrice - this.discountSupply - this.discountDisposal + this.surcharge;
+  }
+
+  get total(): number {
+    return this.price * this.dryProduct / 100;
+  }
+
+  get finalTotal(): number {
+    return this.total + this.priceSample;
+  }
+
 }
 
 export const PARTY_DRYING: number = 0;
@@ -89,9 +120,12 @@ export class Organic {
 export class Probe {
   probeId: number = 0;
   name: string = "";
+  price: number = 0;
 }
 
-export class PartyOut {
+export class PartyOut implements ObjectInit {
+  init(): void {
+  }
   partyOutId: number = 0;
   partyId: number = null;
   clientId: number = null;
@@ -101,6 +135,36 @@ export class PartyOut {
   price: number = null;
   client: Client = new Client();
   packType: PackType = new PackType();
+  get total(): number {
+    return (this.price * this.product) / 100;
+  }
+}
+
+export class PartyOutList extends Array<PartyOut> implements ObjectInit {
+  party: Party = null;
+  init(): void {
+    this.forEach((item, index, array) => array[index] = doAssign(PartyOut, item));
+  }
+
+  get total(): number {
+    let res: number = 0;
+    this.forEach(x => res += x.total);
+    return res;
+  }
+
+  get product(): number {
+    let res: number = 0;
+    this.forEach(x => res += x.product);
+    return res;
+  }
+
+  get isSold(): boolean {
+    return this.product >= this.party?.dryProduct;
+  }
+
+  get totalDiff(): number {
+    return this.total - this.party?.finalTotal;
+  }
 }
 
 export function forSaveOut(item: PartyOut): PartyOut {
@@ -124,6 +188,6 @@ function comparePartyOutDate(a: PartyOut, b: PartyOut) {
     return 0;
 }
 
-export function sortPartyOut(item: PartyOut[]) {
+export function sortPartyOut(item: PartyOutList) {
   item.sort(comparePartyOutDate);
 }

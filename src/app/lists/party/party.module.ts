@@ -20,6 +20,7 @@ import { ShipDelComponent } from './ship/ship-del/ship-del.component';
 import { ShipEditComponent } from './ship/ship-edit/ship-edit.component';
 import { ShipItemComponent } from './ship/ship-item/ship-item.component';
 import { PartyInfoComponent } from './components/party-info/party-info.component';
+import { ShipPrintComponent } from './ship/ship-print/ship-print.component';
 
 
 export const routes: Routes = [
@@ -50,6 +51,7 @@ export const routes: Routes = [
     ShipEditComponent,
     ShipItemComponent,
     PartyInfoComponent,
+    ShipPrintComponent,
   ],
   exports: [
     PartyComponent,

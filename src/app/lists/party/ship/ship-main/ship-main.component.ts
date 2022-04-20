@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
-import { Party, PartyOut, PARTY_DRYING, urlToPartyType } from '../../party.model';
+import { Party, PartyOut, PartyOutList, PARTY_DRYING, urlToPartyType } from '../../party.model';
 import { concatMap, tap } from 'rxjs/operators';
 import { environment } from "environments/environment"
+import { doPrint, doAssign } from 'app/utils/common';
+import { ShipPrintComponent } from '../ship-print/ship-print.component';
 
 @Component({
   selector: 'app-ship-main',
@@ -12,20 +14,18 @@ import { environment } from "environments/environment"
 })
 export class ShipMainComponent implements OnInit {
 
+  @ViewChild('print') cmpPrint: ShipPrintComponent;
+
   partyId: number;
   party: Party;
-  items: PartyOut[];
+  items: PartyOutList;
   isButtons: boolean;
-  totalOut: number = 0;
-  totalIn: number = 0;
-  totalDiff: number = 0;
-  isSold: boolean = false;
+  isPrint: boolean = false;
 
-  constructor(private http: HttpClient, route: ActivatedRoute, router: Router) {
+  constructor(private http: HttpClient, route: ActivatedRoute, router: Router, private zone: NgZone) {
 
     this.isButtons = true;
     const isDrying = urlToPartyType(router.url) == PARTY_DRYING;
-    var total: number = 0;
 
     route.params
       .pipe(
@@ -34,25 +34,16 @@ export class ShipMainComponent implements OnInit {
         // Get party
         concatMap(() => this.http.get<Party>(environment.urlApi + 'Party/' + this.partyId)),
         tap({
-          next: (result) => {
-            this.party = result;
-            this.totalIn = this.party.dryProduct * this.party.dryPrice / 100;
-          },
+          next: (result) => this.party = doAssign(Party, result),
           error: console.error
         }),
 
         // Get party out
-        concatMap(() => this.http.get<PartyOut[]>(environment.urlApi + 'PartyOut/byParty/' + this.partyId)),
+        concatMap(() => this.http.get<PartyOutList>(environment.urlApi + 'PartyOut/byParty/' + this.partyId)),
         tap({
           next: (result) => {
-            this.items = result
-            this.items.forEach(x => {
-              this.totalOut += this.getTotal(x);
-              total += x.product;
-            });
-
-            this.isSold = total >= this.party.dryProduct;
-            this.totalDiff = this.totalOut - this.totalIn;
+            this.items = doAssign(PartyOutList, result);
+            this.items.party = this.party;
             if (isDrying)
               this.isButtons = this.items.length == 0;
           },
@@ -72,6 +63,9 @@ export class ShipMainComponent implements OnInit {
   }
 
   print() {
-    alert('Print');
+    this.isPrint = true;
+    doPrint(this.zone, () => {
+      this.cmpPrint.init(this.party, this.items);
+    });
   }
 }

@@ -55,3 +55,34 @@ export function doAfter(zone: NgZone, next: () => void): void {
     .subscribe(() => next());
 }
 
+export function doPrint(zone: NgZone, print: () => void): void {
+    doAfter(zone, () => {
+      print();
+      doAfter(zone, () => {
+        let printData = document.getElementById('dataToPrint').cloneNode(true);
+        document.body.appendChild(printData);
+        window.print();
+        document.body.removeChild(printData);
+      });
+    });
+}
+
+
+export interface ObjectInit {
+  init():void;
+}
+
+export function doAssign<T extends ObjectInit>(TCreator: new() => T, o2: any): T
+{
+  let o = new TCreator();
+  Object.assign(o, o2);
+
+  if(typeof o.init === 'function') {
+    o.init();
+  }
+  return o;
+}
+
+
+
+

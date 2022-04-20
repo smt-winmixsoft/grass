@@ -8,7 +8,7 @@ import { environment } from "environments/environment"
 import { MessageComponent, AskInfo, AskResult } from '@components/message/message.component';
 import { ClientInfoComponent } from '@components/client-info/client-info.component';
 import { ClientContractPrintComponent } from './print/client-contract-print.component';
-import { doAfter } from 'app/utils/common';
+import { doPrint } from 'app/utils/common';
 
 @Component({
   selector: 'app-client-contracts',
@@ -147,14 +147,6 @@ export class ClientContractsComponent implements OnInit {
   print(id: number) {
     this.isPrint = true;
     this.state(id, ContractState.PRINT);
-    doAfter(this.zone, () => {
-      this.contract.init(this.client, this.items.get(id).inDate);
-      doAfter(this.zone, () => {
-        let printData = document.getElementById('dataToPrint').cloneNode(true);
-        document.body.appendChild(printData);
-        window.print();
-        document.body.removeChild(printData);
-      });
-    });
+    doPrint(this.zone, () => this.contract.init(this.client, this.items.get(id).inDate));
   }
 }

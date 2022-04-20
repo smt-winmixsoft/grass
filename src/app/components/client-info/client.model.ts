@@ -1,4 +1,9 @@
-export class Client {
+import { ObjectInit } from "@/utils/common";
+
+export class Client implements ObjectInit {
+  init(): void {
+  }
+
   clientId: number = 0;
   name: string = "";
   clientTypeId: number = 0;
@@ -16,6 +21,13 @@ export class Client {
   intercompany: boolean = false;
   notActive: boolean = false;
   hasContract: boolean = false;
+
+  get contractNumber(): string {
+    if (this.hasContract)
+      return this.clientNumber.toString();
+    else
+      return '';
+  }
 }
 
 export class ClientType {
