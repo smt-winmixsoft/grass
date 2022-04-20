@@ -45,7 +45,9 @@
     "TO": "To",
     "DATE": "Date",
     "YES": "Yes",
-    "NO": "No"
+    "NO": "No",
+    "YEAR": "Year",
+    "QUARTER": "Quarter"
   },
   "ERROR": {
     "UNKNOWN": "Unknown error"
@@ -105,7 +107,8 @@
       "INTERCOMPANY": "Intercompany",
       "NOTACTIVE": "Not Active",
       "SIGNED": "Contract signed",
-      "MINAS": "MINAS"
+      "MINAS": "MINAS",
+      "MINAS.REPORT": "Feed supply overview (Quarterly)"
     },
     "ERROR": {
       "NUMBER": "Client number '$1' is used by client '$2'",
@@ -145,7 +148,8 @@
       "DISCOUNT.SUPPLY": "Discount supply",
       "DISCOUNT.DISPOSAL": "Discount disposal",
       "PRODUCT.INFO": "Fresh/dry",
-      "SOLD": "The whole lot has been sold"
+      "SOLD": "The whole lot has been sold",
+      "NOTSOLD": "There is still $1 kg of dry product to trade!"
     },
     "ERROR": {
       "NUMBER": "Number '$1' is already used",

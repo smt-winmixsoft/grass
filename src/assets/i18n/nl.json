@@ -44,7 +44,9 @@
     "FROM": "Van",
     "TO": "Naar",
     "YES": "Ja",
-    "NO": "Nee"
+    "NO": "Nee",
+    "YEAR": "Jaar",
+    "QUARTER": "Kwartaal"
   },
   "ERROR" : {
     "UNKNOWN": "Onbekende fout"
@@ -107,7 +109,8 @@
       "INTERCOMPANY": "Intercompany",
       "NOTACTIVE": "Niet actief",
       "SIGNED": "Contract ondertekend",
-      "MINAS": "MINAS"
+      "MINAS": "MINAS",
+      "MINAS.REPORT": "Voerleverantieoverzicht (Per kwartaal)"
     },
     "ERROR": {
       "NUMBER": "Klantnummer '$1' wordt gebruikt door klant '$2'",
@@ -147,7 +150,8 @@
       "DISCOUNT.SUPPLY": "Korting aanvoer",
       "DISCOUNT.DISPOSAL": "Korting afvoer",
       "PRODUCT.INFO": "Aanvoerder/Afvoerder",
-      "SOLD": "De hele partij is verkocht"
+      "SOLD": "De hele partij is verkocht",
+      "NOTSOLD": "Er kan nog $1 kg droog produkt verhandeld worden!"
     },
     "ERROR": {
       "NUMBER": "Nummer '$1' is al in gebruik",

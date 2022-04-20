@@ -71,5 +71,16 @@
       </div>
     </div>
 
+    <!-- Available -->
+    <div class="row">
+      <div class="col-xxl-4">
+        <label>{{ 'PARTY.LABEL.AVAILABLE' | translate }}</label>
+      </div>
+      <div *ngIf="party.available > 0" class="col-xxl-8 text-danger">
+        <span>{{party.available}}</span>
+      </div>
+    </div>
+
+
   </div>
 </div>

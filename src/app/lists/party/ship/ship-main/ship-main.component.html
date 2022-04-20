@@ -101,6 +101,10 @@
         {{ 'PARTY.LABEL.SOLD' | translate }}
       </div>
 
+      <div *ngIf="!items?.isSold" class="alert alert-danger py-2 mt-2 text-center">
+        {{ items?.infoMessage }}
+      </div>
+
     </div>
   </div>
 

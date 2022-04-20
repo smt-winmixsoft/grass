@@ -1,25 +1,37 @@
-import { Component, HostListener, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "environments/environment"
-import { DataTablesResponse } from 'app/utils/common';
+import { DataTablesResponse, doAfter } from 'app/utils/common';
 
-import { Client } from '../client.model';
+import { ClientList, Party } from '../client.model';
 
 import { DataTablesService } from 'app/services/datatables.service';
 import { ResizedEvent } from 'angular-resize-event';
+import { MinasPrintComponent } from '../minas-print/minas-print.component';
+
+import { doPrint, doAssign } from 'app/utils/common';
+import { MinasParamComponent, MinasParams } from '../minas-param/minas-param.component';
+
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-client-main',
   templateUrl: './client-main.component.html',
+  providers: [DatePipe],
   styleUrls: ['./client-main.component.scss']
 })
 export class ClientMainComponent implements OnInit {
 
   @ViewChild('table') table: ElementRef;
-  dtOptions: DataTables.Settings = {};
-  items: Client[] = [];
+  @ViewChild('minas') minas: MinasPrintComponent;
+  @ViewChild('minasParam') minasParam: MinasParamComponent;
 
-  constructor(private http: HttpClient, private dataTables: DataTablesService) {}
+  dtOptions: DataTables.Settings = {};
+  items = new ClientList();
+  isPrint: boolean = false;
+  isMinas: boolean = false;
+
+  constructor(private http: HttpClient, private dataTables: DataTablesService, private zone: NgZone, public datepipe: DatePipe) { }
 
   onResized(event: ResizedEvent) {
     this.table.nativeElement.style.width = this.table.nativeElement.parentElement.style.width;
@@ -41,7 +53,7 @@ export class ClientMainComponent implements OnInit {
             environment.urlApi + 'Client/data',
             dataTablesParameters, {}
           ).subscribe(resp => {
-            this.items = resp.data;
+            this.items = doAssign(ClientList, resp.data);
             callback({
               recordsTotal: resp.recordsTotal,
               recordsFiltered: resp.recordsFiltered,
@@ -79,17 +91,31 @@ export class ClientMainComponent implements OnInit {
     };
   }
 
-  getClientType(id: number): string {
+  minasResult(params: MinasParams) {
+    if (params.result === 0) {
+      this.isPrint = true;
 
-    switch (id) {
-      case 0:
-        return 'LD';
-      case 1:
-        return 'H';
-      case 2:
-        return 'I';
-      default:
-        return '';
+      let dateFrom = this.datepipe.transform(params.dateBegin, 'yyyy-MM-dd');
+      let dateTo = this.datepipe.transform(params.dateEnd, 'yyyy-MM-dd');
+      var parties: Party[];
+
+      this.http.get<Party[]>(environment.urlApi + `Party/byDate/${params.clientId}/${dateFrom}/${dateTo}`)
+        .subscribe({
+          next: (result) => {
+            parties = result;
+            doPrint(this.zone, () => {
+              this.minas.init(params, this.items.get(params.clientId), result);
+            });
+          },
+          error: console.error
+        });
     }
+  }
+
+  print(id: number) {
+    this.isMinas = true;
+    doAfter(this.zone, () => {
+      this.minasParam.show(id);
+    });
   }
 }

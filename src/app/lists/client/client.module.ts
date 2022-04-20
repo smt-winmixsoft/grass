@@ -15,6 +15,8 @@ import { DirectivesModule } from '../../directives/directives.module';
 import { ClientItemComponent } from './item/client-item.component';
 import { ClientContractsComponent } from './contracts/client-contracts.component';
 import { ClientContractPrintComponent } from './contracts/print/client-contract-print.component';
+import { MinasPrintComponent } from './minas-print/minas-print.component';
+import { MinasParamComponent } from './minas-param/minas-param.component';
 
 
 export const routes: Routes = [
@@ -37,6 +39,8 @@ export const routes: Routes = [
     ClientItemComponent,
     ClientContractsComponent,
     ClientContractPrintComponent,
+    MinasPrintComponent,
+    MinasParamComponent,
   ],
   exports: [
     ClientComponent,

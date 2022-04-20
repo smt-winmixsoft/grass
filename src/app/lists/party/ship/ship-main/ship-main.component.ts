@@ -6,6 +6,8 @@ import { concatMap, tap } from 'rxjs/operators';
 import { environment } from "environments/environment"
 import { doPrint, doAssign } from 'app/utils/common';
 import { ShipPrintComponent } from '../ship-print/ship-print.component';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-ship-main',
@@ -22,7 +24,7 @@ export class ShipMainComponent implements OnInit {
   isButtons: boolean;
   isPrint: boolean = false;
 
-  constructor(private http: HttpClient, route: ActivatedRoute, router: Router, private zone: NgZone) {
+  constructor(private http: HttpClient, route: ActivatedRoute, router: Router, private zone: NgZone, private translate: TranslateService) {
 
     this.isButtons = true;
     const isDrying = urlToPartyType(router.url) == PARTY_DRYING;
@@ -44,12 +46,19 @@ export class ShipMainComponent implements OnInit {
           next: (result) => {
             this.items = doAssign(PartyOutList, result);
             this.items.party = this.party;
+            this.party.partyOut = this.items;
             if (isDrying)
               this.isButtons = this.items.length == 0;
           },
           error: console.error
         }),
 
+        // Get info message
+        concatMap(() => this.translate.get('PARTY.LABEL.NOTSOLD').pipe()),
+        tap({
+          next: (result) => this.items.message = result,
+          error: console.error
+        }),
       )
       .subscribe();
   }

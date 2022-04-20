@@ -24,6 +24,7 @@ export class Party implements ObjectInit {
   client: Client = new Client();
   packType: PackType = new PackType();
   probe: Probe = new Probe();
+  partyOut: PartyOutList;
 
   init() {
     this.client = doAssign(Client, this.client);
@@ -53,6 +54,9 @@ export class Party implements ObjectInit {
     return this.total + this.priceSample;
   }
 
+  get available(): number {
+    return this.dryProduct - this.partyOut?.product;
+  }
 }
 
 export const PARTY_DRYING: number = 0;
@@ -142,6 +146,8 @@ export class PartyOut implements ObjectInit {
 
 export class PartyOutList extends Array<PartyOut> implements ObjectInit {
   party: Party = null;
+  message: string = null;
+
   init(): void {
     this.forEach((item, index, array) => array[index] = doAssign(PartyOut, item));
   }
@@ -158,12 +164,21 @@ export class PartyOutList extends Array<PartyOut> implements ObjectInit {
     return res;
   }
 
+  get available(): number {
+    return this.party?.dryProduct - this.product;
+  }
+
   get isSold(): boolean {
     return this.product >= this.party?.dryProduct;
   }
 
   get totalDiff(): number {
     return this.total - this.party?.finalTotal;
+  }
+
+  get infoMessage(): string {
+    return this.message
+      .replace('$1', (this.available).toString());
   }
 }
 

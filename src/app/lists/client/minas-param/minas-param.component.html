@@ -1,0 +1,28 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-basic-title">{{"CLIENT.LABEL.MINAS.REPORT" | translate}}</h5>
+  </div>
+  <div class="modal-body">
+
+    <!-- Quarter  -->
+    <div class="form-group">
+      <label for="quarter">{{'LABEL.QUARTER' | translate}}</label>
+      <select id="quarter" class="form-select" [(ngModel)]="param.quarter">
+        <option *ngFor="let quarter of quarters" [value]="quarter">{{quarter}}</option>
+      </select>
+    </div>
+
+    <!-- Year  -->
+    <div class="form-group">
+      <label for="year">{{'LABEL.YEAR' | translate}}</label>
+      <select id="year" class="form-select" [(ngModel)]="param.year">
+        <option *ngFor="let year of years" [value]="year">{{year}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close(0)">{{'BUTTON.OK' | translate}}</button>
+    <button type="button" class="btn btn-secondary ml-3" (click)="modal.close(1)">{{'BUTTON.CANCEL' |
+      translate}}</button>
+  </div>
+</ng-template>

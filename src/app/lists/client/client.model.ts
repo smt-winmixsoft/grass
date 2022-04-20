@@ -1,6 +1,9 @@
-// Object.assign(this.item, result)
+import { ObjectInit, doAssign } from "@/utils/common";
 
-export class Client {
+export class Client implements ObjectInit {
+  init(): void {
+  }
+
   clientId: number = 0;
   name: string = null;
   clientTypeId: number = 0;
@@ -17,6 +20,33 @@ export class Client {
   gmp: boolean = false;
   intercompany: boolean = false;
   notActive: boolean = false;
+
+  get clientTypeTag(): string {
+    switch (this.clientTypeId) {
+      case 0:
+        return 'LD';
+      case 1:
+        return 'H';
+      case 2:
+        return 'I';
+      default:
+        return '';
+    }
+  }
+}
+
+export class ClientList extends Array<Client> implements ObjectInit {
+  init(): void {
+    this.forEach((item, index, array) => array[index] = doAssign(Client, item));
+  }
+
+  get(id: number): Client {
+    let index = this.findIndex((x) => x.clientId === id);
+    if (index > -1)
+      return this[index];
+    else
+      return null;
+  }
 }
 
 export class ClientCheck {
@@ -82,4 +112,12 @@ export class ClientContractList extends Array<ClientContract> {
   }
 }
 
-
+export class Party {
+  partyId: number;
+  clientId: number;
+  inDate: Date;
+  partyNumber: number;
+  freshProduct: number;
+  dryProduct: number;
+  materialId: number;
+}

@@ -16,7 +16,7 @@
     <tbody *ngIf="items?.length !== 0">
       <tr *ngFor="let item of items" [class]="item.notActive ? 'text-black-50' : ''">
         <td style="width:35%">{{ item.name }}</td>
-        <td style="width:5%">{{ getClientType(item.clientTypeId) }}</td>
+        <td style="width:5%" class="text-center">{{ item.clientTypeTag }}</td>
         <td style="width:30%">{{ item.address }}</td>
         <td style="width:30%">{{ item.residence }}</td>
         <td class="w-content project-actions text-center">
@@ -38,10 +38,10 @@
               tooltipClass="tooltip-grass" id="dropdownBasic1" ngbDropdownToggle>
               <i class="fas fa-bars ">
               </i>
-              <span class="btn-text">{{ 'BUTTON.CHOOSE' | translate }}</span>
+              <span class="btn-text">{{ 'BUTTON.COMMANDS' | translate }}</span>
             </a>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <button ngbDropdownItem>{{ 'CLIENT.LABEL.MINAS' | translate }}</button>
+              <button ngbDropdownItem (click)="print(item.clientId)">{{ 'CLIENT.LABEL.MINAS' | translate }}</button>
               <div class="dropdown-divider"></div>
               <a ngbDropdownItem class="text-danger" [routerLink]="['del', item.clientId]">Delete</a>
             </div>
@@ -51,8 +51,14 @@
     </tbody>
     <tbody *ngIf="items?.length === 0">
       <tr>
-        <td colspan="5" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+        <td colspan="5" class="no-data-available text-center">{{ 'LABEL.NO_DATA' | translate }}!</td>
       </tr>
     </tbody>
   </table>
 </app-list>
+
+<div *ngIf="isPrint" id="dataToPrint">
+  <app-minas-print #minas></app-minas-print>
+</div>
+
+<app-minas-param *ngIf="isMinas" #minasParam (closeEvent)="minasResult($event)"></app-minas-param>
