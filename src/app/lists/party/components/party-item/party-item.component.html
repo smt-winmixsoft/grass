@@ -169,7 +169,7 @@
             <input id="dryPrice" type="number" class="form-control" [(ngModel)]="item.dryPrice">
           </div>
 
-          <div class="row">
+          <div *ngIf="isDrying" class="row">
             <div class="col">
 
               <!-- Discount Supply -->
