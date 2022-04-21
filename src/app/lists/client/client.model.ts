@@ -112,12 +112,10 @@ export class ClientContractList extends Array<ClientContract> {
   }
 }
 
-export class Party {
-  partyId: number;
-  clientId: number;
-  inDate: Date;
+export interface ClientMinas {
   partyNumber: number;
-  freshProduct: number;
+  inDate: Date;
   dryProduct: number;
-  materialId: number;
+  value1: number;
+  value2: number;
 }

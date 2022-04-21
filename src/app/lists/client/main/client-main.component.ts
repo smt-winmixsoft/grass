@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from "environments/environment"
 import { DataTablesResponse, doAfter } from 'app/utils/common';
 
-import { ClientList, Party } from '../client.model';
+import { ClientList, ClientMinas } from '../client.model';
 
 import { DataTablesService } from 'app/services/datatables.service';
 import { ResizedEvent } from 'angular-resize-event';
@@ -97,9 +97,9 @@ export class ClientMainComponent implements OnInit {
 
       let dateFrom = this.datepipe.transform(params.dateBegin, 'yyyy-MM-dd');
       let dateTo = this.datepipe.transform(params.dateEnd, 'yyyy-MM-dd');
-      var parties: Party[];
+      var parties: ClientMinas[];
 
-      this.http.get<Party[]>(environment.urlApi + `Party/byDate/${params.clientId}/${dateFrom}/${dateTo}`)
+      this.http.get<ClientMinas[]>(environment.urlApi + `Client/minas/${params.clientId}/${dateFrom}/${dateTo}`)
         .subscribe({
           next: (result) => {
             parties = result;

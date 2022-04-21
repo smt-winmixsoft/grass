@@ -92,10 +92,10 @@
       <td class="text-end">{{party.dryProduct}}</td>
 
       <!-- phosphate -->
-      <td class="text-end">62.7</td>
+      <td class="text-end">{{party.value1 | number: '1.1'}}</td>
 
       <!-- nitrogen -->
-      <td class="text-end">202.9</td>
+      <td class="text-end">{{party.value2 | number: '1.1'}}</td>
     </tr>
 
     <tr class="border-top border-bottom">
@@ -103,13 +103,13 @@
       <td colspan="2">Totaal kwartaal</td>
 
       <!-- animal feed -->
-      <td class="text-end">16560</td>
+      <td class="text-end">{{totalProduct()}}</td>
 
       <!-- phosphate -->
-      <td class="text-end">113.6</td>
+      <td class="text-end">{{totalValue1()}}</td>
 
       <!-- nitrogen -->
-      <td class="text-end">367.6</td>
+      <td class="text-end">{{totalValue2()}}</td>
     </tr>
 
   </table>
