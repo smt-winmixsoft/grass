@@ -99,7 +99,7 @@ export class PartyItemComponent implements OnInit  {
         if (ok) {
           ok = await this.http.get<boolean>(environment.urlApi + 'Party/checkNumber/' + this.item.partyNumber + '/' + this.item.partyYear).toPromise();
           if (!ok)
-            this.message.show(this.tag_party_number, 'PARTY.ERROR.NUMBER', null, this.item.partyNumber.toString());
+            this.message.show(this.tag_party_number, 'ERROR.NUMBER', null, this.item.partyNumber.toString());
         }
 
         if (ok && this.item.sampleNumber1 !== null) {

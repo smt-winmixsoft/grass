@@ -1,9 +1,13 @@
+<app-message #message (closeEvent)="closeEvent($event)"></app-message>
+
 <app-title>{{'BUTTON.NEW' | translate}}</app-title>
 
 <app-editor>
   <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
     <div class="card card-primary">
       <div class="card-body">
+
+        <!-- Name  -->
         <div class="form-group">
           <label for="name">{{'LABEL.NAME' | translate}}</label>
           <input #nameInput type="text" id="name" name="name" class="form-control" [(ngModel)]="item.name"
@@ -14,6 +18,21 @@
             </div>
           </div>
         </div>
+
+        <!-- Number  -->
+        <div class="form-group">
+          <label for="number">{{'LABEL.NUMBER' | translate}}</label>
+          <div class="input-group">
+            <input #number id="number" name="number" type="text" class="form-control"
+              [(ngModel)]="item.packTypeNumber">
+            <span class="input-group-append">
+              <a class="btn btn-outline-secondary" (click)="chooseNumber()">
+                <i class="fas fa-sync"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class="row">

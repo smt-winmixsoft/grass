@@ -5,7 +5,7 @@
     <div class="card card-primary">
       <div class="card-body">
 
-        <!-- Name  -->
+        <!-- Name -->
         <div class="form-group">
           <label for="name">{{'LABEL.NAME' | translate}}</label>
           <input #nameInput type="text" id="name" name="name" class="form-control" [(ngModel)]="item.name"
@@ -17,17 +17,17 @@
           </div>
         </div>
 
-        <!-- Number  -->
+        <!-- Price -->
         <div class="form-group">
-          <label for="number">{{'LABEL.NUMBER' | translate}}</label>
-          <input id="number" name="number" type="text" class="form-control" [(ngModel)]="item.packTypeNumber" readonly>
+          <label for="price">{{'LABEL.PRICE' | translate}}</label>
+          <input type="number" id="price" name="price" class="form-control" [(ngModel)]="item.price">
         </div>
 
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <a href="#" class="btn btn-secondary" [routerLink]="['/pack-type']">{{'BUTTON.CANCEL' | translate}}</a>
+        <a href="#" class="btn btn-secondary" [routerLink]="['/probe']">{{'BUTTON.CANCEL' | translate}}</a>
         <input type="submit" value="{{'BUTTON.SAVE' | translate}}" class="btn btn-primary float-right">
       </div>
     </div>

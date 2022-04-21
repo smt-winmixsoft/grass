@@ -35,6 +35,7 @@
     "NO_DATA": "Geen gegevens",
     "NAME": "Naam",
     "NAME.REQUIRED": "Naam is vereist.",
+    "NUMBER": "Nummer",
     "GENERAL": "Algemeen",
     "EXTRA": "Extra",
     "VALUE": "Waarde",
@@ -46,10 +47,12 @@
     "YES": "Ja",
     "NO": "Nee",
     "YEAR": "Jaar",
-    "QUARTER": "Kwartaal"
+    "QUARTER": "Kwartaal",
+    "PRICE": "Prijs"
   },
   "ERROR" : {
-    "UNKNOWN": "Onbekende fout"
+    "UNKNOWN": "Onbekende fout",
+    "NUMBER": "Nummer '$1' is al in gebruik"
   },
   "PACK_TYPE": {
     "TITLE": "Pakkettypes",
@@ -140,7 +143,6 @@
       "WEIGHT": "Gewicht",
       "PRODUCE": "Produkt",
       "HUMIDITY": "Vochtpercentage",
-      "PRICE": "Droogprijs",
       "TOTAL": "Totaal",
       "TOTAL.OUT": "Totaal verkocht",
       "TOTAL.IN": "Totaal ingekocht",
@@ -154,7 +156,6 @@
       "NOTSOLD": "Er kan nog $1 kg droog produkt verhandeld worden!"
     },
     "ERROR": {
-      "NUMBER": "Nummer '$1' is al in gebruik",
       "SAMPLE1": "Voorbeeld nummer 1 '$1' is al gebruikt",
       "SAMPLE2": "Voorbeeld nummer 2 '$1' is al gebruikt",
       "CLIENT": "Klant is verplicht"
@@ -181,5 +182,9 @@
       "SEND": "E-mail verzenden mislukt",
       "NOCLIENT": "Klant niet gevonden"
     }
+  },
+  "PROBE": {
+    "TITLE": "Sondes",
+    "NEW": "Nieuwe sonde"
   }
 }

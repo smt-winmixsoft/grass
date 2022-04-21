@@ -7,12 +7,14 @@
     <thead>
       <tr>
         <th>{{ 'LABEL.NAME' | translate }}</th>
+        <th>{{ 'LABEL.NUMBER' | translate }}</th>
         <th></th>
       </tr>
     </thead>
     <tbody *ngIf="items?.length !== 0">
       <tr *ngFor="let item of items">
-        <td class="w-100">{{ item.name }}</td>
+        <td class="w-75">{{ item.name }}</td>
+        <td class="w-25 text-end">{{ item.packTypeNumber }}</td>
         <td class="w-content project-actions text-center">
           <a class="btn-grass-primary" [routerLink]="['/pack-type/edit', item.packTypeId]"
             ngbTooltip="{{ 'BUTTON.EDIT' | translate }}" tooltipClass="tooltip-grass">

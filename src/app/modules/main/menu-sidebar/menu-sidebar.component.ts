@@ -104,6 +104,12 @@ export const MENU = [
         i18n: "BTW.TITLE",
         class: "far fa-circle"
       },
+      {
+        name: "Probes",
+        path: ['/probe'],
+        i18n: "PROBE.TITLE",
+        class: "far fa-circle"
+      },
     ]
   },
   // {

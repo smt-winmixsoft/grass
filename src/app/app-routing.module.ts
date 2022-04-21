@@ -72,6 +72,10 @@ const routes: Routes = [
         loadChildren: () => import('./lists/party/party.module').then(m => m.PartyModule)
       },
       {
+        path: 'probe',
+        loadChildren: () => import('./lists/probe/probe.module').then(m => m.ProbeModule)
+      },
+      {
         path: '',
         component: DashboardComponent
       }

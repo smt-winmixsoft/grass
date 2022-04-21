@@ -1,5 +1,5 @@
-<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="/btw/add">{{ 'BTW.TITLE' | translate }}
-</app-title>
+<app-title buttonCaption="{{ 'BUTTON.NEW' | translate }}" routerLink="/probe/add">{{ 'PROBE.TITLE' |
+  translate }}</app-title>
 
 <app-list (resized)="onResized($event)">
   <table id="table" #table datatable [dtOptions]="dtOptions"
@@ -7,24 +7,22 @@
     <thead>
       <tr>
         <th>{{ 'LABEL.NAME' | translate }}</th>
-        <th>{{ 'LABEL.VALUE' | translate }}</th>
-        <th>{{ 'LABEL.NUMBER' | translate }}</th>
+        <th>{{ 'LABEL.PRICE' | translate }}</th>
         <th></th>
       </tr>
     </thead>
     <tbody *ngIf="items?.length !== 0">
       <tr *ngFor="let item of items">
-        <td class="w-50">{{ item.name }}</td>
-        <td class="w-25 text-end">{{ item.value }}</td>
-        <td class="w-25 text-end">{{ item.btwNumber }}</td>
+        <td class="w-75">{{ item.name }}</td>
+        <td class="w-25 text-end">{{ item.price }}</td>
         <td class="w-content project-actions text-center">
-          <a class="btn-grass-primary" [routerLink]="['/btw/edit', item.btwId]"
+          <a class="btn-grass-primary" [routerLink]="['/probe/edit', item.probeId]"
             ngbTooltip="{{ 'BUTTON.EDIT' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-pencil-alt">
             </i>
             <span class="btn-text">{{ 'BUTTON.EDIT' | translate }}</span>
           </a>
-          <a class="btn-grass-danger ml-1" [routerLink]="['/btw/del', item.btwId]"
+          <a class="btn-grass-danger ml-1" [routerLink]="['/probe/del', item.probeId]"
             ngbTooltip="{{ 'BUTTON.DELETE' | translate }}" tooltipClass="tooltip-grass">
             <i class="fas fa-trash">
             </i>
@@ -35,7 +33,7 @@
     </tbody>
     <tbody *ngIf="items?.length === 0">
       <tr>
-        <td colspan="3" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
+        <td colspan="2" class="no-data-available">{{ 'LABEL.NO_DATA' | translate }}!</td>
       </tr>
     </tbody>
   </table>

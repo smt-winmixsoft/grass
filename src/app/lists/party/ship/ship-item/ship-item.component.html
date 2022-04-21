@@ -55,7 +55,7 @@
 
           <!-- Price -->
           <div *ngIf="!isDrying" class="form-group">
-            <label for="dryPrice">{{'PARTY.LABEL.PRICE' | translate}}</label>
+            <label for="dryPrice">{{'LABEL.PRICE' | translate}}</label>
             <input #price id="price" name="price" type="number" class="form-control" [(ngModel)]="item.price"
               [attr.readonly]="isDrying ||  isDel ? '' : null">
           </div>

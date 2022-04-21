@@ -35,6 +35,7 @@
     "NO_DATA": "No data",
     "NAME": "Name",
     "NAME.REQUIRED": "Name is required.",
+    "NUMBER": "Number",
     "GENERAL": "General",
     "EXTRA": "Extra",
     "VALUE": "Value",
@@ -47,10 +48,12 @@
     "YES": "Yes",
     "NO": "No",
     "YEAR": "Year",
-    "QUARTER": "Quarter"
+    "QUARTER": "Quarter",
+    "PRICE": "Price"
   },
   "ERROR": {
-    "UNKNOWN": "Unknown error"
+    "UNKNOWN": "Unknown error",
+    "NUMBER": "Number '$1' is already used"
   },
   "PACK_TYPE": {
     "TITLE": "Pack types",
@@ -138,7 +141,6 @@
       "WEIGHT": "Weight",
       "PRODUCE": "Produce",
       "HUMIDITY": "Humidity",
-      "PRICE": "Price",
       "TOTAL": "Total",
       "TOTAL.OUT": "Total sold",
       "TOTAL.IN": "Total purchased",
@@ -152,7 +154,6 @@
       "NOTSOLD": "There is still $1 kg of dry product to trade!"
     },
     "ERROR": {
-      "NUMBER": "Number '$1' is already used",
       "SAMPLE1": "Sammple number 1 '$1' is already used",
       "SAMPLE2": "Sammple number 2 '$1' is already used",
       "CLIENT": "Client is required"
@@ -180,5 +181,9 @@
       "SEND": "Send mail failed",
       "NOCLIENT": "Client not found"
     }
+  },
+  "PROBE": {
+    "TITLE": "Probes",
+    "NEW": "New probe"
   }
 }

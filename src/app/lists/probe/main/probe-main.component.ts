@@ -3,21 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from "environments/environment"
 import { DataTablesResponse } from 'app/utils/common';
 
-import { Btw } from '../btw.model';
+import { Probe } from '../probe.model';
 
 import { DataTablesService } from 'app/services/datatables.service';
 import { ResizedEvent } from 'angular-resize-event';
 
+
 @Component({
-  selector: 'app-btw-main',
-  templateUrl: './btw-main.component.html',
-  styleUrls: ['./btw-main.component.scss']
+  selector: 'app-probe-main',
+  templateUrl: './probe-main.component.html',
+  styleUrls: ['./probe-main.component.scss']
 })
-export class BtwMainComponent implements OnInit {
+export class ProbeMainComponent implements OnInit {
 
   @ViewChild('table') table: ElementRef;
   dtOptions: DataTables.Settings = {};
-  items: Btw[] = [];
+  items: Probe[] = [];
 
   constructor(private http: HttpClient, private dataTables: DataTablesService) {}
 
@@ -38,7 +39,7 @@ export class BtwMainComponent implements OnInit {
       ajax: (dataTablesParameters: any, callback) => {
         this.http
           .post<DataTablesResponse>(
-            environment.urlApi + 'Btw/data',
+            environment.urlApi + 'Probe/data',
             dataTablesParameters, {}
           ).subscribe(resp => {
             this.items = resp.data;
@@ -54,12 +55,7 @@ export class BtwMainComponent implements OnInit {
           data: 'name'
         },
         {
-          data: 'value',
-          searchable: false,
-          orderable: false
-        },
-        {
-          data: 'btmNumber',
+          data: 'price',
           searchable: false,
           orderable: false
         },
@@ -70,7 +66,7 @@ export class BtwMainComponent implements OnInit {
           orderable: false
         },
         {
-          data: 'btwId',
+          data: 'probeId',
           searchable: false,
           orderable: false,
           visible: false

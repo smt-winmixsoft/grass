@@ -55,6 +55,11 @@ export class PackTypeMainComponent implements OnInit {
           data: 'name'
         },
         {
+          data: 'packTypeNumber',
+          searchable: false,
+          orderable: false
+        },
+        {
           title: '',
           data: 'actions',
           searchable: false,
