@@ -55,6 +55,11 @@ export class AnalysisTypeMainComponent implements OnInit {
           data: 'name'
         },
         {
+          data: 'analysisTypeNumber',
+          searchable: false,
+          orderable: false
+        },
+        {
           title: '',
           data: 'actions',
           searchable: false,

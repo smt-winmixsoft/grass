@@ -3,8 +3,11 @@
 <app-editor>
   <form #form="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
     <div class="card card-primary">
+
       <div class="card-body">
-        <div class="form-group">
+
+      <!-- Name -->
+      <div class="form-group">
           <label for="name">{{'LABEL.NAME' | translate}}</label>
           <input #nameInput type="text" id="name" name="name" class="form-control" [(ngModel)]="item.name"
             #name="ngModel" required appAutofocus>
@@ -14,7 +17,15 @@
             </div>
           </div>
         </div>
+
+        <!-- Number  -->
+        <div class="form-group">
+          <label for="number">{{'LABEL.NUMBER' | translate}}</label>
+          <input id="number" name="number" type="number" class="form-control" [(ngModel)]="item.analysisTypeNumber" readonly>
+        </div>
+
       </div>
+
     </div>
     <div class="row">
       <div class="col-12">

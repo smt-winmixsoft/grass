@@ -30,7 +30,7 @@
         <div class="form-group">
           <label for="btwNumber">{{'LABEL.NUMBER' | translate}}</label>
           <div class="input-group">
-            <input #number id="btwNumber" name="btwNumber" type="text" class="form-control" [(ngModel)]="item.btwNumber">
+            <input #number id="btwNumber" name="btwNumber" type="number" class="form-control" [(ngModel)]="item.btwNumber">
             <span class="input-group-append">
               <a class="btn btn-outline-secondary" (click)="chooseNumber()">
                 <i class="fas fa-sync"></i>
