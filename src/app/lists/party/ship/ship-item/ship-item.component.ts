@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
-import { PackType, PartyOut, Party, forSaveOut, CLIENT_I, urlToPartyType, PARTY_DRYING } from '../../party.model';
+import { PackType, PartyOut, Party, forSaveOut, urlToPartyType, PARTY_DRYING, CLIENT_H } from '../../party.model';
 import { Client } from '@components/client-info/client.model';
 import { environment } from "environments/environment"
 import { HttpClient } from "@angular/common/http"
@@ -36,7 +36,7 @@ export class ShipItemComponent implements OnInit, AfterViewInit {
 
   pageMain: boolean = true;
   pageClient: boolean = false;
-  clientType: number = CLIENT_I;
+  clientType: number = CLIENT_H;
   partyType: number;
   isDrying: boolean;
 

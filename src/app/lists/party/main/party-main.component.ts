@@ -76,10 +76,12 @@ export class PartyMainComponent implements OnInit {
         {
           data: 'lotNumber',
           searchable: false,
+          orderable: false
         },
         {
           data: 'area',
           searchable: false,
+          orderable: false
         },
         {
           title: '',
