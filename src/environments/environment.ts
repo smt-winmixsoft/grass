@@ -6,7 +6,7 @@ import { LogLevel } from '@azure/msal-browser';
 
 export const environment = {
     production: false,
-    urlApi: "https://localhost:7088/api/",
+    urlApi: "https://localhost:7019/api/",
     language: "en",
     logLevel: LogLevel.Error,
     clientId: 'c4d917d5-8398-4cf5-ada7-0e56bdfbf836',
